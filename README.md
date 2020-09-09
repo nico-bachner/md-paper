@@ -9,7 +9,7 @@ Personalised and simplified markdown to pdf (via LaTeX) converter based on [Pand
 ```
 alias bot='cd /Users/nico/desktop/codm-lu-bot && npm start'
 alias build='
-	pandoc essay.md -s -o latex/essay.tex && 
+	pandoc essay.md --template=template.latex -o latex/essay.tex && 
 	cd latex && 
 	pdflatex essay.tex && 
 	pdflatex essay.tex &&
@@ -17,7 +17,6 @@ alias build='
 	cd ..
 '
 ```
-3. Add [template.latex](template.latex) to /.pandoc/templates (create these folders if they don't exist yet)
-4. Delete content from essay.md that you don't need
-5. Start writing :smile:
-6. To generate the pdf, go to your terminal and type `build` (only works if you're already in the project directory)
+3. Delete content from essay.md that you don't need
+4. Start writing :smile:
+5. To generate the pdf, go to your terminal and type `build` (only works if you're already in the project directory)
