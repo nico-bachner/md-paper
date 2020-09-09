@@ -24,35 +24,26 @@
 \usepackage[english]{babel}
 \usepackage{amssymb,amsmath,textcomp,tikz,float,pgf,hyperref,setspace,xcolor}
 
-\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+$if(custom-margins)$
+  \usepackage[top=$top$, bottom=$bottom$, left=$left$, right=$right$]{geometry}
+$endif$
+
 
 \setcounter{secnumdepth}{4}
 \setlength{\headheight}{25pt}
 
 $if(headers-and-footers)$
   \usepackage{scrlayer-scrpage}
-  $if(leftheader)$
-    \ihead{$leftheader$}
-  $endif$
-  $if(centerheader)$
-    \chead{$centerheader$}
-  $endif$
-  $if(rightheader)$
-    \ohead{$rightheader$}
-  $endif$
-  $if(leftfooter)$
-    \ifoot{$leftfooter$}
-  $endif$
-  $if(centerfooter)$
-    \cfoot{$centerfooter$}
-  $endif$
-  $if(rightfooter)$
-    \ofoot{$rightfooter$}
-  $endif$
+  \ihead{$leftheader$}
+  \chead{$centerheader$}
+  \ohead{$rightheader$}
+  \ifoot{$leftfooter$}
+  \cfoot{$centerfooter$}
+  \ofoot{$rightfooter$}
 $endif$
 
-$if(doublespacing)$
-  \doublespacing
+$if(spacing)$
+  \$spacing$spacing
 $endif$
 
 \providecommand{\tightlist}{
@@ -60,10 +51,8 @@ $endif$
   \setlength{\parskip}{0pt}
 }
 
-$if(fontfamily)$
-  \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
-$else$
-  \usepackage{lmodern}
+$if(font-family)$
+  \usepackage{$font-family$}
 $endif$
 
 $if(mainfont)$
@@ -112,16 +101,16 @@ $if(title)$
 $endif$
 
 %  ____
-% |    \
 % |     \
 % |  |\  \
-% |  | \  \  
-% |  |__\  \
-% |   ____  \
-% |  |  \ \  \
-% |  |   \ \  \  
-% |__|    \ \__\
-% |__|     \|__|
+% |  | \  \
+% |  |\ \  \  
+% |  |_\_\  \
+% |   ____   \
+% |  |___| \  \
+% |  |    \ \  \  
+% |__|     \ \__\
+% |__|      \|__|
 
 \begin{document}
 

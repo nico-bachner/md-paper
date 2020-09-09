@@ -10,7 +10,9 @@ titlepage: false
 title: |
   **Automotive Congestion Charge** \
   *How would introducing a congestion tax impact Luxembourg?*
-author: "Nico Bachner | Candidate Number: 123456 123"
+author: | 
+  Nico Bachner \
+  Candidate Number: 123456 123
 date: \today
 
 abstract: |
@@ -20,10 +22,18 @@ abstract: |
 
   fmute
 
-doublespacing: true
+custom-margins: true
+top: "3cm"
+bottom: "3cm"
+left: "2cm"
+right: "2cm"
 
-toc: true
+spacing: "double" # Options: "onehalf", "double", false (=normal)
+
+toc: true # toggle table of contents
 toc-depth: "4"
+
+font-family: lmodern
 
 headers-and-footers: true # toggle headers and footers
 leftheader: "Session May 2021"
@@ -33,7 +43,9 @@ leftfooter:
 centerfooter: \thepage
 rightfooter:
 
-header-includes: # import additional LaTeX packages and create custom commands here
+header-includes: | # import additional LaTeX packages and create custom commands here
+  \usepackage{euler}
+
 ---
 # Introduction
 - Reasons for choice
