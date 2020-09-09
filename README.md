@@ -7,7 +7,6 @@ Personalised and simplified markdown to pdf (via LaTeX) converter based on [Pand
 1. Install Pandoc and a TeX distribution
 2. [optional, but recommended] Add the following to your zsh config (.zshrc):
 ```
-alias bot='cd /Users/nico/desktop/codm-lu-bot && npm start'
 alias build='
 	pandoc essay.md --template=template.latex -o latex/essay.tex && 
 	cd latex && 
