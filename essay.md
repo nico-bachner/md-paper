@@ -6,17 +6,22 @@ fontsize: "12pt" # Options: 10pt, 11pt, 12pt
 twocolumn: false
 oneside: true
 titlepage: false
-tocdepth: "4"
-doublespacing: true
 
-title: "Luxembourg Congestion Charge"
-date: \today
+title: |
+  **Automotive Congestion Charge** \
+  *How would introducing a congestion tax impact Luxembourg?*
 author: "Nico Bachner | Candidate Number: 123456 123"
+date: \today
 
 abstract: |
   yefhwd
   df
   dfs
+
+doublespacing: true
+
+toc: 
+  toc-depth: "4"
 
 header-includes: |
   \usepackage{scrlayer-scrpage}
@@ -25,12 +30,6 @@ header-includes: |
   \ohead{Economics}
   \cfoot{\thepage}
 ---
-\maketitle
-\thispagestyle{empty}
-\newpage
-\tableofcontents
-\newpage
-
 # Introduction
 - Reasons for choice
 - Introduction to topic
