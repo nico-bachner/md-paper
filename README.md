@@ -20,3 +20,4 @@ alias build='
 3. Add [template.latex](template.latex) to /.pandoc/templates (create these folders if they don't exist yet)
 4. Delete content from essay.md that you don't need
 5. Start writing :smile:
+6. To generate the pdf, go to your terminal and type `build` (only works if you're already in the project directory)
