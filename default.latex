@@ -1,0 +1,109 @@
+\documentclass[
+$if(papersize)$
+  $papersize$paper,
+$endif$
+$if(fontsize)$
+  $fontsize$,
+$endif$
+]{$documentclass$}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amssymb,amsmath,scrlayer-scrpage,textcomp,tikz,float,pgf,hyperref,setspace,xcolor}
+
+\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+
+\setcounter{secnumdepth}{4}
+\setlength{\headheight}{25pt}
+
+\providecommand{\tightlist}{
+  \setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+}
+
+$if(fontfamily)$
+\usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
+$else$
+\usepackage{lmodern}
+$endif$
+
+$if(mainfont)$
+  \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
+$endif$
+$if(sansfont)$
+  \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
+$endif$
+$if(monofont)$
+  \setmonofont[$for(monofontoptions)$$monofontoptions$$sep$,$endfor$]{$monofont$}
+$endif$
+$for(fontfamilies)$
+  \newfontfamily{$fontfamilies.name$}[$for(fontfamilies.options)$$fontfamilies.options$$sep$,$endfor$]{$fontfamilies.font$}
+$endfor$
+$if(mathfont)$
+  \setmathfont[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+$endif$
+
+$if(keywords)$
+  pdfkeywords={
+    $for(keywords)$
+      $keywords$
+      $sep$, 
+    $endfor$
+  },
+$endif$
+
+$for(header-includes)$
+  $header-includes$
+$endfor$
+
+$if(title)$
+  \title{
+    $title$
+    $if(thanks)$
+      \thanks{$thanks$}
+    $endif$
+  }
+  \author{
+    $for(author)$
+      $author$
+      $sep$ \and 
+    $endfor$
+  }
+  \date{$date$}
+$endif$
+
+
+
+
+\begin{document}
+
+\maketitle
+
+$if(abstract)$
+  \begin{abstract}
+    $abstract$
+  \end{abstract}
+$endif$
+
+\newpage
+
+$if(toc)$
+  $if(toc-depth)$
+    \setcounter{tocdepth}{$toc-depth$}
+  $endif$
+  \tableofcontents
+  \newpage
+$endif$
+
+$if(lot)$
+  \listoftables
+$endif$
+
+$if(lof)$
+  \listoffigures
+$endif$
+
+$body$
+
+\end{document}
