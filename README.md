@@ -4,18 +4,8 @@ Personalised and simplified markdown to pdf (via LaTeX) converter based on [Pand
 
 ## How to use
 
-1. Install Pandoc and a TeX distribution
-2. [optional, but recommended] Add the following to your zsh config (.zshrc):
-```
-alias build='
-	pandoc essay.md --template=template.latex -o latex/essay.tex && 
-	cd latex && 
-	pdflatex essay.tex && 
-	pdflatex essay.tex &&
-	mv essay.pdf .. &&
-	cd ..
-'
-```
+1. Clone this repository.
+2. Install Pandoc and a TeX distribution (only needs to have pdflatex).
 3. Delete content from essay.md that you don't need
 4. Start writing :smile:
-5. To generate the pdf, go to your terminal and type `build` (only works if you're already in the project directory)
+5. To generate the pdf, go to your terminal and type `./build.zsh` (only works if you're already in the project directory)
