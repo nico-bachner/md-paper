@@ -1,8 +1,15 @@
 \babel@toc {english}{}
-\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
-\contentsline {section}{\numberline {2}Main Body}{2}{section.2}%
-\contentsline {subsection}{\numberline {2.1}The transportation sector in Luxembourg as of 2020}{3}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Impact of a congestion charge}{3}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Conclusion}{3}{section.3}%
-\contentsline {section}{\numberline {4}References}{3}{section.4}%
-\contentsline {section}{\numberline {5}RPPF}{4}{section.5}%
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Reasons for choice}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Outline}{3}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Road Pricing}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}A brief History of Road Pricing}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}The Current State of Road Pricing}{4}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Globally}{4}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}In Luxembourg}{4}{subsubsection.2.2.2}%
+\contentsline {section}{\numberline {3}Hypothesis}{4}{section.3}%
+\contentsline {section}{\numberline {4}Results}{4}{section.4}%
+\contentsline {section}{\numberline {5}Discussion}{5}{section.5}%
+\contentsline {section}{\numberline {6}Conclusion}{5}{section.6}%
+\contentsline {section}{\numberline {7}References}{5}{section.7}%
+\contentsline {section}{\numberline {8}RPPF}{5}{section.8}%

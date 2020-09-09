@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.7)  9 SEP 2020 18:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.7)  9 SEP 2020 22:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -988,58 +988,59 @@ LaTeX Font Info:    Trying to load font information for U+euex on input line 64
 
 (/usr/local/texlive/2020basic/texmf-dist/tex/latex/amsfonts/ueuex.fd
 File: ueuex.fd 2013/01/14 v3.01 Euler extra symbols
-) (./ee.toc
+) [1
+
+{/usr/local/texlive/2020basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (.
+/ee.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 4.
+(Font)              <12> on input line 3.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 4.
+(Font)              <8> on input line 3.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 4.
+(Font)              <6> on input line 3.
 )
 \tf@toc=\write5
 \openout5 = `ee.toc'.
 
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 8
+ [2]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 9
 3.
  (/usr/local/texlive/2020basic/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [1
-
-{/usr/local/texlive/2020basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
-]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
-03.
-
-(/usr/local/texlive/2020basic/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [3]
-Overfull \hbox (30.14934pt too wide) in paragraph at lines 212--214
-[]\T1/lmr/m/up/12 Beesley, M.E., 1965. The value of time spent in trav-el-ling:
- some new ev-i-dence.Economica,32(126),
+[4]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
+21.
+ (/usr/local/texlive/2020basic/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Overfull \hbox (12.52452pt too wide) in paragraph at lines 220--238
+\T1/lmr/m/up/12 Beesley, M.E., 1965. The value of time spent in trav-el-ling: s
+ome new ev-i-dence.Economica,32(126),
  []
 
-[4]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 230.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 230.
+[5]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 242.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 242.
  (./ee.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 230.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 230.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 242.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 242.
 Package rerunfilecheck Info: File `ee.out' has not changed.
-(rerunfilecheck)             Checksum: AC0CF8CB88C7ABF4965CD11A1AB0545E;397.
+(rerunfilecheck)             Checksum: DB59333F8BCA0A913E2ED149EE4897F0;784.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 230.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 242.
  ) 
 Here is how much of TeX's memory you used:
- 20188 strings out of 482056
- 399688 string characters out of 5937676
- 678891 words of memory out of 5000000
- 35417 multiletter control sequences out of 15000+600000
+ 20217 strings out of 482056
+ 400022 string characters out of 5937676
+ 680149 words of memory out of 5000000
+ 35431 multiletter control sequences out of 15000+600000
  598932 words of font info for 92 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 60i,20n,66p,383b,444s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,19n,73p,383b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020basic/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/l
 ocal/texlive/2020basic/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr/local/tex
 live/2020basic/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/
@@ -1049,10 +1050,10 @@ exmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2020basic/texmf-d
 ist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2020basic/texmf-dist/f
 onts/type1/public/lm/lmro12.pfb></usr/local/texlive/2020basic/texmf-dist/fonts/
 type1/public/lm/lmtt12.pfb>
-Output written on ee.pdf (4 pages, 175874 bytes).
+Output written on ee.pdf (5 pages, 175344 bytes).
 PDF statistics:
- 110 PDF objects out of 1000 (max. 8388607)
- 96 compressed objects within 1 object stream
- 20 named destinations out of 1000 (max. 500000)
- 69 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 159 PDF objects out of 1000 (max. 8388607)
+ 143 compressed objects within 2 object streams
+ 35 named destinations out of 1000 (max. 500000)
+ 125 words of extra memory for PDF output out of 10000 (max. 10000000)
 

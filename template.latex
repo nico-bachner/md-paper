@@ -124,10 +124,16 @@ $if(abstract)$
 $endif$
 
 $if(toc)$
+  $if(toc-standalone-page)$
+    \newpage
+  $endif$
   $if(toc-depth)$
     \setcounter{tocdepth}{$toc-depth$}
   $endif$
   \tableofcontents
+  $if(toc-standalone-page)$
+    \newpage
+  $endif$
 $endif$
 
 $if(lot)$
