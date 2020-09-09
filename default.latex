@@ -1,21 +1,59 @@
 \documentclass[
-$if(papersize)$
-  $papersize$paper,
-$endif$
-$if(fontsize)$
-  $fontsize$,
-$endif$
+  $if(papersize)$
+    $papersize$paper,
+  $endif$
+  $if(fontsize)$
+    $fontsize$,
+  $endif$
+  $if(twocolumn)$
+    twocolumn,
+  $endif$
+  $if(oneside)$
+    oneside,
+  $endif$
+  $if(titlepage)$
+    titlepage,
+  $endif$
+  $if(draft)$
+    draft,
+  $endif$
 ]{$documentclass$}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
-\usepackage{amssymb,amsmath,scrlayer-scrpage,textcomp,tikz,float,pgf,hyperref,setspace,xcolor}
+\usepackage{amssymb,amsmath,textcomp,tikz,float,pgf,hyperref,setspace,xcolor}
 
 \usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
 
 \setcounter{secnumdepth}{4}
 \setlength{\headheight}{25pt}
+
+$if(headers-and-footers)$
+  \usepackage{scrlayer-scrpage}
+  $if(leftheader)$
+    \ihead{$leftheader$}
+  $endif$
+  $if(centerheader)$
+    \chead{$centerheader$}
+  $endif$
+  $if(rightheader)$
+    \ohead{$rightheader$}
+  $endif$
+  $if(leftfooter)$
+    \ifoot{$leftfooter$}
+  $endif$
+  $if(centerfooter)$
+    \cfoot{$centerfooter$}
+  $endif$
+  $if(rightfooter)$
+    \ofoot{$rightfooter$}
+  $endif$
+$endif$
+
+$if(doublespacing)$
+  \doublespacing
+$endif$
 
 \providecommand{\tightlist}{
   \setlength{\itemsep}{0pt}
@@ -23,9 +61,9 @@ $endif$
 }
 
 $if(fontfamily)$
-\usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
+  \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $else$
-\usepackage{lmodern}
+  \usepackage{lmodern}
 $endif$
 
 $if(mainfont)$
@@ -73,12 +111,22 @@ $if(title)$
   \date{$date$}
 $endif$
 
-
-
+%  ____
+% |    \
+% |     \
+% |  |\  \
+% |  | \  \  
+% |  |__\  \
+% |   ____  \
+% |  |  \ \  \
+% |  |   \ \  \  
+% |__|    \ \__\
+% |__|     \|__|
 
 \begin{document}
 
 \maketitle
+\thispagestyle{empty}
 
 $if(abstract)$
   \begin{abstract}
@@ -86,14 +134,11 @@ $if(abstract)$
   \end{abstract}
 $endif$
 
-\newpage
-
 $if(toc)$
   $if(toc-depth)$
     \setcounter{tocdepth}{$toc-depth$}
   $endif$
   \tableofcontents
-  \newpage
 $endif$
 
 $if(lot)$

@@ -18,17 +18,22 @@ abstract: |
   df
   dfs
 
+  fmute
+
 doublespacing: true
 
-toc: 
-  toc-depth: "4"
+toc: true
+toc-depth: "4"
 
-header-includes: |
-  \usepackage{scrlayer-scrpage}
-  \ihead{Session May 2021} 
-  \chead{IBDP Extended Essay} 
-  \ohead{Economics}
-  \cfoot{\thepage}
+headers-and-footers: true # toggle headers and footers
+leftheader: "Session May 2021"
+centerheader: "IBDP Extended Essay"
+rightheader: "Economics"
+leftfooter:
+centerfooter: \thepage
+rightfooter:
+
+header-includes: # import additional LaTeX packages and create custom commands here
 ---
 # Introduction
 - Reasons for choice
