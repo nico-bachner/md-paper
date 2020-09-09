@@ -1,12 +1,17 @@
 ---
 documentclass: "article"
+draft: false
 papersize: "a4"
-fontsize: "12pt"
+fontsize: "12pt" # Options: 10pt, 11pt, 12pt
+twocolumn: false
+oneside: true
+titlepage: false
+tocdepth: "4"
+doublespacing: true
 
 title: "Luxembourg Congestion Charge"
-date: |
-  Candidate Number: 123456 123
-author: "Nico Bachner"
+date: \today
+author: "Nico Bachner | Candidate Number: 123456 123"
 
 abstract: |
   yefhwd
@@ -19,8 +24,6 @@ header-includes: |
   \chead{IBDP Extended Essay} 
   \ohead{Economics}
   \cfoot{\thepage}
-
-  \doublespacing
 ---
 \maketitle
 \thispagestyle{empty}
@@ -73,6 +76,8 @@ m
 test
 
 # References
+
+Khan Academy, (2019). *Macroeconomics*. [online] Available at: \url{https://www.khanacademy.org/economics-finance-domain/macroeconomics} [Accessed 2 June 2019]
 
 Smeed, R.J., 1968. Traffic studies and urban congestion. Journal of Transport Economics and Policy, pp.33-70.
 
