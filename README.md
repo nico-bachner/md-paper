@@ -22,7 +22,7 @@ Personalised and simplified markdown to pdf (via LaTeX) converter based on [Pand
     MARKDOWN CONTENT GOES HERE
     ```
 0. Start writing :smile:
-0. To generate the pdf, go to your terminal, navigate to your project directory and type `sh build.sh DOCUMENT -d`.
+0. To generate the pdf, go to your terminal, navigate to your project directory and type `sh build.sh d DOCUMENT`.
 
 ### Build Options
-- Keep build directory containing DOCUMENT.tex: `sh build.sh DOCUMENT keep`
+- Keep build directory containing DOCUMENT.tex: `sh build.sh keep DOCUMENT`

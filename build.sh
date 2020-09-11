@@ -1,6 +1,6 @@
 #!/bin/sh
 
-FILE=$1
+FILE=$2
 
 mkdir ${FILE}-build
 pandoc ${FILE}.md --template=template.latex -o ${FILE}-build/${FILE}.tex && 
@@ -10,7 +10,7 @@ pdflatex ${FILE}.tex &&
 mv ${FILE}.pdf .. &&
 cd ..
 
-if [ $2 = "-d" ]
+if [ $1 = "d" ]
 then
   rm -R ${FILE}-build
 fi
