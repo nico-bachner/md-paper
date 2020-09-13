@@ -25,6 +25,10 @@ leftfooter:
 centerfooter: \thepage
 rightfooter:
 
+toc-standalone-page: true
+toc: true # toggle table of contents
+toc-depth: "4"
+
 header-includes: | # import additional LaTeX packages and create custom commands here
   \usepackage{euler}
   \bibliographystyle{plain}
@@ -43,12 +47,9 @@ date: \today
 
 abstract: |
   ...
-
-toc-standalone-page: true
-toc: true # toggle table of contents
-toc-depth: "4"
-
+  
 ---
+
 # Introduction
 
 ## Reasons for choice
