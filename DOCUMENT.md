@@ -25,8 +25,10 @@ leftfooter:
 centerfooter: \thepage
 rightfooter:
 
+bibliography: bibliography.bib
+
 header-includes: | # import additional LaTeX packages and create custom commands here
-  \usepackage{euler}
+  \usepackage{euler, cite}
 
 # --- Start of content ---
 
@@ -35,7 +37,7 @@ title: |
   *Should Luxembourg introduce road user charges?*
 author: | 
   Nico Bachner \
-  Candidate Number: 654321 123
+  Candidate Number: 123456 123
 date: \today
 
 abstract: |
@@ -72,10 +74,13 @@ Road pricing is a personal interest of mine. Since I am an avid cyclist, I disli
   - Political viability and public opinion 
   - Impact of the “frontaliers” 
 
-# Road Pricing
+## Hypothesis
+- Introducing a road user charge will have an overall positive outcome due to it decreasing automobile use, thus decreasing negative factors such as pollution and time waste through traffic jams
+
+# Road Pricing - Literature Review
 
 ## A brief History of Road Pricing
-...
+First road pricing scheme in Singapore ~\cite{land1996world}
 
 ## The Current State of Road Pricing
 
@@ -91,9 +96,8 @@ Road pricing is a personal interest of mine. Since I am an avid cyclist, I disli
 - Accidents 
 - Pollution
 
-# Hypothesis
-- Introducing a road user charge will have an overall positive outcome due to it decreasing automobile use, thus decreasing negative factors such as pollution and time waste through traffic jams
- 
+# Data
+
 
 # Results
 ...
@@ -106,6 +110,9 @@ Road pricing is a personal interest of mine. Since I am an avid cyclist, I disli
 
 # References
 
+\bibliography{bibliography}
+\bibliographystyle{plain}
+
 Khan Academy, (2019). *Macroeconomics*. [online] Available at: \url{https://www.khanacademy.org/economics-finance-domain/macroeconomics} [Accessed 2 June 2019] \
 Smeed, R.J., 1968. Traffic studies and urban congestion. Journal of Transport Economics and Policy, pp.33-70. \
 Sharp, C., 1966. Congestion and Welfare-an Examination of the Case for a Congestion Tax. The Economic Journal, 76(304), pp.806-817. \
@@ -114,5 +121,6 @@ Richardson, H.W., 1974. A note on the distributional effects of road pricing. 
 Derbel, A. and Boujelbene, Y., 2019, October. A Systematic Literature Review of Studies on Road Congestion Modelling. In International Workshop on Distributed Computing for Emerging Smart Networks (pp. 23-36). Springer, Cham. 
 Fridstrøm, L., The Case for Marginal Cost Road Pricing in Norway. \
 Meloche, J.P., 2019. Towards a New Era in Road Pricing? Lessons from the Experience of First Movers (No. 2019s-35). CIRANO. 
+Authority, L.T., 1996. A world class land transport system. LTA, Singapore.
 
 # RPPF
