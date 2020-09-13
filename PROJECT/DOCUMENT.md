@@ -25,12 +25,13 @@ leftfooter:
 centerfooter: \thepage
 rightfooter:
 
-bibliography: bibliography.bib
-
 header-includes: | # import additional LaTeX packages and create custom commands here
-  \usepackage{euler, cite}
+  \usepackage{euler}
+  \bibliographystyle{plain}
 
-# --- Start of content ---
+# -------------------------
+# ----- CONTENT START -----
+# -------------------------
 
 title: |
   **Road Pricing for Luxembourg** \
@@ -110,17 +111,8 @@ First road pricing scheme in Singapore ~\cite{land1996world}
 
 # References
 
-\bibliography{bibliography}
-\bibliographystyle{plain}
+\nocite{Khan}
 
-Khan Academy, (2019). *Macroeconomics*. [online] Available at: \url{https://www.khanacademy.org/economics-finance-domain/macroeconomics} [Accessed 2 June 2019] \
-Smeed, R.J., 1968. Traffic studies and urban congestion. Journal of Transport Economics and Policy, pp.33-70. \
-Sharp, C., 1966. Congestion and Welfare-an Examination of the Case for a Congestion Tax. The Economic Journal, 76(304), pp.806-817. \
-Beesley, M.E., 1965. The value of time spent in travelling: some new evidence. Economica, 32(126), pp.174-185. \
-Richardson, H.W., 1974. A note on the distributional effects of road pricing. Journal of Transport Economics and Policy, pp.82-85. \
-Derbel, A. and Boujelbene, Y., 2019, October. A Systematic Literature Review of Studies on Road Congestion Modelling. In International Workshop on Distributed Computing for Emerging Smart Networks (pp. 23-36). Springer, Cham. 
-Fridstrøm, L., The Case for Marginal Cost Road Pricing in Norway. \
-Meloche, J.P., 2019. Towards a New Era in Road Pricing? Lessons from the Experience of First Movers (No. 2019s-35). CIRANO. 
-Authority, L.T., 1996. A world class land transport system. LTA, Singapore.
+\bibliography{bibliography}
 
 # RPPF
