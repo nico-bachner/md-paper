@@ -47,7 +47,7 @@ date: \today
 
 abstract: |
   ...
-  
+
 ---
 
 # Introduction
@@ -99,7 +99,7 @@ First road pricing scheme in Singapore ~\cite{land1996world}
 - Pollution
 
 # Data
-
+549379 vehicles in luxembourg as of february 2019 \cite{lux2019vehicles}
 
 # Results
 ...

@@ -10,7 +10,7 @@ cp bibliography.bib ${FILE}-build/
 
 cd ${FILE}-build
 pdflatex ../${FILE}.tex
-bibtex ../${FILE}.aux
+bibtex ${FILE}.aux
 pdflatex ../${FILE}.tex
 pdflatex ../${FILE}.tex
 mv ${FILE}.pdf ..
