@@ -24,7 +24,7 @@ Personalised and simplified markdown to pdf (via LaTeX) converter based on [Pand
 
     MARKDOWN CONTENT GOES HERE
     ```
-0. Start writing :smile:
+0. Start writing :wink:
 0. To generate the pdf:
     1. Go to your terminal.
     0. Navigate to the location of this repository.
@@ -32,6 +32,7 @@ Personalised and simplified markdown to pdf (via LaTeX) converter based on [Pand
         ```
         sh build.sh PROJECT DOCUMENT
         ```
+    0. Open your generated pdf :tada:
 
 ### Build Options
 - Keep built latex file only:
