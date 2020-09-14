@@ -8,7 +8,7 @@ Personalised and simplified markdown to pdf (via LaTeX) converter based on [Pand
     ```
     git clone https://github.com/nico-bachner/md-to-pdf.git
     ```
-0. Install [Pandoc](https://pandoc.org) and a TeX distribution (only requires pdflatex).
+0. Install [Pandoc](https://pandoc.org/installing.html) and a TeX distribution (only requires pdflatex).
 0. (Optional) Change DOCUMENT.md and/or PROJECT to the name of your project.
 0. Customise your YAML header and delete placeholder content. Your document should look something like this:
     ``` YAML
