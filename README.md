@@ -8,7 +8,7 @@ Personalised and simplified markdown to pdf (via LaTeX) converter based on [Pand
     ```
     git clone https://github.com/nico-bachner/md-to-pdf.git
     ```
-0. Install [Pandoc](https://pandoc.org) and a TeX distribution (only requires pdflatex).
+0. Install [Pandoc](https://pandoc.org/installing.html) and a TeX distribution (only requires pdflatex).
 0. (Optional) Change DOCUMENT.md and/or PROJECT to the name of your project.
 0. Customise your YAML header and delete placeholder content. Your document should look something like this:
     ``` YAML
@@ -24,7 +24,7 @@ Personalised and simplified markdown to pdf (via LaTeX) converter based on [Pand
 
     MARKDOWN CONTENT GOES HERE
     ```
-0. Start writing :smile:
+0. Start writing :wink:
 0. To generate the pdf:
     1. Go to your terminal.
     0. Navigate to the location of this repository.
@@ -32,6 +32,7 @@ Personalised and simplified markdown to pdf (via LaTeX) converter based on [Pand
         ```
         sh build.sh PROJECT DOCUMENT
         ```
+    0. Open your generated pdf :tada:
 
 ### Build Options
 - Keep built latex file only:
