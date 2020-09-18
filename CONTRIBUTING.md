@@ -9,7 +9,7 @@ Input is very welcome! Contributions to this project can be made in the followin
 - Becoming a maintainer
 - PULL REQUESTS Y'ALL!!! :smile:
 
-## How to submit a pull requests:
+## How to submit pull requests:
 
 - Fork the repo.
 - Modify to you heart's desire :wink:
