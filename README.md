@@ -8,7 +8,7 @@ Personalised and "simplified" markdown to pdf (via LaTeX) converter using [Pando
     - [YAML Options](#YAML-Options)
     - [Further Customisation](#Further-Customisation)
 
-***Heads-up:*** I also use this repo as storage for some personal essays, so don't be confused by the many folders. :grin: \
+**Heads-up:** I also use this repo as storage for some personal essays, so don't be confused by the many folders. :grin: \
 Feel free use any and all of my stuff as a template / inspiration for your own project.
 
 ## How to use
@@ -34,7 +34,7 @@ Feel free use any and all of my stuff as a template / inspiration for your own p
         ```
 0. Create a folder inside this repository that will contain your project.
 0. Create your Markdown (.md) document inside that folder. \
-**Reminder:**  the name of your markdown (.md) file has to be the same as the folder of your project!
+**Note:**  the name of your markdown (.md) file has to be the same as the folder of your project!
 0. Start writing :wink:
 0. To generate the pdf:
     1. Go to your terminal.
