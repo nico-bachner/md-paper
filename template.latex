@@ -17,7 +17,7 @@
   $if(draft)$
     draft,
   $endif$
-]{$documentclass$}
+]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -27,7 +27,6 @@
 $if(custom-margins)$
   \usepackage[top=$top$, bottom=$bottom$, left=$left$, right=$right$]{geometry}
 $endif$
-
 
 \setcounter{secnumdepth}{4}
 \setlength{\headheight}{25pt}
