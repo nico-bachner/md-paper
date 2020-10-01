@@ -1,6 +1,6 @@
 # Markdown to PDF
 
-Personalised and simplified markdown to pdf (via LaTeX) converter based on [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
+Personalised and "simplified" markdown to pdf (via LaTeX) converter using [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 
 ## Table of Contents
 - [How to use](#How-to-use)
