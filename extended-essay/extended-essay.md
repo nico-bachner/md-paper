@@ -29,9 +29,17 @@ header-includes: | # import additional LaTeX packages and create custom commands
   \usepackage{euler}
   \bibliographystyle{unsrt}
 
-# -------------------------
-# ----- CONTENT START -----
-# -------------------------
+#  ____      ___         __
+# |     \   | \  \      |  |  
+# |  |\  \   \ \  \     |  |
+# |  | \  \   \ \  \    |  |
+# |  |\ \  \   \ \  \   |  |
+# |  |_\_\  \   \ \  \  |  |
+# |   ____   \   \ \  \ |  |
+# |  |___| \  \   \ \  \|  |
+# |  |    \ \  \   \ \     |
+# |__|     \ \__\   \ \____|
+# |__|      \|__|    \|____|
 
 title: |
   **Road Pricing for Luxembourg** \
@@ -46,7 +54,7 @@ abstract: false
 ---
 
 # Reasons for choice
-Road pricing is a personal interest of mine. Since I am an avid cyclist, I dislike overly congested streets. They pollute the air and waste many people's time. Sadly, Luxembourg has a very car-focused culture. We own almost 1 vehicle per capita \cite{lux2019vehicles} \cite{lux2020vehicles} and 0.676 passenger cars per person - the highest number in Europe. \cite{lux2018vehicles} 
+Road pricing is a personal interest of mine. Since I am an avid cyclist, I dislike overly congested streets. They pollute the air and waste many people's time. Sadly, Luxembourg has a very car-focused culture. We own almost 1 vehicle per capita \cite{lux2019vehicles} \cite{lux2020vehicles} and 0.676 passenger cars per person - the highest number in Europe. \cite{lux2018vehicles}
 
 My aim is to explore ways to reduce automobile traffic in Luxembourg, and the most reasonable option to pursue with that goal in mind is through road pricing.
 
