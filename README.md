@@ -1,6 +1,9 @@
-# Markdown to PDF
+# Markdown Paper
 
-Personalised and "simplified" markdown to pdf (via LaTeX) converter using [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
+A tool to convert Markdown to PDF via LaTeX. \
+Primarily designed for writing scientific papers
+
+Uses [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 
 ## Table of Contents
 - [How to use](#How-to-use)
