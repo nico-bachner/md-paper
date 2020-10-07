@@ -1,0 +1,27 @@
+\documentclass[tikz]{standalone}
+\begin{document}
+    \tikz{
+        \begin{axis}[ x=6cm,y=6cm,ymajorgrids=true,xmajorgrids=true,xmin=-0.1,xmax=2.1,ymin=11.9,ymax=12.7,xtick={-0.2,0,...,40},ytick={-0.2,0,...,20},]
+            \filldraw (0,12.42) circle (1pt);
+            \filldraw (0.01,12.50) circle (1pt);
+            \filldraw (0.06,12.57) circle (1pt);
+            \filldraw (0.12,12.61) circle (1pt);
+            \filldraw (0.20,12.63) circle (1pt);
+            \filldraw (0.34,12.63) circle (1pt);
+            \filldraw (0.58,12.63) circle (1pt);
+            \filldraw (0.85,12.62) circle (1pt);
+            \filldraw (1.08,12.58) circle (1pt);
+            \filldraw (1.28,12.52) circle (1pt);
+            \filldraw (1.48,12.43) circle (1pt);
+            \filldraw (1.67,12.33) circle (1pt);
+            \filldraw (1.84,12.20) circle (1pt);
+            \filldraw (2.07,11.95) circle (1pt);
+            \draw [domain=0:2.07,color=red] plot (\x,{-0.22*(\x)^4 + 0.91*(\x)^3 - 1.5*(\x)^2 + 0.91*\x + 12.46});
+            \draw [domain=0:2.07,color=blue] plot (\x,{0.266*(\x)^5 - 1.583*(\x)^4 + 3.326*(\x)^3 - 3.22*(\x)^2 + 1.32*\x + 12.47});
+            \draw [domain=0:2.07,color=DarkGreen] plot (\x,{-0.567*(\x)^6 + 3.728*(\x)^5 - 9.456*(\x)^4 + 11.49*(\x)^3 - 6.97*(\x)^2 + 1.92*\x + 12.46});
+            \draw [red] (0.3,12.5) node {$y_4$};
+            \draw [blue] (0.5,12.5) node {$y_5$};
+            \draw [DarkGreen] (0.7,12.5) node {$y_6$};
+        \end{axis}
+    }
+\end{document}

@@ -1,0 +1,22 @@
+\documentclass[tikz]{standalone}
+\begin{document}
+    \tikz{
+        \begin{axis}[x=2.5cm,y=2.5cm,ymajorgrids=true,xmajorgrids=true,xmin=-0.25,xmax=2.25,ymin=14.75,ymax=16.75,xtick={-0.5,0,...,40},ytick={-0.5,0,...,20},]
+            \filldraw (0,15.44) circle (1pt);
+            \filldraw (0.14,15.61) circle (1pt);
+            \filldraw (0.33,15.74) circle (1pt);
+            \filldraw (0.55,15.83) circle (1pt);
+            \filldraw (0.75,15.86) circle (1pt);
+            \filldraw (0.95,15.86) circle (1pt);
+            \filldraw (1.18,15.86) circle (1pt);
+            \filldraw (1.41,15.86) circle (1pt);
+            \filldraw (1.61,15.86) circle (1pt);
+            \filldraw (1.79,15.83) circle (1pt);
+            \filldraw (1.94,15.72) circle (1pt);
+            \filldraw (2.04,15.56) circle (1pt);
+            \filldraw (2.07,15.37) circle (1pt);
+            \draw [domain=0:2.07,color=red] plot (\x,{-0.4373 * (\x) ^5 + 1.7505 * (\x) ^4 - 2.0447 * (\x) ^3 + 0.1122 * (\x) ^2 + 1.0192 * \x + 15.45});
+            \draw [red] (1.25,16.25) node {$y=-0.4373x^5 + 1.7505x^4 - 2.0447x^3 + 0.1122x^2 + 1.0192x + 15.45$};
+        \end{axis}
+    }
+\end{document}

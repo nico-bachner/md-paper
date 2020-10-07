@@ -24,7 +24,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
-\usepackage{amssymb,amsmath,textcomp,tikz,float,pgf,hyperref,setspace,xcolor,url}
+\usepackage{amssymb,amsmath,textcomp,tikz,float,pgf,hyperref,setspace,xcolor,url,pgfplots}
 
 $if(custom-margins)$
   \usepackage[top=$top$, bottom=$bottom$, left=$left$, right=$right$]{geometry}
