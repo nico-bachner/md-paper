@@ -93,14 +93,14 @@ Figures \ref{fig:3m} and \ref{fig:3m2} plot the data points I collected when the
   \centering
   \includegraphics[width=0.9\textwidth]{3m.png}
   \label{fig:3m}
-  \caption{The variation of a 300Hz sound - Radius: 3m - 2nd try}
+  \caption{The variation of a 300Hz sound - Radius: 3m - 1st try}
 \end{figure}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{3m2.png}
   \label{fig:3m2}
-  \caption{The variation of a 300Hz sound - Radius: 3m - 3rd try}
+  \caption{The variation of a 300Hz sound - Radius: 3m - 2nd try}
 \end{figure}
 
 # Results

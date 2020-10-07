@@ -17,7 +17,7 @@ Feel free use any and all of my stuff as a template / inspiration for your own p
     ``` sh
     git clone https://github.com/nico-bachner/md-to-pdf.git
     ```
-0. Install [Pandoc](https://pandoc.org/installing.html) and a TeX distribution (only absolute requirement is pdflatex). \
+0. Install [Pandoc](https://pandoc.org/installing.html) and a TeX distribution (only pdflatex is required). \
 *If you are running MacOS or Linux, I recommend doing this though [Homebrew](https://brew.sh):*
 
     1. Install Homebrew
@@ -33,15 +33,25 @@ Feel free use any and all of my stuff as a template / inspiration for your own p
         brew cask install basictex
         ```
 0. Create a folder inside this repository that will contain your project.
-0. Create your Markdown (.md) document inside that folder. \
-**Note:**  the name of your markdown (.md) file has to be the same as the folder of your project!
+0. Create your Markdown (.md) document inside that folder. Again, feel free use my stuff as inspiration for your project.
 0. Start writing :wink:
 0. To generate the pdf:
     1. Go to your terminal.
     0. Navigate to the location of this repository.
-    0. Type:
+        ```sh
+        # Navigate to where you cloned this repo to, usually this would be in your home folder
+        cd ~/
+        # Navigate into the repo using the cd command
+        cd md-to-pdf
+        ```
+    0. Now navigate into your project folder:
         ``` sh
-        sh build.sh YOUR_PROJECT_NAME
+        cd YOUR_FOLDER_NAME
+        ```
+    0. Now you can build your pdf:
+        ``` sh
+        ../build.sh FILE_NAME
+        # If your file name is, for example, "paper.md", write "paper" instead of FILE_NAME
         ```
     0. Open your generated pdf :tada:
 
@@ -50,11 +60,11 @@ Feel free use any and all of my stuff as a template / inspiration for your own p
 ### Build Options
 - Keep built latex file only:
     ```
-    sh build.sh YOUR_PROJECT_NAME keep-tex
+    ../build.sh FILE_NAME keep-tex
     ```
 - Keep entire build directory containing all build files: 
     ```
-    sh build.sh YOUR_PROJECT_NAME keep-all
+    ../build.sh FILE_NAME keep-all
     ```
 
 ## Customisation
