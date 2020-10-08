@@ -5,17 +5,14 @@ Primarily designed for writing scientific papers
 
 Uses [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 
-- [How to use](#How-to-use)
-    - [Installation](#Installation)
-    - [Writing](#Writing)
-    - [PDF Generation](#PDF-Generation)
-    - [Build Options](#Build-Options)
-- [Customisation](#Customisation)
-    - [YAML Options](#YAML-Options)
-    - [Further Customisation](#Further-Customisation)
+- [Installation](#Installation)
+- [Writing](#Writing)
+- [PDF Generation](#PDF-Generation)
+- [Build Options](#Build-Options)
+- [YAML Options](#YAML-Options)
+- [Further Customisation](#Further-Customisation)
 
-## How to use
-### Installation
+## Installation
 
 1. Clone this repository:
     ``` sh
@@ -37,12 +34,13 @@ Uses [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
         brew cask install basictex
         ```
 
-### Writing 
+## Writing 
 1. Create a folder inside this repository that will contain your project.
-0. Create your Markdown (.md) document inside that folder. Again, feel free use my stuff as inspiration for your project.
+0. Create your Markdown (.md) document inside that folder. \
+Check out the [YAML Options](#YAML-Options) section of this README for formatting options. Or use one of the example projects as a template.
 0. Start writing :wink:
 
-### PDF Generation
+## PDF Generation
 1. Go to your terminal.
 0. Navigate to the location of this repository.
     ```sh
@@ -66,7 +64,7 @@ Uses [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
     ```
 0. Open your generated pdf :tada:
 
-### Build Options
+## Build Options
 - Keep built latex file only:
     ```
     ../build.sh FILE_NAME keep-tex
@@ -76,11 +74,10 @@ Uses [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
     ../build.sh FILE_NAME keep-all
     ```
 
-## Customisation
-### YAML Options
+## YAML Options
 There are quite a few options for customisation. I'll try and list as many as I can. (for those who know a little TeX: the options are derived from the `template.latex` file)
 
-#### Basic structure
+### Basic structure
 Customisation can be done in a YAML (**Y**AML **A**in't **M**arkup **L**anguage) header which is an extra section above the content of your document:
 ``` YAML
 ---
@@ -90,7 +87,7 @@ YAML HEADER # your customisations
 MARKDOWN  # your content
 ```
 
-#### Title, Author & Date
+### Title, Author & Date
 These are essential parts of any standalone document. Simply write the following into the YAML header:
 ``` YAML
 title: "YOUR DOCUMENT TITLE"
@@ -98,7 +95,7 @@ author: "YOUR NAME"
 date: \today  # or set a specific date
 ```
 
-### Further Customisation
+## Further Customisation
 For all those with basic TeX knowledge, it is really easy to customise the build output even further than just through the YAML header.
 
 Simply open `template.latex` and start editing!
