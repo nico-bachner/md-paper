@@ -5,7 +5,6 @@ Primarily designed for writing scientific papers
 
 Uses [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 
-## Table of Contents
 - [How to use](#How-to-use)
     - [Installation](#Installation)
     - [Writing](#Writing)
@@ -14,9 +13,6 @@ Uses [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 - [Customisation](#Customisation)
     - [YAML Options](#YAML-Options)
     - [Further Customisation](#Further-Customisation)
-
-**Heads-up:** I also use this repo as storage for some personal essays, so don't be confused by the many folders. :grin: \
-Feel free use any and all of my stuff as a template / inspiration for your own project.
 
 ## How to use
 ### Installation
