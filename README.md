@@ -37,7 +37,8 @@ Uses [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 ## Writing 
 1. Create a folder inside this repository that will contain your project.
 0. Create your Markdown (.md) document inside that folder. \
-Check out the [YAML Options](#YAML-Options) section of this README for formatting options. Or use one of the example projects as a template.
+Check out the [YAML Options](#YAML-Options) section of this README for formatting options. \
+You can also use one of the example projects as a template.
 0. Start writing :wink:
 
 ## PDF Generation
