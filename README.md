@@ -44,7 +44,8 @@ Feel free use any and all of my stuff as a template / inspiration for your own p
         ```sh
         # Navigate to where you cloned this repo to, usually this would be in your home folder
         cd ~/
-        # Navigate into the repo using the cd command
+
+        # Then navigate into the repo using the cd command
         cd md-to-pdf
         ```
     0. Now navigate into your project folder:
@@ -53,8 +54,11 @@ Feel free use any and all of my stuff as a template / inspiration for your own p
         ```
     0. Now you can build your pdf:
         ``` sh
-        ../build.sh FILE_NAME
         # If your file name is, for example, "paper.md", write "paper" instead of FILE_NAME
+
+        ../build.sh FILE_NAME
+
+        # Depending on where your project is located, you may have to add more dots to the beginning
         ```
     0. Open your generated pdf :tada:
 
