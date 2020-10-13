@@ -18,11 +18,42 @@ then
   rm log.txt
 fi
 
-pandoc -f markdown ${DOCUMENT}.md --template=../template.latex -t latex -o ${DOCUMENT}.tex
+D1=$(PWD)
+
+if [ -e template.latex ]
+then
+  DIR=""
+else
+  cd ..
+  if [ -e template.latex ]
+  then
+    DIR="../"
+    cd $D1
+  else
+    cd ..
+    if [ -e template.latex ]
+    then
+      DIR="../../"
+      cd $D1
+    else
+      cd ..
+      if [ -e template.latex ]
+      then
+        DIR="../../../"
+        cd $D1
+      fi
+    fi
+  fi
+fi
+
+pandoc -f markdown ${DOCUMENT}.md --template=${DIR}template.latex -t latex -o ${DOCUMENT}.tex
 
 if [ -e *.tex ]
 then
   echo "Markdown successfully converted to LaTeX\n"
+else
+  echo "Markdown conversion to LaTeX failed\n"
+  exit 1
 fi
 
 if [ -e *.bib ] || [ -e *.bibtex ]

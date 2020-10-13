@@ -62,7 +62,7 @@ I will be analysing the effect of the Doppler Effect on a sound source undergoin
 Here's a little diagram of the experiment setup:
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.6\textwidth]{setup.jpg}
+  \includegraphics[width=\textwidth]{images/setup.jpg}
   \label{setup}
   \caption{The setup of the experiment}
 \end{figure}
@@ -70,41 +70,68 @@ A speaker is attached to the end of a rope of variable length. The rope is held 
 
 # Data
 ## 2 metre rope
-Figures \ref{fig:2m} and \ref{fig:2m2} plot the data points I collected when the radius of the string was 2 metres long.
+Figures \ref{fig:2m-1} and \ref{fig:2m-2} plot the data points I collected when the radius of the string was 2 metres long.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{2m.png}
-  \label{fig:2m}
-  \caption{The variation of a 300Hz sound - Radius: 2m - 1st try}
+  \tikz{
+    \begin{axis}[x=.7cm,xmin=-.5,xmax=16.5,ymajorgrids=true,xmajorgrids=true]
+      \addplot table [x index=0,y index=1,col sep=comma] {graphs/2m-1.csv};
+    \end{axis}
+  }
+  \caption{The variation of a 300Hz sound at radius 2m - 1st try}
+  \label{fig:2m-1}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{2m2.png}
-  \label{fig:2m2}
-  \caption{The variation of a 300Hz sound - Radius: 2m - 2nd try}
+  \tikz{
+    \begin{axis}[x=.7cm,xmin=-.5,xmax=20.5,ymajorgrids=true,xmajorgrids=true]
+      \addplot table [x index=0,y index=1,col sep=comma] {graphs/2m-2.csv};
+    \end{axis}
+  }
+  \caption{The variation of a 300Hz sound at radius 2m - 2nd try}
+  \label{fig:2m-2}
 \end{figure}
 
 ## 3 metre rope
-Figures \ref{fig:3m} and \ref{fig:3m2} plot the data points I collected when the radius of the string was 3 metres long.
+Figures \ref{fig:3m-1}, \ref{fig:3m-2} and \ref{fig:3m-3} plot the data points I collected when the radius of the string was 3 metres long.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textwidth]{3m.png}
-  \label{fig:3m}
-  \caption{The variation of a 300Hz sound - Radius: 3m - 1st try}
+  \tikz{
+    \begin{axis}[x=1cm,xmin=-.5,xmax=10.5,ymajorgrids=true,xmajorgrids=true]
+      \addplot table [x index=0,y index=1,col sep=comma] {graphs/3m-1.csv};
+    \end{axis}
+  }
+  \caption{The variation of a 300Hz sound at radius 3m - 1st try}
+  \label{fig:3m-1}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{3m2.png}
-  \label{fig:3m2}
-  \caption{The variation of a 300Hz sound - Radius: 3m - 2nd try}
+  \tikz{
+    \begin{axis}[x=1cm,xmin=-.5,xmax=14.5,ymajorgrids=true,xmajorgrids=true]
+      \addplot table [x index=0,y index=1,col sep=comma] {graphs/3m-2.csv};
+    \end{axis}
+  }
+  \caption{The variation of a 300Hz sound at radius 3m - 2nd try}
+  \label{fig:3m-2}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \tikz{
+    \begin{axis}[x=1cm,xmin=-.5,xmax=14.5,ymajorgrids=true,xmajorgrids=true]
+      \addplot table [x index=0,y index=1,col sep=comma] {graphs/3m-3.csv};
+    \end{axis}
+  }
+  \caption{The variation of a 300Hz sound at radius 3m - 3rd try}
+  \label{fig:3m-3}
 \end{figure}
 
 # Results
-This is the equation of the effect of the doppler effect on an sound emitted from a source traveling towards the observation point:
+This is the equation of the effect of the doppler effect on a sound emitted from a source traveling towards the observation point:
 \begin{equation}
   f' = \frac{ v }{ v - v' } f
 \end{equation}
@@ -143,7 +170,7 @@ Consequently, we get the following equation:
     &= 309Hz
   \end{split}
 \end{equation}
-If we look at both figures \ref{fig:2m} and \ref{fig:2m2}, we can see that the maximum frequency is in fact around 309 - 310Hz, a surprisingly accurate result
+If we look at both figures \ref{fig:2m-1} and \ref{fig:2m-2}, we can see that the maximum frequency is in fact around 309 - 310Hz, a surprisingly accurate result
 
 - For a string of length 3 metres, we get the following:
 \begin{equation}
@@ -157,7 +184,7 @@ If we look at both figures \ref{fig:2m} and \ref{fig:2m2}, we can see that the m
     &= 324Hz
   \end{split}
 \end{equation}
-If we look at both figures \ref{fig:3m} and \ref{fig:3m2}, we can see that the maximum frequency is in fact around 314Hz, which is quite far off the prediction of 324Hz.
+If we look at both figures \ref{fig:3m-1}, \ref{fig:3m-2} and \ref{fig:3m-3}, we can see that the maximum frequency is in fact around 314Hz, which is quite far off the prediction of 324Hz.
 
 # Error Discussion
 There were a few potential sources of error during the experiment:
