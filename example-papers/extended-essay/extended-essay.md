@@ -1,10 +1,8 @@
 ---
-draft: false
+document-type: report
+
 papersize: "a4"
 fontsize: "12pt" # options: 10pt, 11pt, 12pt
-twocolumn: false
-oneside: true
-titlepage: false
 
 custom-margins: true
 top: "3cm"
@@ -14,7 +12,7 @@ right: "2cm"
 
 spacing: "double" # options: "onehalf", "double", false (=normal / one)
 
-font-family: lmodern
+font: lmodern
 
 headers-and-footers: true # toggle headers and footers
 leftheader: "Session May 2021"
@@ -22,24 +20,18 @@ centerheader: "IBDP Extended Essay"
 rightheader: "Economics"
 centerfooter: \thepage
 
-toc: true # toggle table of contents
+table-of-contents: true # toggle table of contents
 toc-depth: "4"
 
 header-includes: | # import additional LaTeX packages and create custom commands here
-  \usepackage{euler}
   \bibliographystyle{unsrt}
-
-#  ____      ___         __
-# |     \   | \  \      |  |  
-# |  |\  \   \ \  \     |  |
-# |  | \  \   \ \  \    |  |
-# |  |\ \  \   \ \  \   |  |
-# |  |_\_\  \   \ \  \  |  |
-# |   ____   \   \ \  \ |  |
-# |  |___| \  \   \ \  \|  |
-# |  |    \ \  \   \ \     |
-# |__|     \ \__\   \ \____|
-# |__|      \|__|    \|____|
+  \usepackage{
+    textcomp,
+    float,
+    hyperref,
+    xcolor,
+    url,
+  }
 
 title: |
   **Road Pricing for Luxembourg** \
@@ -48,9 +40,6 @@ author: |
   Nico Bachner \
   Candidate Number: jcp633
 date: \today
-
-abstract: false
-
 ---
 
 # Reasons for choice

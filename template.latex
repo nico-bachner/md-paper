@@ -17,59 +17,48 @@
   $if(draft)$
     draft,
   $endif$
-]{article}
+]{$document-type$}
 
 \nonstopmode
 
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[english]{babel}
-\usepackage{amssymb,amsmath,textcomp,tikz,float,pgf,hyperref,setspace,xcolor,url,pgfplots}
-
-$if(custom-margins)$
-  \usepackage[top=$top$, bottom=$bottom$, left=$left$, right=$right$]{geometry}
-$endif$
-
-\setcounter{secnumdepth}{4}
-\setlength{\headheight}{25pt}
-
-$if(headers-and-footers)$
-  \usepackage{scrlayer-scrpage}
-  \ihead{$leftheader$}
-  \chead{$centerheader$}
-  \ohead{$rightheader$}
-  \ifoot{$leftfooter$}
-  \cfoot{$centerfooter$}
-  \ofoot{$rightfooter$}
-$endif$
-
-$if(spacing)$
-  \$spacing$spacing
-$endif$
 
 \providecommand{\tightlist}{
   \setlength{\itemsep}{0pt}
   \setlength{\parskip}{0pt}
 }
+\usepackage{longtable}
 
-$if(font-family)$
-  \usepackage{$font-family$}
+$if(custom-margins)$
+  \usepackage[top=$top$, bottom=$bottom$, left=$left$, right=$right$]{geometry}
 $endif$
 
-$if(mainfont)$
-  \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
+\setcounter{secnumdepth}{0}
+$if(section-numbering)$
+  \setcounter{secnumdepth}{4}
 $endif$
-$if(sansfont)$
-  \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
+
+$if(header-and-footer)$
+  \usepackage{scrlayer-scrpage}
+  \ihead{$left-header$}
+  \chead{$center-header$}
+  \ohead{$right-header$}
+  \ifoot{$left-footer$}
+  \cfoot{$center-footer$}
+  \ofoot{$right-footer$}
 $endif$
-$if(monofont)$
-  \setmonofont[$for(monofontoptions)$$monofontoptions$$sep$,$endfor$]{$monofont$}
+
+$if(spacing)$
+  \usepackage{setspace}
+  \$spacing$spacing
 $endif$
-$for(fontfamilies)$
-  \newfontfamily{$fontfamilies.name$}[$for(fontfamilies.options)$$fontfamilies.options$$sep$,$endfor$]{$fontfamilies.font$}
-$endfor$
-$if(mathfont)$
-  \setmathfont[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+
+$if(font)$
+  \usepackage{$font$}
+$endif$
+
+$if(math-font)$
+  \usepackage{$math-font$}
 $endif$
 
 $if(keywords)$
@@ -102,7 +91,6 @@ $if(title)$
 $endif$
 
 
-
 \begin{document}
 
 \maketitle
@@ -113,7 +101,7 @@ $if(abstract)$
   \end{abstract}
 $endif$
 
-$if(toc)$
+$if(table-of-contents)$
   $if(toc-depth)$
     \setcounter{tocdepth}{$toc-depth$}
   $endif$

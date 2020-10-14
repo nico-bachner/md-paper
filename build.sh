@@ -46,30 +46,40 @@ else
   fi
 fi
 
+echo "Converting Markdown to LaTeX ..."
 pandoc -f markdown ${DOCUMENT}.md --template=${DIR}template.latex -t latex -o ${DOCUMENT}.tex
-
 if [ -e *.tex ]
 then
-  echo "Markdown successfully converted to LaTeX\n"
+  echo "Successfully converted Markdown to LaTeX\n"
 else
-  echo "Markdown conversion to LaTeX failed\n"
+  echo "An error occurred while converting Markdown to LaTeX\n"
   exit 1
 fi
 
+
 if [ -e *.bib ] || [ -e *.bibtex ]
 then
+  echo "Processing bibliography ..."
   pdflatex ${DOCUMENT}.tex >log.txt
   bibtex ${DOCUMENT}.aux >log.txt
 fi
 
+echo "Converting LaTeX to PDF ..."
 pdflatex ${DOCUMENT}.tex >log.txt
-if [ -e ${DOCUMENT}.aux ]
+if [ -e ${DOCUMENT}.pdf ]
 then
-  echo "So far, so good!\n"
+  echo "50% complete ..."
 else
   echo "There are errors in your file.\nPlease consult the log.txt for more information\n"
 fi
 pdflatex ${DOCUMENT}.tex >log.txt
+
+if [ -e ${DOCUMENT}.pdf ]
+then
+  echo "LaTeX successfully converted to PDF\n"
+else
+  echo "PDF build failed.\nThis is most likely an error in your LaTeX commands. Maybe you misspelt a command or package name?\nIf you wish to consult pdfLaTeX's logs, go to log.txt\n"
+fi
 
 if [ -e texput.log ]
 then
@@ -114,11 +124,4 @@ else
   delete_aux
   rm ${DOCUMENT}.tex
   echo "Removed all build files\n"
-fi
-
-if [ -e ${DOCUMENT}.pdf ]
-then
-  echo "LaTeX successfully converted to PDF\n"
-else
-  echo "PDF build failed.\nThis is most likely an error in your LaTeX commands. Maybe you misspelt a command or package name?\nIf you wish to consult pdfLaTeX's logs, go to log.txt\n"
 fi

@@ -1,10 +1,9 @@
 ---
-draft: false
+document-type: article
+
 papersize: "a4"
 fontsize: "12pt" # options: 10pt, 11pt, 12pt
-twocolumn: false
-oneside: true
-titlepage: true
+section-numbering: true
 
 custom-margins: true
 top: "3cm"
@@ -14,42 +13,47 @@ right: "2cm"
 
 spacing: "double" # options: "onehalf", "double", false (= normal / one)
 
-headers-and-footers: true # toggle headers and footers
+font: palatino
+math-font: euler
+
+header-and-footer: true
 leftheader: "Session May 2021"
 centerheader: "IBDP Internal Assessment"
 rightheader: "Mathematics AA HL"
 centerfooter: \thepage \ of \pageref{pagesLTS.arabic}
 
-toc: true # toggle table of contents
-toc-depth: "4"
-
 header-includes: | # import additional LaTeX packages and create custom commands here
-  \usepackage{
-    standalone, euler, palatino, pageslts,
-  }
-  \usepackage[nottoc,numbib]{tocbibind}
-  \definecolor{DarkGreen}{rgb}{0,0.5,0}
-  \pgfplotsset{compat=1.17}
-
+    \usepackage{
+        standalone,
+        pageslts,
+        amssymb,
+        amsmath,
+        textcomp,
+        float,
+        hyperref,
+        xcolor,
+        url,
+        tikz,
+        pgf,
+        pgfplots
+    }
+    \definecolor{DarkGreen}{rgb}{0,0.5,0}
+    \pgfplotsset{compat=1.17}
+    \setlength\tabcolsep{10pt}
 title: |
-  **Modelling a Solid of Revolution** \
-  IB Mathematics AA HL Internal Assessment
+    **Modelling a Solid of Revolution** \
+    IB Mathematics AA HL Internal Assessment
 author: | 
-  Nico Bachner - jcp633
-date: |
-    \today
-    \pageref{pagesLTS.arabic} pages
-
-abstract: false
+    Nico Bachner \
+    Candidate Number: jcp633
+date: \today
 ---
-
-\newpage
 
 # Introduction
 This small wooden stool in my living room has always baffled me by how heavy it is in proportion to its size. I'm almost sure it is not hollow, but I want to make sure. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{images/stool.jpg}
+    \includegraphics[width=0.4\textwidth]{images/stool.jpg}
     \caption{My stool, in my living room}
     \label{fig:stool}
 \end{figure}
@@ -66,14 +70,14 @@ I will estimate the mass of my stool by treating it as a solid of revolution, th
 In order to accurately graph the relief of the stool, I need as many measurement points as possible. To do this, I chose to use photogrammetry to create a 3D model of the stool. Since that didn't work, I am going to be using a 3D model from the web. For those who are unfamiliar with 3D objects in software, the surface of the stool will be represented by very small polygons, whose vertices I can plot on a Cartesian plane using 2 of their 3-dimensional coordinates: $y$ and $z$. Figure \ref{fig:stool3d} shows a screenshot of the 3D model of the stool in Blender's edit mode.\footnote{I chose Blender because I have worked with Blender before (creating 3D objects for video games) and therefore feel more comfortable using it.} The $x$-axis is red and the $y$-axis is green.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{images/stool3d.png}
+    \includegraphics[width=0.4\textwidth]{images/stool3d.png}
     \caption{3D model of the stool in Blender}
     \label{fig:stool3d}
 \end{figure}
 Using this model, I am now able to delete all vertices except those in one vertical slice. Figure \ref{fig:vertices} shows an already horizontally turned photo of only the vertices in blender.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/vertices.png}
+    \includegraphics[width=0.6\textwidth]{images/vertices.png}
     \caption{Vertices constituting the relief}
     \label{fig:vertices}
 \end{figure}
@@ -88,27 +92,26 @@ Since no function can approximate the entire relief accurately enough, I will di
     \label{fig:GraphSections}
 \end{figure}
 Additionally, Figure \ref{fig:SectionFormsAndMethods} shows a table of the forms of the sections and the methods I will use to approximate them.
-\begin{figure}[H]
-    \centering
-    \bgroup
-    \def\arraystretch{1.6}
-    \setlength\tabcolsep{20pt}
-    \begin{tabular}{c|c|c}
-        Section & Form & Methods to try \\
-        \hline
-        1 & unknown & polynomial regression \\
-        2 & exponential & exponential regression \\
-        3 \& 3' & linear & linear regression \& slope intercept form \\
-        4 \& 4' & linear & linear regression \& slope intercept form \\
-        5 \& 5' & linear & linear regression \& slope intercept form \\
-        6 & exponential & exponential regression \\
-        7 & unknown & polynomial regression \\
-        8 & logarithmic & logarithmic regression \& polynomial regression \\
-    \end{tabular}
-    \egroup
-    \caption{Table of sections and their potential forms \& methods}
-    \label{fig:SectionFormsAndMethods}
-\end{figure}
+
++---------+-------------+------------------------------------------------+
+| Section | Form        | Methods to try                                 |
++:========+:============+:===============================================+
+| 1       | unknown     | polynomial regression                          |
++---------+-------------+------------------------------------------------+
+| 2       | exponential | exponential regression                         |
++---------+-------------+------------------------------------------------+
+| 3 & 3'  | linear      | linear regression & slope intercept form       |
++---------+-------------+------------------------------------------------+
+| 4 & 4'  | linear      | linear regression & slope intercept form       |
++---------+-------------+------------------------------------------------+
+| 5 & 5'  | linear      | linear regression & slope intercept form       |
++---------+-------------+------------------------------------------------+
+| 6       | exponential | exponential regression                         |
++---------+-------------+------------------------------------------------+
+| 7       | unknown     | polynomial regression                          |
++---------+-------------+------------------------------------------------+
+| 8       | logarithmic | logarithmic regression & polynomial regression |
++---------+-------------+------------------------------------------------+
         
 ## Approximations of the sections
 In order to avoid repetitive calculations I have put the in detail calculations in the appendix for further reference, but here I'll mostly only show the results.
@@ -326,13 +329,13 @@ here is a short list of some of the most significant opportunities for potential
 - Production method (use of glue, etc.)
             
 One way they could have been so far off is the choice of reference (textbook) value for the mass of the wood. I have used another source \cite{DataSource2} to compare, which gives me a density of 
-            \begin{equation}
-                \begin{split}
-                    & \rho = 0.675 g/cm^3 \pm 25 mg/cm^3 \\
-                    \therefore \ & M_{estimated_2} = 6347.54 g \pm 235.09 g \\
-                    \therefore \ & M_{estimated_2} \simeq 6.3 kg \pm 200 g
-                \end{split}
-            \end{equation}
+\begin{equation}
+    \begin{split}
+        & \rho = 0.675 g/cm^3 \pm 25 mg/cm^3 \\
+        \therefore \ & M_{estimated_2} = 6347.54 g \pm 235.09 g \\
+        \therefore \ & M_{estimated_2} \simeq 6.3 kg \pm 200 g
+    \end{split}
+\end{equation}
 This gives us an estimated mass that is the same as the measured one.
 
 Hence:
@@ -340,7 +343,6 @@ Hence:
     If we use ($M_{estimated_2}$), we can answer the initial \\
     question in concluding that \textbf{the stool is not hollow}.
 \end{center}
-
 
 \begin{thebibliography}{}
     \bibitem{ItemSource}
