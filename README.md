@@ -39,7 +39,7 @@ Uses [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 0. Create your Markdown (.md) document inside that folder. \
 Check out the [YAML Options](#YAML-Options) section of this README for formatting options. \
 You can also use one of the example projects as a template.
-0. Start writing :wink:
+0. Start writing
 
 ## PDF Generation
 1. Go to your terminal.
@@ -49,11 +49,11 @@ You can also use one of the example projects as a template.
     cd ~/
 
     # Then navigate into the repo using the cd command
-    cd md-to-pdf
+    cd md-paper
     ```
 0. Now navigate into your project folder:
     ``` sh
-    cd YOUR_FOLDER_NAME
+    cd YOUR_PROJECT_FOLDER_NAME
     ```
 0. Now you can build your pdf:
     ``` sh
@@ -61,18 +61,40 @@ You can also use one of the example projects as a template.
 
     ../build.sh FILE_NAME
 
-    # Depending on where your project is located, you may have to add more dots to the beginning
+    # Depending on where your project is located, you may have to add more ../ to the beginning
     ```
-0. Open your generated pdf :tada:
+0. Open your generated pdf
 
 ## Build Options
-- Keep built latex file only:
+### Build LaTeX:
+- Build LaTeX only
+    ``` sh
+    ../build.sh FILE_NAME latex-only
     ```
-    ../build.sh FILE_NAME keep-tex
+### Build PDF:
+- Only PDF
+    ``` sh
+    ../build.sh FILE_NAME
     ```
-- Keep entire build directory containing all build files: 
+- PDF and LaTeX
+    ``` sh
+    ../build.sh FILE_NAME latex
     ```
-    ../build.sh FILE_NAME keep-all
+- PDF and auxiliary files
+    ``` sh
+    ../build.sh FILE_NAME aux
+    ```
+- PDF and logs
+    ``` sh
+    ../build.sh FILE_NAME log
+    ```
+- PDF and table of contents logs
+    ``` sh
+    ../build.sh FILE_NAME toc
+    ```
+- PDF and bibliography logs
+    ``` sh
+    ../build.sh FILE_NAME bib
     ```
 
 ## YAML Options

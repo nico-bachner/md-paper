@@ -16,7 +16,7 @@ spacing: "double" # options: "onehalf", "double", false (= normal / one)
 font: palatino
 math-font: euler
 
-header-and-footer: true
+header-and-footer: true≈
 leftheader: "Session May 2021"
 centerheader: "IBDP Internal Assessment"
 rightheader: "Mathematics AA HL"

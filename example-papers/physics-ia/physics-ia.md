@@ -57,7 +57,7 @@ I will be analysing the effect of the Doppler Effect on a sound source undergoin
 Here's a little diagram of the experiment setup:
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.6\textwidth]{images/setup.jpg}
+  \includegraphics[width=0.7\textwidth]{images/setup.jpg}
   \label{setup}
   \caption{The setup of the experiment}
 \end{figure}
