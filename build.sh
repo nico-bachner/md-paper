@@ -11,23 +11,32 @@ then
   pdf=false
 fi
 
-if [ "$2" = "latex" ]
+if [ "$2" = "latex" ] || [ "$3" = "latex" ]
 then
   latex=true
 fi
-if [ "$2" = "toc" ]
-then
-  toc=true
-fi
-if [ "$2" = "log" ]
+
+if [ "$2" = "log" ] || [ "$3" = "log" ]
 then
   log=true
 fi
-if [ "$2" = "aux" ]
+
+if [ "$2" = "all-log" ] || [ "$3" = "all-log" ]
+then
+  log=true
+  toc=true
+  aux=true
+  bib=true
+fi
+if [ "$2" = "toc" ] || [ "$3" = "toc" ] || [ "$4" = "toc" ] || [ "$5" = "toc" ]
+then
+  toc=true
+fi
+if [ "$2" = "aux" ] || [ "$3" = "aux" ] || [ "$4" = "aux" ] || [ "$5" = "toc" ]
 then
   aux=true
 fi
-if [ "$2" = "bib" ]
+if [ "$2" = "bib" ] || [ "$3" = "bib" ] || [ "$4" = "bib" ] || [ "$5" = "toc" ]
 then
   bib=true
 fi
@@ -57,71 +66,120 @@ do
   D="$DU$D"
 done
 
+sleep 0.5s
+
+function loading5_95 {
+  echo "#                    |   5%\r\c"
+  sleep $1
+  echo "##                   |  10%\r\c"
+  sleep $1
+  echo "###                  |  15%\r\c"
+  sleep $1
+  echo "####                 |  20%\r\c"
+  sleep $1
+  echo "#####                |  25%\r\c"
+  sleep $1
+  echo "######               |  30%\r\c"
+  sleep $1
+  echo "#######              |  35%\r\c"
+  sleep $1
+  echo "########             |  40%\r\c"
+  sleep $1
+  echo "#########            |  45%\r\c"
+  sleep $1
+  echo "##########           |  50%\r\c"
+  sleep $1
+  echo "###########          |  55%\r\c"
+  sleep $1
+  echo "############         |  60%\r\c"
+  sleep $1
+  echo "#############        |  65%\r\c"
+  sleep $1
+  echo "##############       |  70%\r\c"
+  sleep $1
+  echo "###############      |  75%\r\c"
+  sleep $1
+  echo "################     |  80%\r\c"
+  sleep $1
+  echo "#################    |  85%\r\c"
+  sleep $1
+  echo "##################   |  90%\r\c"
+  sleep $1
+  echo "###################  |  95%\r\c"
+  sleep $1
+}
+
 # Conversion scripts
 echo "Converting Markdown to LaTeX"
+loading5_95 0.05s
 pandoc -f markdown ${DOCUMENT}.md --template=${D}template.latex -t latex -o ${DOCUMENT}.tex
+
 if [ -e *.tex ]
 then
-  echo "  Success!"
+  echo "#################### | 100%"
+  sleep 0.5s
 else
   echo "An error occurred while converting Markdown to LaTeX"
+  echo
   exit 1
 fi
+
+function pdfGenError () {
+  echo "  PDF build failed."
+  echo
+  echo "This is most likely an error in your LaTeX commands."
+  echo "Perhaps you misspelt a command or package name?"
+  echo "For additional information, consult pdfLaTeX's logs (pdf.log)."
+  exit 1
+}
 
 if [ $pdf = true ]
 then
   if [ -e *.bib ] || [ -e *.bibtex ]
   then
-    echo "\nProcessing bibliography"
+    echo "Processing bibliography"
 
+    loading5_45 0.25 &
     pdflatex ${DOCUMENT}.tex >pdf.log
-    if [ -e ${DOCUMENT}.pdf ]
-    then
-      echo "  Almost done..."
-    else
-      echo "There are errors in your file.\nPlease consult the log.txt for more information"
-      exit 1
-    fi
-
     bibtex ${DOCUMENT}.aux >bib.log
+
     if [ -e ${DOCUMENT}.pdf ]
     then
-      echo "  Success!"
+      echo "#################### | 100%"
+      rm ${DOCUMENT}.pdf
     else
-      echo "There are errors in your file.\nPlease consult the log.txt for more information"
-      exit 1
+      pdfGenError
     fi
   fi
 
-  echo "\nConverting LaTeX to PDF"
-  pdflatex ${DOCUMENT}.tex >pdf.log
-  if [ -e ${DOCUMENT}.pdf ]
-  then
-    echo "  50% complete..."
-  else
-    echo "There are errors in your file.\nPlease consult the log.txt for more information"
-    exit 1
-  fi
-  pdflatex ${DOCUMENT}.tex >pdf.log
+  sleep 0.5s
+  echo
+  echo "Converting LaTeX to PDF"
 
+  loading5_95 0.3s &
+  pdflatex ${DOCUMENT}.tex >pdf.log
+  rm ${DOCUMENT}.pdf
+  pdflatex ${DOCUMENT}.tex >pdf.log
+  
   if [ -e ${DOCUMENT}.pdf ]
   then
-    echo "  Success!"
+    sleep 0.3s
+    echo "#################### | 100%"
   else
-    echo "  PDF build failed.\n"
-    echo "This is most likely an error in your LaTeX commands.\nPerhaps you misspelt a command or package name?\nFor additional information consult pdfLaTeX's logs."
-    exit 1
+    pdfGenError
   fi
 
   # Delete auxiliary files if they exist
   if [ "$latex" = true ] || [ "$log" = true ] || [ "$aux" = true ] || [ "$toc" = true ] || [ "$bib" = true ]
   then
-    echo "\nKept the following files:"
+    sleep 0.5s
+    echo
+    echo "Kept the following files:"
   fi
 
   if [ "$latex" = true ]
   then
-    echo "  ${DOCUMENT}.tex"
+    echo " - ${DOCUMENT}.tex"
   else
     if [ -e ${DOCUMENT}.tex ]
     then
@@ -131,8 +189,8 @@ then
     
   if [ "$log" = true ]
   then
-    echo "  ${DOCUMENT}.log"
-    echo "  pdf.log"
+    echo " - ${DOCUMENT}.log"
+    echo " - pdf.log"
   else
     if [ -e ${DOCUMENT}.log ]
     then
@@ -143,7 +201,8 @@ then
 
   if [ "$aux" = true ]
   then
-    echo "  ${DOCUMENT}.aux & ${DOCUMENT}.aux"
+    echo " - ${DOCUMENT}.aux"
+    echo " - ${DOCUMENT}.aux"
   else
     if [ -e ${DOCUMENT}.aux ]
     then
@@ -157,7 +216,7 @@ then
 
   if [ "$toc" = true ]
   then
-    echo "  ${DOCUMENT}.toc"
+    echo " - ${DOCUMENT}.toc"
   else
     if [ -e ${DOCUMENT}.toc ]
     then
@@ -167,7 +226,7 @@ then
 
   if [ "$bib" = true ]
   then
-    echo "  ${DOCUMENT}.bib"
+    echo " - ${DOCUMENT}.bib"
   else
     # Delete aux bibliography build files if a bibliography exists
     if [ -e *.bib ] || [ -e *.bibtex ]
@@ -180,7 +239,7 @@ then
 
   if [ "$texput" = true ]
   then
-    echo "  texput.log"
+    echo " - texput.log"
   else
     # Delete texput.log if exists
     if [ -e texput.log ]
@@ -189,5 +248,7 @@ then
     fi
   fi
 fi
+
+sleep 0.5s
 
 echo

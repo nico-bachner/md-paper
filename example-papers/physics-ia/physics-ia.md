@@ -38,6 +38,7 @@ header-includes: | # import additional LaTeX packages and create custom commands
     pgf,
     pgfplots
   }
+  \pgfplotsset{compat=1.17}
 
 title: |
   **The Doppler Effect** \
@@ -78,47 +79,86 @@ We also know the frequency of the wave since it was set at the beginning of the 
 \end{equation}
 Since the motion of our object is circular, some modifications have to be made. $v'$ can be rewritten as follows:
 \begin{equation}
-  v' = l * 2 \pi \omega
+  v' = l * \omega
 \end{equation}
 
 - $\omega$ being the rotational frequency of the swinging motion and 
 - $l$ being the length of the rope.
 
-This is, however, only the maximum frequency. The minimum frequency would be the negative of the value.
-
-Consequently, we get the following equation:
+Consequently, we get the following equations for the maximum and minimum values:
 \begin{equation}
-  f' = \frac{ 340ms^{-1} }{ 340ms^{-1} - l * 2 \pi \omega } * 300Hz
+  f'_{max} = \frac{ 340ms^{-1} }{ 340ms^{-1} - l * \omega } * 300Hz
+\end{equation}
+\begin{equation}
+f'_{min} = \frac{ 340ms^{-1} }{ 340ms^{-1} + l * \omega } * 300Hz
 \end{equation}
 
 ## 2 metre rope
-- For the string at distance 2 metres, the following predictions can be made:
+For the string at distance 2 metres, the following predictions can be made for the maximum value:
 \begin{equation}
   \begin{split}
-    f' &= \frac{ 340ms^{-1} }{ 340ms^{-1} - l * 2 \pi \omega } * 300Hz \\
-    &= \frac{ 340ms^{-1} }{ 340ms^{-1} - 2m * 2 \pi \frac{4}{5} } * 300Hz \\
-    &= \frac{ 340ms^{-1} }{ 340ms^{-1} - 2m * 5.03 } * 300Hz \\
-    &= \frac{ 340ms^{-1} }{ 340ms^{-1} - 10.06ms^{-1} } * 300Hz \\
+    f'_{max} &= \frac{ 340ms^{-1} }{ 340ms^{-1} - l * \omega } * 300Hz \\
+    &= \frac{ 340ms^{-1} }{ 340ms^{-1} - 2.00m * 5.03s^{-1} } * 300Hz \\
     &= \frac{ 340ms^{-1} }{ 329.94ms^{-1} } * 300Hz \\
-    &= 1.03 * 300Hz \\
     &= 309Hz
   \end{split}
 \end{equation}
-If we look at both figures \ref{fig:2m-1} and \ref{fig:2m-2}, we can see that the maximum frequency is in fact around 309 - 310Hz, a surprisingly accurate result
-
-## 3 metre rope
-For a string of length 3 metres, we get the following:
+And for the minimum value:
 \begin{equation}
   \begin{split}
-    f' &= \frac{ 340ms^{-1} }{ 340ms^{-1} - l * 2 \pi \omega s^{-1} } * 300Hz \\
-    &= \frac{ 340ms^{-1} }{ 340ms^{-1} - 3m * 2 \pi \frac{7}{5} s^{-1} } * 300Hz \\
-    &= \frac{ 340ms^{-1} }{ 340ms^{-1} - 3m * 8.80s^{-1} } * 300Hz \\
-    &= \frac{ 340ms^{-1} }{ 340ms^{-1} - 26.4ms^{-1} } * 300Hz \\
-    &= \frac{ 340ms^{-1} }{ 313.6ms^{-1} } * 300Hz \\
-    &= 1.08 * 300Hz \\
-    &= 324Hz
+    f'_{min} &= \frac{ 340ms^{-1} }{ 340ms^{-1} + l * \omega } * 300Hz \\
+    &= \frac{ 340ms^{-1} }{ 340ms^{-1} + 2.00m * 5.03s^{-1} } * 300Hz \\
+    &= \frac{ 340ms^{-1} }{ 350.06ms^{-1} } * 300Hz \\
+    &= 291Hz \\
   \end{split}
 \end{equation}
+
+If we plot this, we get the following graph:
+\begin{figure}[H]
+  \centering
+  \tikz{
+    \begin{axis}[ ymajorgrids=true,xmajorgrids=true ]
+      \addplot [domain=0:20,color=red,samples=300,thick] plot {9 * cos( 100 * x ) + 300};
+      \draw (0.7,12.5) node {$y_6$};
+    \end{axis}
+  }
+  \caption{Prediction of frequency variance with 2m rope}
+  \label{fig:2m-prediction}
+\end{figure}
+
+
+## 3 metre rope
+For a string of length 3 metres, we get the following maximum value:
+\begin{equation}
+  \begin{split}
+    f' &= \frac{ 340ms^{-1} }{ 340ms^{-1} - l * \omega } * 300Hz \\
+    &= \frac{ 340ms^{-1} }{ 340ms^{-1} - 3.00m * 8.80s^{-1} } * 300Hz \\
+    &= \frac{ 340ms^{-1} }{ 313.6ms^{-1} } * 300Hz \\
+    &= 325Hz
+  \end{split}
+\end{equation}
+The minimum value is the following:
+\begin{equation}
+  \begin{split}
+    f' &= \frac{ 340ms^{-1} }{ 340ms^{-1} + l * \omega } * 300Hz \\
+    &= \frac{ 340ms^{-1} }{ 340ms^{-1} + 3.00m * 8.80s^{-1} } * 300Hz \\
+    &= \frac{ 340ms^{-1} }{ 366.4ms^{-1} } * 300Hz \\
+    &= 278Hz
+  \end{split}
+\end{equation}
+
+Plotting this gives us:
+\begin{figure}[H]
+  \centering
+  \tikz{
+    \begin{axis}[ ymajorgrids=true,xmajorgrids=true ]
+      \addplot [domain=0:30,color=red,samples=300,thick] plot { 23 * cos( 50 * x ) + 301 };
+      \draw (0.7,12.5) node {$y_6$};
+    \end{axis}
+  }
+  \caption{Prediction of frequency variance with 2m rope}
+  \label{fig:2m-prediction}
+\end{figure}
 
 # Data
 ## 2 metre rope
@@ -183,7 +223,10 @@ Figures \ref{fig:3m-1}, \ref{fig:3m-2} and \ref{fig:3m-3} plot the data points I
 \end{figure}
 
 # Results
-If we look at both figures \ref{fig:3m-1}, \ref{fig:3m-2} and \ref{fig:3m-3}, we can see that the maximum frequency is in fact around 314Hz, which is quite far off the prediction of 324Hz.
+If we look at both figures \ref{fig:2m-1} and \ref{fig:2m-2}, we can see that the maximum frequency is in fact around 309 - 310Hz, a surprisingly accurate result compared to the predicted value. \
+The minimum frequency ...
+
+On the other hand, if we look at both figures \ref{fig:3m-1}, \ref{fig:3m-2} and \ref{fig:3m-3}, we can see that the maximum frequency is in fact around 314Hz, which is quite far off the prediction of 324Hz.
 
 # Error Discussion
 ## Error sources
