@@ -1,7 +1,5 @@
 #!/bin/sh
 
-echo
-
 DOCUMENT=$1
 
 pdf=true
@@ -11,34 +9,24 @@ then
   pdf=false
 fi
 
-if [ "$2" = "latex" ] || [ "$3" = "latex" ]
+if [ "$2" = "latex" ] || [ "$3" = "latex" ] || [ "$4" = "latex" ]
 then
   latex=true
 fi
 
-if [ "$2" = "log" ] || [ "$3" = "log" ]
+if [ "$2" = "log" ] || [ "$3" = "log" ] || [ "$4" = "log" ]
 then
   log=true
 fi
 
-if [ "$2" = "all-log" ] || [ "$3" = "all-log" ]
+if [ "$2" = "log-all" ] || [ "$3" = "log-all" ] || [ "$4" = "log-all" ]
 then
   log=true
   toc=true
   aux=true
   bib=true
-fi
-if [ "$2" = "toc" ] || [ "$3" = "toc" ] || [ "$4" = "toc" ] || [ "$5" = "toc" ]
-then
-  toc=true
-fi
-if [ "$2" = "aux" ] || [ "$3" = "aux" ] || [ "$4" = "aux" ] || [ "$5" = "toc" ]
-then
-  aux=true
-fi
-if [ "$2" = "bib" ] || [ "$3" = "bib" ] || [ "$4" = "bib" ] || [ "$5" = "toc" ]
-then
-  bib=true
+  lof=true
+  lot=true
 fi
 
 # Remove old files
@@ -66,9 +54,12 @@ do
   D="$DU$D"
 done
 
-sleep 0.5s
-
-function loading5_95 {
+function loading1 {
+  echo
+  echo $2
+  sleep $1
+  echo "                     |   0%\r\c"
+  sleep $1
   echo "#                    |   5%\r\c"
   sleep $1
   echo "##                   |  10%\r\c"
@@ -87,7 +78,8 @@ function loading5_95 {
   sleep $1
   echo "#########            |  45%\r\c"
   sleep $1
-  echo "##########           |  50%\r\c"
+}
+function loading2 {
   sleep $1
   echo "###########          |  55%\r\c"
   sleep $1
@@ -109,21 +101,6 @@ function loading5_95 {
   sleep $1
 }
 
-# Conversion scripts
-echo "Converting Markdown to LaTeX"
-loading5_95 0.05s
-pandoc -f markdown ${DOCUMENT}.md --template=${D}template.latex -t latex -o ${DOCUMENT}.tex
-
-if [ -e *.tex ]
-then
-  echo "#################### | 100%"
-  sleep 0.5s
-else
-  echo "An error occurred while converting Markdown to LaTeX"
-  echo
-  exit 1
-fi
-
 function pdfGenError () {
   echo "  PDF build failed."
   echo
@@ -133,16 +110,36 @@ function pdfGenError () {
   exit 1
 }
 
+# Conversion scripts
+pandoc -f markdown ${DOCUMENT}.md --template=${D}template.latex -t latex -o ${DOCUMENT}.tex
+
+if [ -e *.tex ]
+then
+  loading1 0.05s "Converting Markdown to LaTeX"
+  echo "##########           |  50%\r\c"
+  loading2 0.1s
+  echo "#################### | 100%"
+else
+  echo "An error occurred while converting Markdown to LaTeX"
+  echo
+  exit 1
+fi
+
 if [ $pdf = true ]
 then
   if [ -e *.bib ] || [ -e *.bibtex ]
   then
-    echo "Processing bibliography"
-
-    loading5_45 0.25 &
+    loading1 0.25s "Processing bibliography" &
     pdflatex ${DOCUMENT}.tex >pdf.log
+    if [ -e ${DOCUMENT}.pdf ]
+    then
+      echo "##########           |  50%\r\c"
+      rm ${DOCUMENT}.pdf
+    else
+      pdfGenError
+    fi
+    loading2 0.1s &
     bibtex ${DOCUMENT}.aux >bib.log
-
     if [ -e ${DOCUMENT}.pdf ]
     then
       echo "#################### | 100%"
@@ -152,25 +149,26 @@ then
     fi
   fi
 
-  sleep 0.5s
-  echo
-  echo "Converting LaTeX to PDF"
-
-  loading5_95 0.3s &
+  # Make PDF from LaTeX
+  loading1 0.25s "Converting LaTeX to PDF" &
   pdflatex ${DOCUMENT}.tex >pdf.log
-  rm ${DOCUMENT}.pdf
-  pdflatex ${DOCUMENT}.tex >pdf.log
-  
   if [ -e ${DOCUMENT}.pdf ]
   then
-    sleep 0.3s
+    echo "##########           |  50%\r\c"
+  else
+    pdfGenError
+  fi
+  loading2 0.3s &
+  pdflatex ${DOCUMENT}.tex >pdf.log
+  if [ -e ${DOCUMENT}.pdf ]
+  then
     echo "#################### | 100%"
   else
     pdfGenError
   fi
 
   # Delete auxiliary files if they exist
-  if [ "$latex" = true ] || [ "$log" = true ] || [ "$aux" = true ] || [ "$toc" = true ] || [ "$bib" = true ]
+  if [ "$latex" = true ] || [ "$log" = true ]
   then
     sleep 0.5s
     echo
@@ -202,7 +200,7 @@ then
   if [ "$aux" = true ]
   then
     echo " - ${DOCUMENT}.aux"
-    echo " - ${DOCUMENT}.aux"
+    echo " - ${DOCUMENT}.out"
   else
     if [ -e ${DOCUMENT}.aux ]
     then
@@ -234,6 +232,26 @@ then
       rm ${DOCUMENT}.bbl
       rm ${DOCUMENT}.blg
       rm bib.log
+    fi
+  fi
+
+  if [ "$lof" = true ]
+  then
+    echo " - ${DOCUMENT}.lof"
+  else
+    if [ -e ${DOCUMENT}.lof ]
+    then
+      rm ${DOCUMENT}.lof
+    fi
+  fi
+
+  if [ "$lot" = true ]
+  then
+    echo " - ${DOCUMENT}.lot"
+  else
+    if [ -e ${DOCUMENT}.lot ]
+    then
+      rm ${DOCUMENT}.lot
     fi
   fi
 

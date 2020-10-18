@@ -108,11 +108,11 @@ $if(table-of-contents)$
   \tableofcontents
 $endif$
 
-$if(lot)$
+$if(list-of-tables)$
   \listoftables
 $endif$
 
-$if(lof)$
+$if(list-of-figures)$
   \listoffigures
 $endif$
 

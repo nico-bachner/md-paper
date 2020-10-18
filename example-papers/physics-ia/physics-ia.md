@@ -25,6 +25,8 @@ center-footer: \thepage
 table-of-contents: true # toggle table of contents
 toc-depth: "4"
 
+list-of-figures: true
+
 header-includes: | # import additional LaTeX packages and create custom commands here
   \usepackage{
     siunitx,
