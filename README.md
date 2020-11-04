@@ -1,8 +1,9 @@
-# [Markdown Paper](https://md-paper.now.sh)
+# Markdown Paper
 
 A tool to write scientific papers in Markdown and then convert them to PDF via LaTeX.
 Primarily designed for writing scientific papers.
-Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
+
+Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org) under the hood.
 
 *Only designed to work on macOS x86_64, but should also work on Linux with some minor tweaks.*
 
@@ -10,9 +11,11 @@ Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 - [Writing](#writing)
 - [PDF Generation](#pdf-generation)
 - [Build Options](#build-options)
-- [Formatting Options (YAML Header)](#formatting-options-yaml-header)
+- [Formatting Options](#formatting-options)
     - [Basic structure](#basic-structure)
+    - [Document types](#document-types)
     - [Title, Author, Date](#title-author-date)
+    - [Importing packages](#importing-packages)
 - [Further Customisation](#further-customisation)
 
 ## Installation
@@ -43,51 +46,91 @@ Currently, the only way to install [md-paper](https://md-paper.now.sh) is throug
 2.  
     Now navigate into your project folder:
     ``` sh
-    cd PATH_TO_YOUR_PROJECT_FOLDER 
-    # you'll need to replace "PATH_TO_YOUR_PROJECT_FOLDER " withe the actual path to your folder
-    # For example, if your project folder is on your desktop, write cd Desktop/YOUR_FOLDER
+    cd PATH_TO_PROJECT_FOLDER
     ```
+    Don't forget to replace "PATH_TO_PROJECT_FOLDER" with the the actual path to your project folder!
 3.  
     Now you can generate your pdf:
     ``` sh
-    md-paper FILE_NAME 
-    # If your file name is, for example, "paper.md", write "paper" instead of FILE_NAME
+    md-paper FILE_NAME
     ```
+    If your file name is, for example, `paper.md`, replace `FILE_NAME` with `paper`.
 4.  
     Open your generated pdf
+    ``` sh
+    open FILE_NAME.pdf
+    ```
 
 ## Build Options
-This is the base command for pdf generation. All other commands build on this:
+This is the base command for pdf generation:
 ``` sh
 md-paper FILE_NAME
-# If your file name is "paper.md", replace FILE_NAME with "paper"
 ```
+If your file name is, for example, `paper.md`, replace `FILE_NAME` with `paper`.
+
+This base command can be extended by adding one or more of the following arguments:
 - Add LaTeX: `latex`
-- Add auxiliary files: `aux`
 - Basic logs: `log`
 - All logs: `LOG`
 
+For example, the following would keep the latex code, as well as the logs generated, and all that in addition to the pdf.
+``` sh
+md-paper FILE_NAME latex log
+```
+
 ## Formatting Options
-There are quite a few options for customisation, so not all will be listed here. (for those who know a little TeX: the options are derived from the `template.tex` file, located in `usr/local/md-paper/src` so feel free to check that out for the full customisation options)
+There are quite a few options for customisation, so not all will be listed here. (for those who know a little TeX: the options are derived from the `template.tex` file, located in `/usr/local/md-paper/src/` so feel free to check that out for the full customisation options)
 
 ### Basic structure
 Customisation can be done in a YAML (**Y**AML **A**in't **M**arkup **L**anguage) header which is an extra section above the content of your document:
 ``` YAML
 ---
-YAML HEADER # your customisations
+YAML HEADER # formatting
 ---
 
-MARKDOWN  # your content
+MARKDOWN # content
+```
+Here's the minimum needed for a pdf to be generated
+``` YAML
+---
+document-type: article
+    
+title: "TITLE"
+author: "AUTHOR"
+---
+# Hello, World!
 ```
 
-### Document Type
+### Document types
+-   For articles and short reports:
+    ``` YAML
+    document-type: article
+    ```
+-   For longer reports:
+    ``` YAML
+    document-type: report
+    ```
 
-### Title, Author
+### Title, Author, Date
 These are essential parts of any standalone document. Simply write the following into the YAML header:
 ``` YAML
 title: "YOUR DOCUMENT TITLE"
 author: "YOUR NAME"
-date: \today  # or set a specific date
+date: \today  # or write out a specific date in parentheses
+```
+
+### Importing packages
+To import packages, add the following to your YAML header:
+``` YAML
+header-includes: |
+    \usepackage{ 
+        # list packages you need here
+    }
+```
+
+There's a chance these packages aren't installed on your computer. If that's the case, import it like so:
+``` sh
+tlmgr install PACKAGE_NAME
 ```
 
 ## Further Customisation
