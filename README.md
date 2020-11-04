@@ -1,7 +1,9 @@
 # Markdown Paper
 
-A tool to convert Markdown to PDF via LaTeX. \
+A tool to write scientific papers in Markdown and then convert them to PDF via LaTeX. \
 Primarily designed for writing scientific papers
+
+*Only designed to work on Mac, but should also work on linux*
 
 Uses [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 
@@ -9,95 +11,100 @@ Uses [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 - [Writing](#Writing)
 - [PDF Generation](#PDF-Generation)
 - [Build Options](#Build-Options)
-- [YAML Options](#YAML-Options)
+- [Formatting Options (YAML Header)](#Formatting-Options-(YAML-Header))
 - [Further Customisation](#Further-Customisation)
 
 ## Installation
-
-1. Clone this repository:
+1.  
+    1. Go to **Applications**
+    2. Go to **Utilities** (inside Applications)
+    3. Open **Terminal.app** (inside Utilities)
+2.  
+    Install [Homebrew](https://brew.sh)
     ``` sh
-    git clone https://github.com/nico-bachner/md-to-pdf.git
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     ```
-0. Install [Pandoc](https://pandoc.org/installing.html) and a TeX distribution (only pdflatex is required). \
-*If you are running MacOS or Linux, I recommend doing this though [Homebrew](https://brew.sh):*
+    This will also prompt you to download and install the XCode command line tools if they are not already installed.
+4.  
+    Install [Pandoc](https://pandoc.org) 
+    (
+    [Documentation](https://github.com/jgm/pandoc) / 
+    [GitHub](https://pandoc.org/MANUAL.html)
+    )
+    ``` sh
+    brew install pandoc
+    ```
+5. 
+    Download and install [MacTeX](https://tug.org/mactex/mactex-download.html)
+6. 
+    Clone this repository. \
+    Open **Terminal** and type the following (leave out the comments starting with "#"):
+    ``` sh
+    cd ~/ # navigates to your home folder
+    git clone https://github.com/nico-bachner/md-paper.git # downloads this repository
+    ```
+    `cd` stands for "change directory", basically meaning "go to this folder".
 
-    1. Install Homebrew
-        ``` sh
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        ```
-    2. Install Pandoc
-        ``` sh
-        brew install pandoc
-        ```
-    3. Install Basictex
-        ``` sh
-        brew cask install basictex
-        ```
+    When the download has finished, type:
+    ``` sh
+    cd md-paper # navigates into the folder you downloaded
+    ```
+    Now you can also open this very file you are reading:
+    ``` sh
+    open README.md # this is self-explanatory
+    ```
 
 ## Writing 
-1. Create a folder inside this repository that will contain your project.
-0. Create your Markdown (.md) document inside that folder. \
-Check out the [YAML Options](#YAML-Options) section of this README for formatting options. \
-You can also use one of the example projects as a template.
-0. Start writing
+1.  
+    Create a folder inside this repository that will contain your project.
+2.  
+    Create your Markdown (`.md`) document inside that folder.
+    
+    Check out the [YAML Options](#YAML-Options) section of this README for formatting options.
+    
+    You can also use one of the example projects as a template.
+3.  
+    Start writing
 
 ## PDF Generation
-1. Go to your terminal.
-0. Navigate to the location of this repository.
-    ```sh
-    # Navigate to where you cloned this repo to, usually this would be in your home folder
-    cd ~/
-
-    # Then navigate into the repo using the cd command
-    cd md-paper
-    ```
-0. Now navigate into your project folder:
+1. 
+    Go to your terminal.
+2.  
+    Now navigate into your project folder:
     ``` sh
-    cd YOUR_PROJECT_FOLDER_NAME
+    cd PATH_TO_YOUR_PROJECT_FOLDER 
+    # you'll need to replace "PATH_TO_YOUR_PROJECT_FOLDER " withe the actual path to your folder
+    # For example, if your project folder is on your desktop, write cd Desktop/YOUR_FOLDER
     ```
-0. Now you can build your pdf:
+3.  
+    Now you can generate your pdf:
     ``` sh
+    ~/md-paper/build.sh pdf FILE_NAME 
     # If your file name is, for example, "paper.md", write "paper" instead of FILE_NAME
-
-    ../build.sh FILE_NAME
-
-    # Depending on where your project is located, you may have to add more ../ to the beginning
     ```
-0. Open your generated pdf
+    Depending on where your project is located, you may have to add more `../` to the beginning, but if you followed the guide thus far, this is not necessary.
+4.  
+    Open your generated pdf
 
 ## Build Options
-### Build LaTeX:
-- Build LaTeX only
+``` sh
+~/md-paper/build.sh FILE_NAME
+# If your file name is "paper.md", replace FILE_NAME with "paper"
+```
+This is the base command for pdf generation. All other commands build on this:
+- Add LaTeX: `latex`
+- Add auxiliary files: `aux`
+- Basic logs: `log`
+- All logs: `LOG`
+-   **SPECIAL CASE:**
+    Generate LaTeX only:
     ``` sh
     ../build.sh FILE_NAME latex-only
     ```
-### Build PDF:
-- Only PDF
-    ``` sh
-    ../build.sh FILE_NAME
-    ```
-- PDF and LaTeX
-    ``` sh
-    ../build.sh FILE_NAME latex
-    ```
-- PDF and auxiliary files
-    ``` sh
-    ../build.sh FILE_NAME aux
-    ```
-- PDF and logs
-    ``` sh
-    ../build.sh FILE_NAME log
-    ```
-- PDF and table of contents logs
-    ``` sh
-    ../build.sh FILE_NAME toc
-    ```
-- PDF and bibliography logs
-    ``` sh
-    ../build.sh FILE_NAME bib
-    ```
+    Since this one doesn't generate a pdf file, the options for pdf gen are superfluous here.
 
-## YAML Options
+
+## Formatting Options (YAML Header)
 There are quite a few options for customisation. I'll try and list as many as I can. (for those who know a little TeX: the options are derived from the `template.latex` file)
 
 ### Basic structure
