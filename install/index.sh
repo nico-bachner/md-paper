@@ -24,6 +24,7 @@ function installBrewDependency {
 
 installBrewDependency pandoc
 installBrewDependency shc
+installBrewDependency basictex
 
 function download {
     sudo git clone https://github.com/${REPO_NAME}.git

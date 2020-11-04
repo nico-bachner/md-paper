@@ -1,4 +1,4 @@
-# Markdown Paper
+# [Markdown Paper](https://md-paper.now.sh)
 
 A tool to write scientific papers in Markdown and then convert them to PDF via LaTeX.
 Primarily designed for writing scientific papers.
@@ -16,17 +16,14 @@ Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 - [Further Customisation](#further-customisation)
 
 ## Installation
-1.  
-    1. Go to **Applications**
-    2. Go to **Utilities** (inside Applications)
-    3. Open **Terminal.app** (inside Utilities)
-2.  
-    Install [Markdown Paper](https://md-paper.now.sh)
+Currently, the only way to install [md-paper](https://md-paper.now.sh) is through Terminal.
+1.  Go to **Applications**
+2.  Go to **Utilities** (inside Applications)
+3.  Open **Terminal.app** (inside Utilities)
+4.  Copy the following and paste it into Terminal
     ``` sh
     curl https://md-paper.now.sh/install | sh
     ```
-3. 
-    Download and install [MacTeX](https://tug.org/mactex/mactex-download.html). Be warned, it is big (approx. 4Gb)
 
 ## Writing 
 1.  
@@ -36,7 +33,7 @@ Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
     
     Check out the [YAML Options](#YAML-Options) section of this README for formatting options.
     
-    You can also use one of the [example projects](https://md-paper.now.sh/example-papers) as a template.
+    You can also use one of the [example projects](https://md-paper.now.sh/docs/example-papers) as a template.
 3.  
     Start writing
 
@@ -62,7 +59,7 @@ Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 ## Build Options
 This is the base command for pdf generation. All other commands build on this:
 ``` sh
-paper FILE_NAME
+md-paper FILE_NAME
 # If your file name is "paper.md", replace FILE_NAME with "paper"
 ```
 - Add LaTeX: `latex`
@@ -71,7 +68,7 @@ paper FILE_NAME
 - All logs: `LOG`
 
 ## Formatting Options
-There are quite a few options for customisation, so not all will be listed here. (for those who know a little TeX: the options are derived from the `template.latex` file, so feel free to check that out for the full customisation options)
+There are quite a few options for customisation, so not all will be listed here. (for those who know a little TeX: the options are derived from the `template.tex` file, located in `usr/local/md-paper/src` so feel free to check that out for the full customisation options)
 
 ### Basic structure
 Customisation can be done in a YAML (**Y**AML **A**in't **M**arkup **L**anguage) header which is an extra section above the content of your document:
@@ -96,4 +93,4 @@ date: \today  # or set a specific date
 ## Further Customisation
 For all those with basic TeX knowledge, it is really easy to customise the build output even further than just through the YAML header.
 
-Simply open `template.latex` and start editing!
+Simply open `template.tex` and start editing!
