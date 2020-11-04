@@ -48,7 +48,7 @@ Currently, the only way to install [md-paper](https://md-paper.now.sh) is throug
     ``` sh
     cd PATH_TO_PROJECT_FOLDER
     ```
-    Don't forget to replace "PATH_TO_PROJECT_FOLDER" with the the actual path to your project folder!
+    Don't forget to replace `PATH_TO_PROJECT_FOLDER` with the the actual path to your project folder!
 3.  
     Now you can generate your pdf:
     ``` sh
