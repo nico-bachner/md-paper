@@ -93,7 +93,7 @@ MARKDOWN # content
 Here's the minimum needed for a pdf to be generated
 ``` YAML
 ---
-document-type: article
+document-type: TYPE
     
 title: "TITLE"
 author: "AUTHOR"
