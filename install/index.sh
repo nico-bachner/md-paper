@@ -41,7 +41,7 @@ else
     echo "It seems a program called '${PACKAGE_NAME}' already exists"
     echo "Would you like to replace it? | Y/n"
     read replace
-    if [ $replace = "Y" ]
+    if [ $replace == "Y" ]
     then
         sudo rm -rf ${PACKAGE_NAME}
         download
