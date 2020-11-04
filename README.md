@@ -11,6 +11,8 @@ Uses [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 - [Writing](#Writing)
 - [PDF Generation](#PDF-Generation)
 - [Build Options](#Build-Options)
+    - [Basic structure](#Basic-structure)
+    - [Title, Author & Date](#Title,-Author-&-Date)
 - [Formatting Options (YAML Header)](#Formatting-Options-(YAML-Header))
 - [Further Customisation](#Further-Customisation)
 
@@ -20,55 +22,34 @@ Uses [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
     2. Go to **Utilities** (inside Applications)
     3. Open **Terminal.app** (inside Utilities)
 2.  
-    Install [Homebrew](https://brew.sh)
+    Install [Homebrew](https://brew.sh) by typing the following in your terminal:
     ``` sh
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     ```
-    This will also prompt you to download and install the XCode command line tools if they are not already installed.
+    This will also prompt you to download and install the Xcode command line tools if they are not already installed.
+3. 
+    Download and install [MacTeX](https://tug.org/mactex/mactex-download.html) (be warned, it is big)
 4.  
-    Install [Pandoc](https://pandoc.org) 
-    (
-    [Documentation](https://github.com/jgm/pandoc) / 
-    [GitHub](https://pandoc.org/MANUAL.html)
-    )
+    Install [Markdown Paper](https://brew.sh)
     ``` sh
-    brew install pandoc
-    ```
-5. 
-    Download and install [MacTeX](https://tug.org/mactex/mactex-download.html)
-6. 
-    Clone this repository. \
-    Open **Terminal** and type the following (leave out the comments starting with "#"):
-    ``` sh
-    cd ~/ # navigates to your home folder
-    git clone https://github.com/nico-bachner/md-paper.git # downloads this repository
-    ```
-    `cd` stands for "change directory", basically meaning "go to this folder".
-
-    When the download has finished, type:
-    ``` sh
-    cd md-paper # navigates into the folder you downloaded
-    ```
-    Now you can also open this very file you are reading:
-    ``` sh
-    open README.md # this is self-explanatory
+    /bin/sh -c "$(curl -fsSL https://md-paper.now.sh/install.sh)"
     ```
 
 ## Writing 
 1.  
-    Create a folder inside this repository that will contain your project.
+    Create a folder that will contain your project.
 2.  
     Create your Markdown (`.md`) document inside that folder.
     
     Check out the [YAML Options](#YAML-Options) section of this README for formatting options.
     
-    You can also use one of the example projects as a template.
+    You can also use one of the [example projects](https://md-paper.now.sh/example-papers) as a template.
 3.  
     Start writing
 
 ## PDF Generation
 1. 
-    Go to your terminal.
+    Go back to your terminal.
 2.  
     Now navigate into your project folder:
     ``` sh
@@ -79,10 +60,9 @@ Uses [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 3.  
     Now you can generate your pdf:
     ``` sh
-    ~/md-paper/build.sh pdf FILE_NAME 
+    paper FILE_NAME 
     # If your file name is, for example, "paper.md", write "paper" instead of FILE_NAME
     ```
-    Depending on where your project is located, you may have to add more `../` to the beginning, but if you followed the guide thus far, this is not necessary.
 4.  
     Open your generated pdf
 
@@ -96,16 +76,9 @@ This is the base command for pdf generation. All other commands build on this:
 - Add auxiliary files: `aux`
 - Basic logs: `log`
 - All logs: `LOG`
--   **SPECIAL CASE:**
-    Generate LaTeX only:
-    ``` sh
-    ~/md-paper/build.sh FILE_NAME latex-only
-    ```
-    Since this one doesn't generate a pdf file, the options for pdf gen are superfluous here.
-
 
 ## Formatting Options (YAML Header)
-There are quite a few options for customisation. I'll try and list as many as I can. (for those who know a little TeX: the options are derived from the `template.latex` file)
+There are quite a few options for customisation, so not all will be listed here. (for those who know a little TeX: the options are derived from the `template.latex` file, so feel free to check that out for the full customisation options)
 
 ### Basic structure
 Customisation can be done in a YAML (**Y**AML **A**in't **M**arkup **L**anguage) header which is an extra section above the content of your document:
