@@ -1,4 +1,4 @@
-#!/bin/ksh
+#!/bin/sh
 
 PACKAGE_NAME="md-paper"
 REPO_NAME="nico-bachner/${PACKAGE_NAME}"
@@ -48,16 +48,18 @@ then
     download
 else
     echo "It seems a program called '${PACKAGE_NAME}' already exists"
-    echo "Would you like to replace it? | Y/n"
-    read replace
-    if [ $replace = "Y" ]
-    then
-        sudo rm -rf ${PACKAGE_NAME}
-        download
-    else
-        echo "Installation aborted"
-        exit 1
-    fi
+    echo "Press SPACE to replace it or press any other key to abort"
+    while read replace
+    do
+        if [ $replace = "Y" ]
+        then
+            sudo rm -rf ${PACKAGE_NAME}
+            download
+        else
+            echo "Installation aborted"
+            exit 1
+        fi
+    done
 fi
 
 cd ${PACKAGE_NAME}/src
