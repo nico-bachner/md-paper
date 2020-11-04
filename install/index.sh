@@ -3,16 +3,16 @@
 PACKAGE_NAME="md-paper"
 REPO_NAME="nico-bachner/${PACKAGE_NAME}"
 
-
 cd /usr/local
 
-if which brew > /dev/null
-then
-    echo "Homebrew was already installed"
-else
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-fi
-
+function installDependency {
+    if which brew > /dev/null
+    then
+        echo "${1} was already installed"
+    else
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/${1}/install/master/install.sh)"
+    fi
+}
 function installBrewDependency {
     if brew ls --versions $1 > /dev/null
     then
@@ -21,10 +21,19 @@ function installBrewDependency {
         brew install $1
     fi
 }
+function installBrewCaskDependency {
+    if brew ls --cask --versions $1 > /dev/null
+    then
+        echo "${1} was already installed"
+    else
+        brew cask install $1
+    fi
+}
 
+installDependency Homebrew
 installBrewDependency pandoc
 installBrewDependency shc
-installBrewDependency basictex
+installBrewCaskDependency basictex
 
 function download {
     sudo git clone https://github.com/${REPO_NAME}.git
