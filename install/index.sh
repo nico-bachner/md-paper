@@ -48,18 +48,16 @@ then
     download
 else
     echo "It seems a program called '${PACKAGE_NAME}' already exists"
-    echo "Press SPACE to replace it or press any other key to abort"
-    while read replace
-    do
-        if [ $replace = "Y" ]
-        then
-            sudo rm -rf ${PACKAGE_NAME}
-            download
-        else
-            echo "Installation aborted"
-            exit 1
-        fi
-    done
+    echo "Press ENTER to replace it or press any other key to abort the installation"
+    read
+    if [ $REPLY = "" ]
+    then
+        sudo rm -rf ${PACKAGE_NAME}
+        download
+    else
+        echo "Installation aborted"
+        exit 1
+    fi
 fi
 
 cd ${PACKAGE_NAME}/src
