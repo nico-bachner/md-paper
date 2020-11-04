@@ -1,6 +1,7 @@
 #!/bin/ksh
 
-ROOT_DIRECTORY="${HOME}/md-paper/"
+PROGRAM_NAME="md-paper"
+ROOT_DIRECTORY="/usr/local/${PROGRAM_NAME}"
 
 if [ $1 = "update" ]
 then
@@ -11,11 +12,6 @@ fi
 
 DOCUMENT=$1
 PROJECT_DIRECTORY=$(PWD)
-
-function success {
-  echo
-  exit 0
-}
 
 function error {
   echo "\n${1}\n"
@@ -228,4 +224,5 @@ else
   fi
 fi
 
-success
+echo
+exit 0
