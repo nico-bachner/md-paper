@@ -1,0 +1,24 @@
+\documentclass[tikz]{standalone}
+\begin{document}
+    \tikz{
+        \begin{axis}[ymajorgrids=true,xmajorgrids=true,xmin=7.4,xmax=10.4,ymin=6.2,ymax=9.2]
+            \filldraw (7.63,6.41) circle (1pt);
+            \filldraw (7.71,6.44) circle (1pt);
+            \filldraw (7.80,6.51) circle (1pt);
+            \filldraw (7.95,6.67) circle (1pt);
+            \filldraw (8.21,6.95) circle (1pt);
+            \filldraw (8.55,7.30) circle (1pt);
+            \filldraw (8.91,7.68) circle (1pt);
+            \filldraw (9.28,8.06) circle (1pt);
+            \filldraw (9.61,8.41) circle (1pt);
+            \filldraw (9.88,8.68) circle (1pt);
+            \filldraw (10.03,8.84) circle (1pt);
+            \filldraw (10.12,8.91) circle (1pt);
+            \filldraw (10.18,8.94) circle (1pt);
+            \draw [domain=7.63:10.18,color=red] plot (\x,{1.04*\x-1.60});
+            \draw [domain=7.63:10.18,color=blue] plot (\x,{1.025*\x-1.45});
+            \draw [red] (9.4,7.4) node {$y=1.04x-1.60$};
+            \draw [blue] (8.8,8.6) node {$y=1.02x-1.45$};
+        \end{axis}
+    }
+\end{document}

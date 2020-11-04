@@ -1,0 +1,121 @@
+\documentclass[
+  $if(papersize)$
+    $papersize$paper,
+  $endif$
+  $if(fontsize)$
+    $fontsize$,
+  $endif$
+  $if(twocolumn)$
+    twocolumn,
+  $endif$
+  $if(oneside)$
+    oneside,
+  $endif$
+  $if(titlepage)$
+    titlepage,
+  $endif$
+  $if(draft)$
+    draft,
+  $endif$
+]{$document-type$}
+
+\nonstopmode
+
+\usepackage[utf8]{inputenc}
+
+\providecommand{\tightlist}{
+  \setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+}
+\usepackage{longtable}
+
+$if(custom-margins)$
+  \usepackage[top=$top$, bottom=$bottom$, left=$left$, right=$right$]{geometry}
+$endif$
+
+\setcounter{secnumdepth}{0}
+$if(section-numbering)$
+  \setcounter{secnumdepth}{4}
+$endif$
+
+$if(header-and-footer)$
+  \usepackage{scrlayer-scrpage}
+  \ihead{$left-header$}
+  \chead{$center-header$}
+  \ohead{$right-header$}
+  \ifoot{$left-footer$}
+  \cfoot{$center-footer$}
+  \ofoot{$right-footer$}
+$endif$
+
+$if(spacing)$
+  \usepackage{setspace}
+  \$spacing$spacing
+$endif$
+
+$if(font)$
+  \usepackage{$font$}
+$endif$
+
+$if(math-font)$
+  \usepackage{$math-font$}
+$endif$
+
+$if(keywords)$
+  pdfkeywords={
+    $for(keywords)$
+      $keywords$
+      $sep$, 
+    $endfor$
+  },
+$endif$
+
+$for(header-includes)$
+  $header-includes$
+$endfor$
+
+$if(title)$
+  \title{
+    $title$
+    $if(thanks)$
+      \thanks{$thanks$}
+    $endif$
+  }
+  \author{
+    $for(author)$
+      $author$
+      $sep$ \and 
+    $endfor$
+  }
+  \date{$date$}
+$endif$
+
+
+\begin{document}
+
+\maketitle
+
+$if(abstract)$
+  \begin{abstract}
+    $abstract$
+  \end{abstract}
+$endif$
+
+$if(table-of-contents)$
+  $if(toc-depth)$
+    \setcounter{tocdepth}{$toc-depth$}
+  $endif$
+  \tableofcontents
+$endif$
+
+$if(list-of-tables)$
+  \listoftables
+$endif$
+
+$if(list-of-figures)$
+  \listoffigures
+$endif$
+
+$body$
+
+\end{document}

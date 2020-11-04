@@ -31,7 +31,7 @@ Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 4.  
     Install [Markdown Paper](https://brew.sh)
     ``` sh
-    /bin/sh -c "$(curl -fsSL https://md-paper.now.sh/install.sh)"
+    curl https://md-paper.now.sh/install.sh | sh
     ```
 
 ## Writing 
@@ -76,7 +76,7 @@ paper FILE_NAME
 - Basic logs: `log`
 - All logs: `LOG`
 
-## Formatting Options (YAML Header)
+## Formatting Options
 There are quite a few options for customisation, so not all will be listed here. (for those who know a little TeX: the options are derived from the `template.latex` file, so feel free to check that out for the full customisation options)
 
 ### Basic structure
@@ -89,7 +89,9 @@ YAML HEADER # your customisations
 MARKDOWN  # your content
 ```
 
-### Title, Author, Date
+### Document Type
+
+### Title, Author
 These are essential parts of any standalone document. Simply write the following into the YAML header:
 ``` YAML
 title: "YOUR DOCUMENT TITLE"

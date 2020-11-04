@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="A tool to write scientific papers in Markdown">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="canonical" href="https://md-paper.now.sh">
+
+        <title>Markdown Paper</title>
+
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+        <style>
+            html {
+                max-width: 50rem;
+                margin: auto;
+            }
+            body {
+                margin: 2rem;
+            }
+            h1 {
+                text-align: center;
+            }
+            pre {
+                max-width: 100%;
+                overflow-x: scroll;
+            }
+        </style>
+    </head>
+    <body>
+        <main id="markdown-content"></main>
+        <script async>
+
+            // fetch docs from GitHub README.md
+            fetch('https://raw.githubusercontent.com/nico-bachner/md-paper/master/README.md')
+                .then(response => response.text())
+                // render Markdown as HTML
+                .then(result => document.getElementById('markdown-content').innerHTML = marked(result));
+        </script>
+    </body>
+</html>
