@@ -3,10 +3,11 @@
 PROGRAM_NAME="md-paper"
 ROOT_DIRECTORY="/usr/local/${PROGRAM_NAME}"
 
+# gives option to update without reinstalling
 if [ $1 = "update" ]
 then
   cd $ROOT_DIRECTORY
-  git pull
+  sudo git pull
   exit 0
 fi
 
