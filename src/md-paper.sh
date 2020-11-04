@@ -11,6 +11,15 @@ then
   exit 0
 fi
 
+# uninstall everything
+if [ $1 = "uninstall" ]
+then
+  cd /usr/local
+  sudo rm bin/md-paper
+  sudo rm -rf md-paper
+  exit 0
+fi
+
 DOCUMENT=$1
 PROJECT_DIRECTORY=$(PWD)
 
