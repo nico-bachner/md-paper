@@ -69,7 +69,7 @@ fi
 
 # Conversion script
 loading 0.01 "Converting Markdown to LaTeX"
-pandoc -f markdown ${DOCUMENT}.md --template=${ROOT_DIRECTORY}template.tex -t latex -o ${DOCUMENT}.tex
+pandoc -f markdown ${DOCUMENT}.md --template=${ROOT_DIRECTORY}/template.tex -t latex -o ${DOCUMENT}.tex
 
 if [ -e *.tex ]
 then
