@@ -10,15 +10,33 @@
         <title>Markdown Paper</title>
 
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+        <style>
+            html {
+                max-width: 40rem;
+                margin: auto;
+            }
+            body {
+                margin: 2rem;
+            }
+            h1, h2 {
+                text-align: center;
+            }
+            pre {
+                max-width: 100%;
+                overflow-x: scroll;
+            }
+        </style>
     </head>
     <body>
         <main id="markdown-content"></main>
         <script async>
+
             // fetch docs from GitHub README.md
-            let response = await fetch(`https://raw.githubusercontent.com/nico-bachner/md-paper/master/README.md`);
-            let docs = await response.text();
-            // render Markdown as HTML
-            document.getElementById('markdown-content').innerHTML = marked(docs);
+            fetch('https://raw.githubusercontent.com/nico-bachner/md-paper/master/README.md')
+                .then(response => response.text())
+                // render Markdown as HTML
+                .then(result => document.getElementById('markdown-content').innerHTML = marked(result));
         </script>
     </body>
 </html>

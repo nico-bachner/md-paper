@@ -1,20 +1,19 @@
 # Markdown Paper
 
-A tool to write scientific papers in Markdown and then convert them to PDF via LaTeX. \
-Primarily designed for writing scientific papers
+A tool to write scientific papers in Markdown and then convert them to PDF via LaTeX.
+Primarily designed for writing scientific papers.
+Uses [Pandoc](https://pandoc.org) and [PDFlatex](https://www.latex-project.org).
 
-*Only designed to work on Mac, but should also work on linux*
+*Only designed to work on Mac, but should also work on Linux.*
 
-Uses [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
-
-- [Installation](#Installation)
-- [Writing](#Writing)
-- [PDF Generation](#PDF-Generation)
-- [Build Options](#Build-Options)
-    - [Basic structure](#Basic-structure)
-    - [Title, Author & Date](#Title,-Author-&-Date)
-- [Formatting Options (YAML Header)](#Formatting-Options-(YAML-Header))
-- [Further Customisation](#Further-Customisation)
+- [Installation](#installation)
+- [Writing](#writing)
+- [PDF Generation](#pdf-generation)
+- [Build Options](#build-options)
+- [Formatting Options (YAML Header)](#formatting-options-yaml-header)
+    - [Basic structure](#basic-structure)
+    - [Title, Author, Date](#title-author-date)
+- [Further Customisation](#further-customisation)
 
 ## Installation
 1.  
@@ -28,7 +27,7 @@ Uses [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
     ```
     This will also prompt you to download and install the Xcode command line tools if they are not already installed.
 3. 
-    Download and install [MacTeX](https://tug.org/mactex/mactex-download.html) (be warned, it is big)
+    Download and install [MacTeX](https://tug.org/mactex/mactex-download.html). Be warned, it is big (approx. 4Gb)
 4.  
     Install [Markdown Paper](https://brew.sh)
     ``` sh
@@ -67,11 +66,11 @@ Uses [Pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
     Open your generated pdf
 
 ## Build Options
+This is the base command for pdf generation. All other commands build on this:
 ``` sh
-~/md-paper/build.sh FILE_NAME
+paper FILE_NAME
 # If your file name is "paper.md", replace FILE_NAME with "paper"
 ```
-This is the base command for pdf generation. All other commands build on this:
 - Add LaTeX: `latex`
 - Add auxiliary files: `aux`
 - Basic logs: `log`
@@ -90,7 +89,7 @@ YAML HEADER # your customisations
 MARKDOWN  # your content
 ```
 
-### Title, Author & Date
+### Title, Author, Date
 These are essential parts of any standalone document. Simply write the following into the YAML header:
 ``` YAML
 title: "YOUR DOCUMENT TITLE"
