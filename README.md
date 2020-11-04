@@ -8,6 +8,8 @@ Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org) 
 *Only designed to work on macOS x86_64, but should also work on Linux with some minor tweaks.*
 
 - [Installation](#installation)
+- [Updating](#updating)
+- [Uninstalling](#uninstalling)
 - [Writing](#writing)
 - [PDF Generation](#pdf-generation)
 - [Build Options](#build-options)
@@ -27,6 +29,18 @@ Currently, the only way to install [md-paper](https://md-paper.now.sh) is throug
     ``` sh
     curl https://md-paper.now.sh/install | sh
     ```
+
+## Updating
+If you don't want to reinstall this software, there's a handy command available:
+``` sh
+md-paper update
+```
+
+## Uninstalling
+To uninstall, simply write the following in your terminal:
+``` sh
+md-paper uninstall
+```
 
 ## Writing 
 1.  
