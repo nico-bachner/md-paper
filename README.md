@@ -2,9 +2,9 @@
 
 A tool to write scientific papers in Markdown and then convert them to PDF via LaTeX.
 Primarily designed for writing scientific papers.
-Uses [Pandoc](https://pandoc.org) and [PDFlatex](https://www.latex-project.org).
+Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 
-*Only designed to work on Mac, but should also work on Linux.*
+*Only designed to work on macOS x86_64, but should also work on Linux.*
 
 - [Installation](#installation)
 - [Writing](#writing)
