@@ -7,7 +7,8 @@ ROOT_DIRECTORY="/usr/local/${PROGRAM_NAME}"
 if [ $1 = "update" ]
 then
   cd $ROOT_DIRECTORY
-  sudo git pull
+  sudo git fetch origin master
+  sudo git reset --hard origin/master
   exit 0
 fi
 
