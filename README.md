@@ -99,7 +99,7 @@ This is the base command for pdf generation. All other commands build on this:
 -   **SPECIAL CASE:**
     Generate LaTeX only:
     ``` sh
-    ../build.sh FILE_NAME latex-only
+    ~/md-paper/build.sh FILE_NAME latex-only
     ```
     Since this one doesn't generate a pdf file, the options for pdf gen are superfluous here.
 
