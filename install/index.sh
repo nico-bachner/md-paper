@@ -6,23 +6,30 @@ REPO_NAME="nico-bachner/${PACKAGE_NAME}"
 
 cd /usr/local
 
-function installDependency {
+if which brew > /dev/null
+then
+    echo "Homebrew was already installed"
+else
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+fi
+
+function installBrewDependency {
     if brew ls --versions $1 > /dev/null
     then
-        # The package is installed
+        echo "${1} was already installed"
     else
         brew install $1
     fi
 }
 
-installDependency pandoc
-installDependency shc
+installBrewDependency pandoc
+installBrewDependency shc
 
 function download {
     sudo git clone https://github.com/${REPO_NAME}.git
     if [ -d ${PACKAGE_NAME} ]
     then
-        echo "Download Successful"
+        echo "Download successful"
     fi
 }
 
@@ -35,23 +42,22 @@ else
     read replace
     if [ $replace = "Y" ]
     then
-        rm -rf ${PACKAGE_NAME}
+        sudo rm -rf ${PACKAGE_NAME}
         download
     else
-        echo "Installation Aborted"
+        echo "Installation aborted"
     fi
 fi
 
 cd ${PACKAGE_NAME}/src
 
-shc -f ${PACKAGE_NAME}.sh -o /usr/local/bin/${PACKAGE_NAME}
-rm ${PACKAGE_NAME}.sh.x.cd
+sudo shc -f ${PACKAGE_NAME}.sh -o /usr/local/bin/${PACKAGE_NAME}
 
 if [ -e /usr/local/bin/${PACKAGE_NAME} ]
 then
-    echo "Installation Successful"
+    echo "Installation successful"
     exit 0
 else
-    echo "Installation Failed"
+    echo "Installation failed"
     exit 1
 fi

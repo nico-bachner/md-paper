@@ -4,7 +4,7 @@ A tool to write scientific papers in Markdown and then convert them to PDF via L
 Primarily designed for writing scientific papers.
 Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 
-*Only designed to work on macOS x86_64, but should also work on Linux.*
+*Only designed to work on macOS x86_64, but should also work on Linux with some minor tweaks.*
 
 - [Installation](#installation)
 - [Writing](#writing)
@@ -21,18 +21,12 @@ Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
     2. Go to **Utilities** (inside Applications)
     3. Open **Terminal.app** (inside Utilities)
 2.  
-    Install [Homebrew](https://brew.sh) by typing the following in your terminal:
+    Install [Markdown Paper](https://md-paper.now.sh)
     ``` sh
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    curl https://md-paper.now.sh/install | sh
     ```
-    This will also prompt you to download and install the Xcode command line tools if they are not already installed.
 3. 
     Download and install [MacTeX](https://tug.org/mactex/mactex-download.html). Be warned, it is big (approx. 4Gb)
-4.  
-    Install [Markdown Paper](https://brew.sh)
-    ``` sh
-    curl https://md-paper.now.sh/install.sh | sh
-    ```
 
 ## Writing 
 1.  
@@ -59,7 +53,7 @@ Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org).
 3.  
     Now you can generate your pdf:
     ``` sh
-    paper FILE_NAME 
+    md-paper FILE_NAME 
     # If your file name is, for example, "paper.md", write "paper" instead of FILE_NAME
     ```
 4.  
