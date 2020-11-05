@@ -58,7 +58,7 @@ md-paper uninstall
 
 ## PDF Generation
 1. 
-    Go back to your terminal.
+    Open a new terminal window.
 2.  
     Now navigate into your project folder:
     ``` sh
@@ -152,4 +152,4 @@ tlmgr install PACKAGE_NAME
 ## Further Customisation
 For all those with basic TeX knowledge, it is really easy to customise the build output even further than just through the YAML header.
 
-Simply open `template.tex` and start editing!
+Simply open `template.tex` (in `/usr/local/md-paper/src/`) and start editing!
