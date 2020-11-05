@@ -12,12 +12,24 @@ then
   exit 0
 fi
 
-# uninstall everything
-if [ $1 = "uninstall" ]
-then
+function uninstall {
   cd /usr/local
   sudo rm bin/md-paper
   sudo rm -rf md-paper
+}
+
+# reinstall everything
+if [ $1 = "reinstall" ]
+then
+  uninstall
+  curl https://md-paper.now.sh/install | sh
+  exit 0
+fi
+
+# uninstall everything
+if [ $1 = "uninstall" ]
+then
+  uninstall
   exit 0
 fi
 
