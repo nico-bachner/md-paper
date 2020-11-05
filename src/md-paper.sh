@@ -1,7 +1,13 @@
 #!/bin/ksh
 
+function error {
+  echo $1
+  exit 1
+}
+
 PROGRAM_NAME="md-paper"
-ROOT_DIRECTORY="/usr/local/${PROGRAM_NAME}"
+ROOT_CONTAINER="/usr/local"
+ROOT_DIRECTORY="${ROOT_CONTAINER}/${PROGRAM_NAME}"
 
 # gives option to update without reinstalling
 if [ $1 = "update" ]
@@ -13,8 +19,8 @@ then
 fi
 
 function uninstall {
-  cd /usr/local
-  sudo rm bin/md-paper
+  cd ${ROOT_CONTAINER}
+  sudo rm /usr/local/bin/md-paper
   sudo rm -rf md-paper
 }
 
@@ -37,10 +43,11 @@ DOCUMENT=$1
 PROJECT_DIRECTORY=$(PWD)
 BUILD_FOLDER="build"
 
-function error {
-  echo $1
+if [ ! -e ${DOCUMENT}.md ]
+then
+  error "File doesn't exist"
   exit 1
-}
+fi
 
 function loading {
   echo
