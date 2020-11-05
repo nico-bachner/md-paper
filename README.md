@@ -10,6 +10,7 @@ Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org) 
 - [Installation](#installation)
     - [Installing](#installing)
     - [Updating](#updating)
+    - [Reinstalling](#reinstalling)
     - [Uninstalling](#uninstalling)
 - [Writing](#writing)
 - [PDF Generation](#pdf-generation)
@@ -33,13 +34,19 @@ Currently, the only way to install [md-paper](https://md-paper.now.sh) is throug
     ```
 
 ### Updating
-If you don't want to reinstall this software, there's a handy command available:
+If you don't want to fully reinstall this software, there's a handy command available:
 ``` sh
 md-paper update
 ```
 
+### Reinstalling
+To reinstall the program from scratch, should that be necessary, simply write the following in your terminal:
+``` sh
+md-paper reinstall
+```
+
 ### Uninstalling
-To uninstall, simply write the following in your terminal:
+To uninstall the entire program, write the following:
 ``` sh
 md-paper uninstall
 ```
