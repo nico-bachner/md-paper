@@ -143,12 +143,14 @@ then
 else
   pdfGenError
 fi
+
+# pdflatex needs to repeat the process to account for the processing of table of contents and similar environments
 loading 0.02 "Converting LaTeX to PDF" &
 pdflatex ${DOCUMENT}.tex >pdf.log
 if [ -e ${DOCUMENT}.pdf ]
 then
-  mv ${DOCUMENT}.pdf $PROJECT_DIRECTORY
   echo "[ ################################################## ] 100 %"
+  mv ${DOCUMENT}.pdf $PROJECT_DIRECTORY
 else
   pdfGenError
 fi
@@ -176,6 +178,9 @@ fi
 if [ "$latex" = true ] || [ "$log" = true ] || [ "$LOG" = true ]
 then
   echo "Kept the following files in '/build/':"
+else
+  cd ..
+  rm -rf $BUILD_FOLDER
 fi
 
 if [ "$latex" = true ]
