@@ -1,8 +1,70 @@
 #!/bin/ksh
 
 PROGRAM_NAME="md-paper"
-ROOT_CONTAINER="/usr/local"
-ROOT_DIRECTORY="${ROOT_CONTAINER}/${PROGRAM_NAME}"
+USER_DIRECTORY="/usr/local"
+BINARY_DIRECTORY="${USER_DIRECTORY}/bin"
+PROGRAM_DIRECTORY="${USER_DIRECTORY}/${PROGRAM_NAME}"
+MD=$(find *.md)
+FILE=${MD%.md}
+PROJECT_DIRECTORY=$(PWD)
+
+function main {
+    case $1 in 
+        i|install)
+            # shorthand command for importing external TeX modules
+            if [ $2 ]
+            then
+                sudo tlmgr install $2
+                exit $?
+            else
+                error "no package specified"
+            fi
+            ;;
+        u|uninstall)
+            # uninstall everything
+            uninstall
+            success "uninstall successful"
+            ;;
+        reinstall)
+            # reinstall everything
+            uninstall
+            curl https://md-paper.now.sh/install | sh
+            if [ -e ${PROGRAM_DIRECTORY} ] || [ -e ${BINARY_DIRECTORY}/${PROGRAM_NAME} ]
+            then
+                success "reinstallation successful"
+            fi
+            ;;
+        update)
+            # gives option to update without reinstalling
+            cd $PROGRAM_DIRECTORY
+            sudo git fetch origin master
+            sudo git reset --hard origin/master
+            success "${PROGRAM_NAME} updated"
+            ;;
+        latex|tex)
+            if [ -e *.md ]
+            then
+                # convert md to tex
+                latex
+            else
+                error "no markdown file found"
+            fi
+            ;;
+        pdf)
+            if [ -e *.md ]
+            then
+                # convert md to pdf
+                latex
+                pdf
+            else
+                error "no markdown file found"
+            fi
+            ;;
+        *)
+            error "error: no parameter given"
+            ;;
+    esac
+}
 
 function error {
     echo $1
@@ -15,103 +77,80 @@ function success {
 }
 
 function uninstall {
-    sudo rm ${ROOT_CONTAINER}/bin/md-paper
-    sudo rm -rf ${ROOT_DIRECTORY}
-    if [ -e ${ROOT_DIRECTORY} ] || [ -e ${ROOT_CONTAINER}/bin/md-paper ]
+    sudo rm ${BINARY_DIRECTORY}/${PROGRAM_NAME}
+    sudo rm -rf ${PROGRAM_DIRECTORY}
+    if [ -e ${PROGRAM_DIRECTORY} ] || [ -e ${BINARY_DIRECTORY}/${PROGRAM_NAME} ]
     then
         error "uninstall failed"
     fi
 }
 
-if [ $1 = "uninstall" ]
-then
-    # uninstall everything
+function loading {
+    echo "$2"
 
-    uninstall
-    success ""
+    STEP_SIZE=4
+    MAX_LOAD=100
+    TOTAL_STEPS=$((MAX_LOAD / STEP_SIZE))
 
-elif [ $1 = "reinstall" ]
-then
-    # reinstall everything
+    for ((k = 0; k < $TOTAL_STEPS ; k++))
+    do
+        echo -n "[ "
 
-    uninstall
-    curl https://md-paper.now.sh/install | sh
-    if [ -e ${ROOT_DIRECTORY} ] || [ -e ${ROOT_CONTAINER}/bin/md-paper ]
-    then
-        success "reinstallation successful"
-    fi
-
-elif [ $1 = "update" ]
-then
-    # gives option to update without reinstalling
-
-    cd $ROOT_DIRECTORY
-    sudo git fetch origin master
-    sudo git reset --hard origin/master
-    success ""
-    
-elif [ $1 = "install" ]
-then
-    # shorthand command for importing external TeX modules 
-
-    sudo tlmgr install $2
-
-elif [ -e *.md ]
-then
-    # main functionality - convert md to pdf
-
-    MD=$(find *.md)
-    DOCUMENT=${MD%.md}
-    PROJECT_DIRECTORY=$(PWD)
-
-    function delete {
-        if [ -e *.${1} ]
-        then
-            rm *.${1}
-        fi
-    }
-    
-    function loading {
-        echo "$2"
-
-        STEP_SIZE=4
-        MAX_LOAD=100
-        TOTAL_STEPS=$((MAX_LOAD / STEP_SIZE))
-
-        for ((k = 0; k < $TOTAL_STEPS ; k++))
-        do
-            echo -n "[ "
-
-            for ((i = 0 ; i < k; i++))
-            do 
-                echo -n "#"
-            done
-
-            for (( j = i ; j < $TOTAL_STEPS ; j++ ))
-            do
-                echo -n " "
-            done
-
-            echo -n " ]"
-
-            STEP=$((k * STEP_SIZE))
-            echo -ne " ${STEP} %\r"
-
-            R=$(( RANDOM % 5 ))
-            DELAY=$(( R * $1 ))
-            sleep ${DELAY}s
-
-            echo -ne "\033[K"
+        for ((i = 0 ; i < k; i++))
+        do 
+            echo -n "#"
         done
-    }
 
-    function processComplete {
-        echo "[ ######################### ] 100 %"
-    }
+        for (( j = i ; j < $TOTAL_STEPS ; j++ ))
+        do
+            echo -n " "
+        done
 
+        echo -n " ]"
+
+        STEP=$((k * STEP_SIZE))
+        echo -ne " ${STEP} %\r"
+
+        R=$(( RANDOM % 5 ))
+        DELAY=$(( R * $1 ))
+        sleep ${DELAY}s
+
+        echo -ne "\033[K"
+    done
+}
+
+function processComplete {
+    echo "[ ######################### ] 100 %"
+}
+
+function delete {
+    if [ -e *.${1} ]
+    then
+        rm *.${1}
+    fi
+}
+
+function latex {
+    # Remove old files
+    delete tex
+
+    # convert from md to tex using pandoc
+    loading 0.1 "Converting Markdown to LaTeX"
+    pandoc -f markdown ${FILE}.md --template=${PROGRAM_DIRECTORY}/src/template.tex -t latex -o ${FILE}.tex
+
+    # check if successful
+    if [ -e *.tex ]
+    then
+        processComplete
+        success ""
+    else
+        error "An error occurred while converting Markdown to LaTeX"
+    fi
+}
+
+function pdf {
     # Remove old files
     delete pdf
-    delete tex
     delete log
     delete aux
     delete toc
@@ -119,55 +158,29 @@ then
     delete lot
     delete bbl
     delete blg
-
-    if [ "$1" = "latex" ] || [ "$2" = "latex" ] || [ "$3" = "latex" ]
-    then
-        latex=true
-    fi
-
-    if [ "$1" = "log" ] || [ "$2" = "log" ] || [ "$3" = "log" ]
-    then
-        log=true
-    fi
-
-    if [ "$1" = "aux" ] || [ "$2" = "aux" ] || [ "$3" = "aux" ]
-    then
-        aux=true
-    fi
-
-    # convert from md to tex using pandoc
-    loading 0.1 "Converting Markdown to LaTeX"
-    pandoc -f markdown ${DOCUMENT}.md --template=${ROOT_DIRECTORY}/src/template.tex -t latex -o ${DOCUMENT}.tex
-
-    # check if successful
-    if [ -e *.tex ]
-    then
-        processComplete
-    else
-        error "An error occurred while converting Markdown to LaTeX"
-    fi
+    delete out
 
     # check if bibliography exists
     # if yes, process it
     if [ -e *.bib ] || [ -e *.bibtex ]
     then
         loading 0.2 "Preparing bibliography" &
-        pdflatex ${DOCUMENT}.tex >pdf.log &
+        pdflatex ${FILE}.tex >pdf.log &
         wait
-        if [ -e ${DOCUMENT}.pdf ]
+        if [ -e ${FILE}.pdf ]
         then
-            rm ${DOCUMENT}.pdf
+            rm ${FILE}.pdf
             processComplete
         else
             error "bibliography build failed"
         fi
 
         loading 0.1 "Processing bibliography" &
-        bibtex ${DOCUMENT}.aux >bib.log &
+        bibtex ${FILE}.aux >bib.log &
         wait
-        if [ -e ${DOCUMENT}.pdf ]
+        if [ -e ${FILE}.pdf ]
         then
-            rm ${DOCUMENT}.pdf
+            rm ${FILE}.pdf
             processComplete
         else
             error "bibliography build failed"
@@ -182,11 +195,11 @@ then
 
     # convert latex to pdf using pdflatex
     loading 0.2 "Preparing Conversion from LaTeX to PDF" &
-    pdflatex ${DOCUMENT}.tex >pdf.log &
+    pdflatex ${FILE}.tex >pdf.log &
     wait
-    if [ -e ${DOCUMENT}.pdf ]
+    if [ -e ${FILE}.pdf ]
     then
-        rm ${DOCUMENT}.pdf
+        rm ${FILE}.pdf
         processComplete
     else
         error "PDF build failed"
@@ -194,9 +207,9 @@ then
 
     # pdflatex needs to repeat the process to account for the processing of table of contents and similar environments
     loading 0.2 "Converting LaTeX to PDF" &
-    pdflatex ${DOCUMENT}.tex >pdf.log &
+    pdflatex ${FILE}.tex >pdf.log &
     wait
-    if [ -e ${DOCUMENT}.pdf ]
+    if [ -e ${FILE}.pdf ]
     then
         processComplete
     else
@@ -204,15 +217,15 @@ then
     fi
 
     # Delete build files generated by pdflatex if they exist
-    if [ "$1" != "tex" ] && [ "$2" != "tex" ] && [ "$3" != "tex" ]
+    if [ "$2" != "tex" ] && [ "$3" != "tex" ] && [ "$4" != "tex" ]
     then
         delete tex
     fi
-    if [ "$1" != "log" ] && [ "$2" != "log" ] && [ "$3" != "log" ]
+    if [ "$2" != "log" ] && [ "$3" != "log" ] && [ "$4" != "log" ]
     then
         delete log
     fi
-    if [ "$1" != "aux" ] && [ "$2" != "aux" ] && [ "$3" != "aux" ]
+    if [ "$2" != "aux" ] && [ "$3" != "aux" ] && [ "$4" != "aux" ]
     then
         delete aux
         delete out
@@ -221,6 +234,6 @@ then
         delete lot
     fi
     success ""
-else
-    error "no markdown files found"
-fi
+}
+
+main "$@"; exit
