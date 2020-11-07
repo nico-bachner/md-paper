@@ -74,7 +74,7 @@ md-paper uninstall
     Don't forget to replace `FOLDER_NAME` with the actual name of your project folder!
 3.  Now you can generate your pdf by typing the following:
     ``` sh
-    md-paper
+    md-paper pdf
     ```
 4.  Open your generated pdf
     ``` sh
@@ -84,7 +84,7 @@ md-paper uninstall
 ## Build Options
 This is the base command for pdf generation:
 ``` sh
-md-paper
+md-paper pdf
 ```
 
 This base command can be extended by adding one or more of the following arguments:
@@ -101,9 +101,9 @@ This base command can be extended by adding one or more of the following argumen
     aux
     ```
 
-For example, the following would keep the latex code, as well as the logs generated, and all that in addition to the pdf.
+For example, the following would keep the latex code, as well as the logs generated; all that in addition to the pdf.
 ``` sh
-md-paper tex log
+md-paper pdf tex log
 ```
 
 ## Formatting Options
