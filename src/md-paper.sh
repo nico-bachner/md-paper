@@ -41,7 +41,6 @@ fi
 
 DOCUMENT=$1
 PROJECT_DIRECTORY=$(PWD)
-BUILD_FOLDER="build"
 
 if [ ! -e ${DOCUMENT}.md ]
 then
@@ -93,13 +92,9 @@ then
   rm ${DOCUMENT}.tex
 fi
 
-mkdir build
-
 # convert from md to tex using pandoc
 loading 0.01 "Converting Markdown to LaTeX"
-pandoc -f markdown ${DOCUMENT}.md --template=${ROOT_DIRECTORY}/src/template.tex -t latex -o ${BUILD_FOLDER}/${DOCUMENT}.tex
-
-cd $BUILD_FOLDER
+pandoc -f markdown ${DOCUMENT}.md --template=${ROOT_DIRECTORY}/src/template.tex -t latex -o ${DOCUMENT}.tex
 
 # check if successful
 if [ -e *.tex ]
@@ -177,10 +172,10 @@ then
 fi
 if [ "$latex" = true ] || [ "$log" = true ] || [ "$LOG" = true ]
 then
-  echo "Kept the following files in '/build/':"
+  echo "Kept the following files:"
 else
-  cd ..
-  rm -rf $BUILD_FOLDER
+  echo
+  exit 0
 fi
 
 if [ "$latex" = true ]
@@ -273,8 +268,6 @@ else
     rm texput.log
   fi
 fi
-
-
 
 echo
 exit 0
