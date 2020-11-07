@@ -15,37 +15,47 @@ function main {
             if [ $2 ]
             then
                 sudo tlmgr install $2
-                exit $?
             else
                 error "no package specified"
             fi
+            exit $?
             ;;
         u|uninstall)
             # uninstall everything
             uninstall
-            success "uninstall successful"
+            exit $?
             ;;
         reinstall)
             # reinstall everything
             uninstall
             curl https://md-paper.now.sh/install | sh
-            if [ -e ${PROGRAM_DIRECTORY} ] || [ -e ${BINARY_DIRECTORY}/${PROGRAM_NAME} ]
-            then
-                success "reinstallation successful"
-            fi
+            exit $?
             ;;
         update)
             # gives option to update without reinstalling
             cd $PROGRAM_DIRECTORY
             sudo git fetch origin master
             sudo git reset --hard origin/master
-            success "${PROGRAM_NAME} updated"
+            exit $?
+            ;;
+        html)
+            if [ -e *.md ]
+            then
+                # convert md to html
+                html
+                open ${FILE}.html
+                exit $?
+            else
+                error "no markdown file found"
+            fi
             ;;
         latex|tex)
             if [ -e *.md ]
             then
                 # convert md to tex
                 latex
+                open ${FILE}.tex
+                exit $?
             else
                 error "no markdown file found"
             fi
@@ -56,12 +66,14 @@ function main {
                 # convert md to pdf
                 latex
                 pdf
+                open ${FILE}.pdf
+                exit $?
             else
                 error "no markdown file found"
             fi
             ;;
         *)
-            error "error: no parameter given"
+            error "error: '${1}' is not a valid parameter"
             ;;
     esac
 }
@@ -69,11 +81,6 @@ function main {
 function error {
     echo $1
     exit 1
-}
-
-function success {
-    echo $1
-    exit 0
 }
 
 function uninstall {
@@ -119,8 +126,14 @@ function loading {
     done
 }
 
-function processComplete {
-    echo "[ ######################### ] 100 %"
+function complete {
+    if [ -e *.${1} ]
+    then
+        echo "[ ######################### ] 100 %"
+        echo "${2}"
+    else
+        error "${3}"
+    fi
 }
 
 function delete {
@@ -130,22 +143,28 @@ function delete {
     fi
 }
 
+function html {
+    # Remove old files
+    delete html
+
+    # convert from md to html using pandoc
+    loading 0.1 "converting Markdown to HTML"
+    pandoc -s -f markdown ${FILE}.md -t html -o ${FILE}.html
+
+    # check if successful
+    complete html "" ""
+}
+
 function latex {
     # Remove old files
     delete tex
 
     # convert from md to tex using pandoc
-    loading 0.1 "Converting Markdown to LaTeX"
+    loading 0.1 "converting Markdown to LaTeX"
     pandoc -f markdown ${FILE}.md --template=${PROGRAM_DIRECTORY}/src/template.tex -t latex -o ${FILE}.tex
 
     # check if successful
-    if [ -e *.tex ]
-    then
-        processComplete
-        success ""
-    else
-        error "An error occurred while converting Markdown to LaTeX"
-    fi
+    complete tex "" "An error occurred while converting Markdown to LaTeX"
 }
 
 function pdf {
@@ -164,57 +183,31 @@ function pdf {
     # if yes, process it
     if [ -e *.bib ] || [ -e *.bibtex ]
     then
-        loading 0.2 "Preparing bibliography" &
+        loading 0.2 "preparing bibliography" &
         pdflatex ${FILE}.tex >pdf.log &
         wait
-        if [ -e ${FILE}.pdf ]
-        then
-            rm ${FILE}.pdf
-            processComplete
-        else
-            error "bibliography build failed"
-        fi
+        complete pdf "" "pdf build failed"
+        delete pdf
 
-        loading 0.1 "Processing bibliography" &
+        loading 0.1 "processing bibliography" &
         bibtex ${FILE}.aux >bib.log &
         wait
-        if [ -e ${FILE}.pdf ]
-        then
-            rm ${FILE}.pdf
-            processComplete
-        else
-            error "bibliography build failed"
-        fi
-
-        if [ "$1" != "aux" ] && [ "$2" != "aux" ] && [ "$3" != "aux" ]
-        then
-            delete bbl
-            delete blg
-        fi
+        # check if successful
+        complete bib "" "bibliography build failed"
     fi
 
     # convert latex to pdf using pdflatex
-    loading 0.2 "Preparing Conversion from LaTeX to PDF" &
+    loading 0.2 "preparing conversion from LaTeX to PDF" &
     pdflatex ${FILE}.tex >pdf.log &
     wait
-    if [ -e ${FILE}.pdf ]
-    then
-        rm ${FILE}.pdf
-        processComplete
-    else
-        error "PDF build failed"
-    fi
+    complete pdf "" "PDF build failed"
+    delete pdf
 
     # pdflatex needs to repeat the process to account for the processing of table of contents and similar environments
-    loading 0.2 "Converting LaTeX to PDF" &
+    loading 0.2 "converting LaTeX to PDF" &
     pdflatex ${FILE}.tex >pdf.log &
     wait
-    if [ -e ${FILE}.pdf ]
-    then
-        processComplete
-    else
-        error "PDF build failed"
-    fi
+    complete pdf "" "PDF build failed"
 
     # Delete build files generated by pdflatex if they exist
     if [ "$2" != "tex" ] && [ "$3" != "tex" ] && [ "$4" != "tex" ]
@@ -232,8 +225,10 @@ function pdf {
         delete toc
         delete lof
         delete lot
+
+        delete bbl
+        delete blg
     fi
-    success ""
 }
 
 main "$@"; exit
