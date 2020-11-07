@@ -49,6 +49,12 @@ then
     sudo git fetch origin master
     sudo git reset --hard origin/master
     success ""
+    
+elif [ $1 = "install" ]
+then
+    # shorthand command for importing external TeX modules 
+
+    sudo tlmgr install $2
 
 elif [ -e *.md ]
 then
