@@ -109,7 +109,8 @@ fi
 if [ -e *.bib ] || [ -e *.bibtex ]
 then
   loading 0.03 "Preparing bibliography" &
-  pdflatex ${DOCUMENT}.tex >pdf.log
+  pdflatex ${DOCUMENT}.tex >pdf.log &
+  wait
   if [ -e ${DOCUMENT}.pdf ]
   then
     rm ${DOCUMENT}.pdf
@@ -118,7 +119,8 @@ then
     pdfGenError
   fi
   loading 0.01 "Processing bibliography" &
-  bibtex ${DOCUMENT}.aux >bib.log
+  bibtex ${DOCUMENT}.aux >bib.log &
+  wait
   if [ -e ${DOCUMENT}.pdf ]
   then
     rm ${DOCUMENT}.pdf
@@ -130,7 +132,8 @@ fi
 
 # convert latex to pdf using pdflatex
 loading 0.02 "Preparing Conversion from LaTeX to PDF" &
-pdflatex ${DOCUMENT}.tex >pdf.log
+pdflatex ${DOCUMENT}.tex >pdf.log &
+wait
 if [ -e ${DOCUMENT}.pdf ]
 then
   rm ${DOCUMENT}.pdf
@@ -141,7 +144,8 @@ fi
 
 # pdflatex needs to repeat the process to account for the processing of table of contents and similar environments
 loading 0.02 "Converting LaTeX to PDF" &
-pdflatex ${DOCUMENT}.tex >pdf.log
+pdflatex ${DOCUMENT}.tex >pdf.log &
+wait
 if [ -e ${DOCUMENT}.pdf ]
 then
   echo "[ ################################################## ] 100 %"
