@@ -72,7 +72,7 @@ function loading {
     STEP=$((k * STEP_SIZE))
     echo -n "${STEP} %" $'\r'
 
-    R=$(( RANDOM % 10 ))
+    R=$(( RANDOM % 20 ))
     DELAY=$(( R * $1 ))
     sleep ${DELAY}s
   done
@@ -112,8 +112,8 @@ then
   pdflatex ${DOCUMENT}.tex >pdf.log
   if [ -e ${DOCUMENT}.pdf ]
   then
-    echo "[ ################################################## ] 100 % "
     rm ${DOCUMENT}.pdf
+    echo "[ ################################################## ] 100 %"
   else
     pdfGenError
   fi
@@ -121,8 +121,8 @@ then
   bibtex ${DOCUMENT}.aux >bib.log
   if [ -e ${DOCUMENT}.pdf ]
   then
-    echo "[ ################################################## ] 100 %"
     rm ${DOCUMENT}.pdf
+    echo "[ ################################################## ] 100 %"
   else
     pdfGenError
   fi
@@ -145,7 +145,6 @@ pdflatex ${DOCUMENT}.tex >pdf.log
 if [ -e ${DOCUMENT}.pdf ]
 then
   echo "[ ################################################## ] 100 %"
-  mv ${DOCUMENT}.pdf $PROJECT_DIRECTORY
 else
   pdfGenError
 fi
