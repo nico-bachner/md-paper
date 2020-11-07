@@ -169,11 +169,13 @@ then
         rm ${DOCUMENT}.blg
       fi
     fi
-    if [ -e bib.log ] && [ "$aux" = true ]
+    if [ -e bib.log ]
     then
-      echo " - bib.log"
-    elif [ -e bib.log ]
-      rm bib.log
+      if [ "$aux" = true ]
+        echo " - bib.log"
+      else
+        rm bib.log
+      fi
     fi
 
   # convert latex to pdf using pdflatex
