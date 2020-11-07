@@ -3,7 +3,7 @@
 A tool to write scientific papers in Markdown and then convert them to PDF via LaTeX.
 Primarily designed for writing scientific papers.
 
-Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org) under the hood.
+Uses [pandoc](https://pandoc.org) and [pdftex](https://www.latex-project.org) under the hood.
 
 *Only designed to work on macOS x86_64, but should also work on Linux with some minor tweaks.*
 
@@ -25,7 +25,7 @@ Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org) 
 
 ## Installation
 ### Installing
-Currently, the only way to install [md-paper](https://md-paper.now.sh) is through Terminal.
+Currently, the only way to install md-paper is through Terminal.
 1.  Go to **Applications**
 2.  Go to **Utilities** (inside Applications)
 3.  Open **Terminal.app** (inside Utilities)
@@ -35,7 +35,7 @@ Currently, the only way to install [md-paper](https://md-paper.now.sh) is throug
     ```
 
 ### Updating
-If you don't want to fully reinstall this software, there's a handy command available:
+If you don't want to fully reinstall this software, there's a handy command available (if this doesn't work, try the "reinstalling" option):
 ``` sh
 md-paper update
 ```
@@ -88,9 +88,9 @@ md-paper
 ```
 
 This base command can be extended by adding one or more of the following arguments:
--   Add LaTeX file (can sometimes be required for exporting to publications): 
+-   Add TeX file (can sometimes be required for exporting to publications): 
     ```
-    latex
+    tex
     ```
 -   Basic logs:
     ```
@@ -103,7 +103,7 @@ This base command can be extended by adding one or more of the following argumen
 
 For example, the following would keep the latex code, as well as the logs generated, and all that in addition to the pdf.
 ``` sh
-md-paper latex log
+md-paper tex log
 ```
 
 ## Formatting Options
@@ -158,7 +158,7 @@ header-includes: |
 
 There's a chance these packages aren't installed on your computer. If that's the case, import it like so:
 ``` sh
-tlmgr install PACKAGE_NAME
+md-paper install PACKAGE_NAME
 ```
 
 ## Further Customisation
