@@ -108,9 +108,8 @@ then
 fi
 
 # convert from md to tex using pandoc
-loading 0.005 "Converting Markdown to LaTeX" &
-pandoc -f markdown ${DOCUMENT}.md --template=${ROOT_DIRECTORY}/src/template.tex -t latex -o ${DOCUMENT}.tex &
-wait
+loading 0.002 "Converting Markdown to LaTeX"
+pandoc -f markdown ${DOCUMENT}.md --template=${ROOT_DIRECTORY}/src/template.tex -t latex -o ${DOCUMENT}.tex
 
 # check if successful
 if [ -e *.tex ]
