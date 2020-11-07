@@ -1,309 +1,318 @@
 #!/bin/ksh
 
+PROGRAM_NAME="md-paper"
+ROOT_CONTAINER="/usr/local"
+ROOT_DIRECTORY="${ROOT_CONTAINER}/${PROGRAM_NAME}"
+
 function error {
   echo $1
   exit 1
 }
 
-PROGRAM_NAME="md-paper"
-ROOT_CONTAINER="/usr/local"
-ROOT_DIRECTORY="${ROOT_CONTAINER}/${PROGRAM_NAME}"
-
-# gives option to update without reinstalling
-if [ $1 = "update" ]
-then
-  cd $ROOT_DIRECTORY
-  sudo git fetch origin master
-  sudo git reset --hard origin/master
+function success {
+  echo $1
   exit 0
-fi
-
-function uninstall {
-  cd ${ROOT_CONTAINER}
-  sudo rm /usr/local/bin/md-paper
-  sudo rm -rf md-paper
-  if [ -e md-paper ] || [ -e /usr/local/bin/md-paper ]
-  then
-    echo "uninstall failed"
-    exit 1
-  fi
 }
 
-# reinstall everything
-if [ $1 = "reinstall" ]
-then
-  uninstall
-  curl https://md-paper.now.sh/install | sh
-  if [ -e md-paper ] || [ -e /usr/local/bin/md-paper ]
-  then
-    echo "reinstallation successful"
-    exit 0
-  fi
-fi
+function uninstall {
+    sudo rm ${ROOT_CONTAINER}/bin/md-paper
+    sudo rm -rf ${ROOT_DIRECTORY}
+    if [ -e ${ROOT_DIRECTORY} ] || [ -e ${ROOT_CONTAINER}/bin/md-paper ]
+    then
+        error "uninstall failed"
+    fi
+}
 
-# uninstall everything
 if [ $1 = "uninstall" ]
 then
-  uninstall
-  exit 0
-fi
+    # uninstall everything
 
-# main functionality - convert md to pdf
-if [ -e ${DOCUMENT}.md ]
+    uninstall
+    success ""
+
+elif [ $1 = "reinstall" ]
 then
-  DOCUMENT=$1
-  PROJECT_DIRECTORY=$(PWD)
-  
-  function loading {
-    echo
-    echo "$2"
+    # reinstall everything
 
-    STEP_SIZE=2
-    MAX_LOAD=100
-    TOTAL_STEPS=$((MAX_LOAD / STEP_SIZE))
+    uninstall
+    curl https://md-paper.now.sh/install | sh
+    if [ -e ${ROOT_DIRECTORY} ] || [ -e ${ROOT_CONTAINER}/bin/md-paper ]
+    then
+        success "reinstallation successful"
+    fi
 
-    for ((k = 0; k < $TOTAL_STEPS ; k++))
-    do
-      echo -n "[ "
-      for ((i = 0 ; i < k; i++))
-      do 
-        echo -n "#"
-      done
-      for (( j = i ; j < $TOTAL_STEPS ; j++ ))
-      do
-        echo -n " "
-      done
-      echo -n " ] "
+elif [ $1 = "update" ]
+then
+    # gives option to update without reinstalling
 
-      STEP=$((k * STEP_SIZE))
-      echo -n "${STEP} %" $'\r'
+    cd $ROOT_DIRECTORY
+    sudo git fetch origin master
+    sudo git reset --hard origin/master
+    success ""
 
-      R=$(( RANDOM % 20 ))
-      DELAY=$(( R * $1 ))
-      sleep ${DELAY}s
-    done
-  }
+elif [ -e *.md ]
+then
+    # main functionality - convert md to pdf
 
-  function pdfGenError {
-    error "PDF build failed"
-  }
+    MD=$(find *.md)
+    DOCUMENT=${MD%.md}
+    PROJECT_DIRECTORY=$(PWD)
 
-  # Remove old files
-  if [ -e ${DOCUMENT}.pdf ]
-  then
-    rm ${DOCUMENT}.pdf
-  fi
-  if [ -e ${DOCUMENT}.tex ]
-  then
-    rm ${DOCUMENT}.tex
-  fi
+    function delete {
+        if [ -e ${2}.${1} ]
+        then
+            rm ${2}.${1}
+        fi
+    }
+    
+    function loading {
+        echo
+        echo "$2"
 
-  if [ "$2" = "latex" ] || [ "$3" = "latex" ] || [ "$4" = "latex" ]
-  then
-    latex=true
-  fi
+        STEP_SIZE=2
+        MAX_LOAD=100
+        TOTAL_STEPS=$((MAX_LOAD / STEP_SIZE))
 
-  if [ "$2" = "log" ] || [ "$3" = "log" ] || [ "$4" = "log" ]
-  then
-    log=true
-  fi
+        for ((k = 0; k < $TOTAL_STEPS ; k++))
+        do
+            echo -n "[ "
 
-  if [ "$2" = "aux" ] || [ "$3" = "aux" ] || [ "$4" = "aux" ]
-  then
-    aux=true
-  fi
+            for ((i = 0 ; i < k; i++))
+            do 
+                echo -n "#"
+            done
 
-  # convert from md to tex using pandoc
-  loading 0.01 "Converting Markdown to LaTeX"
-  pandoc -f markdown ${DOCUMENT}.md --template=${ROOT_DIRECTORY}/src/template.tex -t latex -o ${DOCUMENT}.tex
+            for (( j = i ; j < $TOTAL_STEPS ; j++ ))
+            do
+                echo -n " "
+            done
 
-  # check if successful
-  if [ -e *.tex ]
-  then
-    echo "[ ################################################## ] 100 %"
-  else
-    error "An error occurred while converting Markdown to LaTeX"
-  fi
+            echo -n " ] "
 
-  # check if bibliography exists
-  # if yes, process it
-  if [ -e *.bib ] || [ -e *.bibtex ]
-  then
-    loading 0.01 "Preparing bibliography" &
+            STEP=$((k * STEP_SIZE))
+            echo -n "${STEP} %" $'\r'
+
+            R=$(( RANDOM % 20 ))
+            DELAY=$(( R * $1 ))
+            sleep ${DELAY}s
+        done
+    }
+
+    # Remove old files
+    delete pdf *
+    delete tex *
+    delete log *
+    delete aux *
+    delete toc *
+    delete lof *
+    delete lot *
+    delete bbl *
+    delete blg *
+
+    if [ "$1" = "latex" ] || [ "$2" = "latex" ] || [ "$3" = "latex" ]
+    then
+        latex=true
+    fi
+
+    if [ "$1" = "log" ] || [ "$2" = "log" ] || [ "$3" = "log" ]
+    then
+        log=true
+    fi
+
+    if [ "$1" = "aux" ] || [ "$2" = "aux" ] || [ "$3" = "aux" ]
+    then
+        aux=true
+    fi
+
+    # convert from md to tex using pandoc
+    loading 0.01 "Converting Markdown to LaTeX"
+    pandoc -f markdown ${DOCUMENT}.md --template=${ROOT_DIRECTORY}/src/template.tex -t latex -o ${DOCUMENT}.tex
+
+    # check if successful
+    if [ -e *.tex ]
+    then
+        echo "[ ################################################## ] 100 %"
+    else
+        error "An error occurred while converting Markdown to LaTeX"
+    fi
+
+    # check if bibliography exists
+    # if yes, process it
+    if [ -e *.bib ] || [ -e *.bibtex ]
+    then
+        loading 0.01 "Preparing bibliography" &
+        pdflatex ${DOCUMENT}.tex >pdf.log &
+        wait
+        if [ -e ${DOCUMENT}.pdf ]
+        then
+            rm ${DOCUMENT}.pdf
+            echo "[ ################################################## ] 100 %"
+        else
+            error "bibliography build failed"
+        fi
+
+        loading 0.01 "Processing bibliography" &
+        bibtex ${DOCUMENT}.aux >bib.log &
+        wait
+        if [ -e ${DOCUMENT}.pdf ]
+        then
+            rm ${DOCUMENT}.pdf
+            echo "[ ################################################## ] 100 %"
+        else
+            error "bibliography build failed"
+        fi
+
+        if [ -e ${DOCUMENT}.bbl ]
+        then
+            if [ "$aux" = true ]
+            then
+                echo " - ${DOCUMENT}.bbl"
+            else
+                rm ${DOCUMENT}.bbl
+            fi
+        fi
+        if [ -e ${DOCUMENT}.blg ]
+        then
+            if [ "$aux" = true ]
+            then
+                echo " - ${DOCUMENT}.blg"
+            else
+                rm ${DOCUMENT}.blg
+            fi
+        fi
+        if [ -e bib.log ]
+        then
+            if [ "$aux" = true ]
+            then
+                echo " - bib.log"
+            else
+                rm bib.log
+            fi
+        fi
+    fi
+
+    # convert latex to pdf using pdflatex
+    loading 0.01 "Preparing Conversion from LaTeX to PDF" &
     pdflatex ${DOCUMENT}.tex >pdf.log &
     wait
     if [ -e ${DOCUMENT}.pdf ]
     then
-      rm ${DOCUMENT}.pdf
-      echo "[ ################################################## ] 100 %"
+        rm ${DOCUMENT}.pdf
+        echo "[ ################################################## ] 100 %"
     else
-      pdfGenError
+        error "PDF build failed"
     fi
 
-    loading 0.01 "Processing bibliography" &
-    bibtex ${DOCUMENT}.aux >bib.log &
+    # pdflatex needs to repeat the process to account for the processing of table of contents and similar environments
+    loading 0.01 "Converting LaTeX to PDF" &
+    pdflatex ${DOCUMENT}.tex >pdf.log &
     wait
     if [ -e ${DOCUMENT}.pdf ]
     then
-      rm ${DOCUMENT}.pdf
-      echo "[ ################################################## ] 100 %"
+        echo "[ ################################################## ] 100 %"
     else
-      pdfGenError
+        error "PDF build failed"
     fi
 
-    if [ -e ${DOCUMENT}.bbl ]
+    # Delete build files generated by pdflatex if they exist
+    if [ "$latex" = true ] || [ "$log" = true ] || [ "$LOG" = true ]
     then
-      if [ "$aux" = true ]
-      then
-        echo " - ${DOCUMENT}.bbl"
-      else
-        rm ${DOCUMENT}.bbl
-      fi
-    fi
-    if [ -e ${DOCUMENT}.blg ]
-    then
-      if [ "$aux" = true ]
-      then
-        echo " - ${DOCUMENT}.blg"
-      else
-        rm ${DOCUMENT}.blg
-      fi
-    fi
-    if [ -e bib.log ]
-    then
-      if [ "$aux" = true ]
-      then
-        echo " - bib.log"
-      else
-        rm bib.log
-      fi
-    fi
-
-  # convert latex to pdf using pdflatex
-  loading 0.01 "Preparing Conversion from LaTeX to PDF" &
-  pdflatex ${DOCUMENT}.tex >pdf.log &
-  wait
-  if [ -e ${DOCUMENT}.pdf ]
-  then
-    rm ${DOCUMENT}.pdf
-    echo "[ ################################################## ] 100 %"
-  else
-    pdfGenError
-  fi
-
-  # pdflatex needs to repeat the process to account for the processing of table of contents and similar environments
-  loading 0.01 "Converting LaTeX to PDF" &
-  pdflatex ${DOCUMENT}.tex >pdf.log &
-  wait
-  if [ -e ${DOCUMENT}.pdf ]
-  then
-    echo "[ ################################################## ] 100 %"
-  else
-    pdfGenError
-  fi
-
-  # Delete build files generated by pdflatex if they exist
-  if [ "$latex" = true ] || [ "$log" = true ] || [ "$LOG" = true ]
-  then
-    echo "Kept the following files:"
-  else
-    echo
-    exit 0
-  fi
-
-  if [ -e ${DOCUMENT}.tex ]
-  then
-    if [ "$latex" = true ]
-    then
-      echo " - ${DOCUMENT}.tex"
+        echo "Kept the following files:"
     else
-      rm ${DOCUMENT}.tex
+        success ""
     fi
-  fi
 
-  if [ -e ${DOCUMENT}.log ]
-  then
-    if [ "$log" = true ]
+    if [ -e ${DOCUMENT}.tex ]
     then
-      echo " - ${DOCUMENT}.log"
-    else
-      rm ${DOCUMENT}.log
+        if [ "$latex" = true ]
+        then
+            echo " - ${DOCUMENT}.tex"
+        else
+            rm ${DOCUMENT}.tex
+        fi
     fi
-  fi
 
-  if [ -e pdf.log ]
-  then
-    if [ "$log" = true ]
+    if [ -e ${DOCUMENT}.log ]
     then
-      echo " - pdf.log"
-    else
-      rm pdf.log
+        if [ "$log" = true ]
+        then
+            echo " - ${DOCUMENT}.log"
+        else
+            rm ${DOCUMENT}.log
+        fi
     fi
-  fi
 
-  if [ -e ${DOCUMENT}.aux ]
-  then
-    if [ "$aux" = true ]
+    if [ -e pdf.log ]
     then
-      echo " - ${DOCUMENT}.aux"
-    else
-      rm ${DOCUMENT}.aux
+        if [ "$log" = true ]
+        then
+            echo " - pdf.log"
+        else
+            rm pdf.log
+        fi
     fi
-  fi
 
-  if [ -e ${DOCUMENT}.out ]
-  then
-    if [ "$aux" = true ]
+    if [ -e ${DOCUMENT}.aux ]
     then
-      echo " - ${DOCUMENT}.out"
-    else
-      rm ${DOCUMENT}.out
+        if [ "$aux" = true ]
+        then
+            echo " - ${DOCUMENT}.aux"
+        else
+            rm ${DOCUMENT}.aux
+        fi
     fi
-  fi
 
-  if [ -e ${DOCUMENT}.toc ]
-  then
-    if [ "$aux" = true ]
+    if [ -e ${DOCUMENT}.out ]
     then
-      echo " - ${DOCUMENT}.toc"
-    else
-      rm ${DOCUMENT}.toc
+        if [ "$aux" = true ]
+        then
+            echo " - ${DOCUMENT}.out"
+        else
+            rm ${DOCUMENT}.out
+        fi
     fi
-  fi
 
-  if [ -e ${DOCUMENT}.lof ]
-  then
-    if [ "$aux" = true ]
+    if [ -e ${DOCUMENT}.toc ]
     then
-      echo " - ${DOCUMENT}.lof"
-    else
-      rm ${DOCUMENT}.lof
+        if [ "$aux" = true ]
+        then
+            echo " - ${DOCUMENT}.toc"
+        else
+            rm ${DOCUMENT}.toc
+        fi
     fi
-  fi
 
-  if [ -e ${DOCUMENT}.lot ]
-  then
-    if [ "$aux" = true ]
+    if [ -e ${DOCUMENT}.lof ]
     then
-      echo " - ${DOCUMENT}.lot"
-    else
-      rm ${DOCUMENT}.lot
+        if [ "$aux" = true ]
+        then
+            echo " - ${DOCUMENT}.lof"
+        else
+            rm ${DOCUMENT}.lof
+        fi
     fi
-  fi
 
-  if [ -e texput.log ]
-  then
-    if [ "$aux" = true ]
+    if [ -e ${DOCUMENT}.lot ]
     then
-      echo " - texput.log"
-    else
-      rm texput.log
+        if [ "$aux" = true ]
+        then
+            echo " - ${DOCUMENT}.lot"
+        else
+            rm ${DOCUMENT}.lot
+        fi
     fi
-  fi
 
-  echo
-  exit 0
+    if [ -e texput.log ]
+    then
+        if [ "$aux" = true ]
+        then
+            echo " - texput.log"
+        else
+            rm texput.log
+        fi
+    fi
+
+    success ""
 else
-  error "File doesn't exist"
-  exit 1
+    error "no markdown files found"
 fi
