@@ -172,6 +172,7 @@ then
     if [ -e bib.log ]
     then
       if [ "$aux" = true ]
+      then
         echo " - bib.log"
       else
         rm bib.log
