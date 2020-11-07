@@ -61,16 +61,21 @@ md-paper uninstall
 
 ## PDF Generation
 1.  Open a new terminal window.
-2.  Now navigate into your project folder:
+2.  Create a folder for your project if you haven't already
     ``` sh
-    cd PATH_TO_PROJECT_FOLDER
+    mkdir FOLDER_NAME
     ```
-    Don't forget to replace `PATH_TO_PROJECT_FOLDER` with the the actual path to your project folder!
-3.  Now you can generate your pdf:
+    Replace `FOLDER_NAME` with whatever name you want.
+    
+    Now navigate into your project folder:
     ``` sh
-    md-paper FILE_NAME
+    cd FOLDER_NAME
     ```
-    If your file name is, for example, `paper.md`, replace `FILE_NAME` with `paper`.
+    Don't forget to replace `FOLDER_NAME` with the actual name of your project folder!
+3.  Now you can generate your pdf by typing the following:
+    ``` sh
+    md-paper
+    ```
 4.  Open your generated pdf
     ``` sh
     open FILE_NAME.pdf
@@ -79,9 +84,8 @@ md-paper uninstall
 ## Build Options
 This is the base command for pdf generation:
 ``` sh
-md-paper FILE_NAME
+md-paper
 ```
-If your file name is, for example, `paper.md`, replace `FILE_NAME` with `paper`.
 
 This base command can be extended by adding one or more of the following arguments:
 -   Add LaTeX file (can sometimes be required for exporting to publications): 
@@ -99,7 +103,7 @@ This base command can be extended by adding one or more of the following argumen
 
 For example, the following would keep the latex code, as well as the logs generated, and all that in addition to the pdf.
 ``` sh
-md-paper FILE_NAME latex log
+md-paper latex log
 ```
 
 ## Formatting Options
