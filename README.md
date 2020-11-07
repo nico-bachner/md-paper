@@ -21,6 +21,7 @@ Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org) 
     - [Title, Author, Date](#title-author-date)
     - [Importing packages](#importing-packages)
 - [Further Customisation](#further-customisation)
+- [Contributing](#contributing)
 
 ## Installation
 ### Installing
@@ -52,34 +53,25 @@ md-paper uninstall
 ```
 
 ## Writing 
-1.  
-    Create a folder that will contain your project.
-2.  
-    Create your Markdown (`.md`) document inside that folder.
-    
-    Check out the [YAML Options](#YAML-Options) section of this README for formatting options.
-    
+1.  Create a folder that will contain your project.
+2.  Create your Markdown (`.md`) document inside that folder. \
+    Check out the [YAML Options](#YAML-Options) section of this README for formatting options. \
     You can also use one of the [example projects](https://md-paper.now.sh/docs/example-papers) as a template.
-3.  
-    Start writing
+3.  Start writing
 
 ## PDF Generation
-1. 
-    Open a new terminal window.
-2.  
-    Now navigate into your project folder:
+1.  Open a new terminal window.
+2.  Now navigate into your project folder:
     ``` sh
     cd PATH_TO_PROJECT_FOLDER
     ```
     Don't forget to replace `PATH_TO_PROJECT_FOLDER` with the the actual path to your project folder!
-3.  
-    Now you can generate your pdf:
+3.  Now you can generate your pdf:
     ``` sh
     md-paper FILE_NAME
     ```
     If your file name is, for example, `paper.md`, replace `FILE_NAME` with `paper`.
-4.  
-    Open your generated pdf
+4.  Open your generated pdf
     ``` sh
     open FILE_NAME.pdf
     ```
@@ -92,9 +84,18 @@ md-paper FILE_NAME
 If your file name is, for example, `paper.md`, replace `FILE_NAME` with `paper`.
 
 This base command can be extended by adding one or more of the following arguments:
-- Add LaTeX: `latex`
-- Basic logs: `log`
-- All logs: `LOG`
+-   Add LaTeX file (can sometimes be required for exporting to publications): 
+    ```
+    latex
+    ```
+-   Basic logs:
+    ```
+    log
+    ```
+-   Auxiliary files (basically logs for all little parts of your document, such as the table of contents and):
+    ```
+    aux
+    ```
 
 For example, the following would keep the latex code, as well as the logs generated, and all that in addition to the pdf.
 ``` sh
@@ -160,3 +161,11 @@ tlmgr install PACKAGE_NAME
 For all those with basic TeX knowledge, it is really easy to customise the build output even further than just through the YAML header.
 
 Simply open `template.tex` (in `/usr/local/md-paper/src/`) and start editing!
+On second thoughts though, DON'T DO THAT!
+As soon as you update, all of your changes will be erased, so proceed at your own risk.
+It is handy for a quick fix though if you can't wait long enough for the problem to be fixed properly
+
+If you have something that needs fixing, be sure to check out the [Contributing](#contributing) section.
+
+## Contributing
+Please consult [CONTRIBUTING.md](CONTRIBUTING.md) for ways to contribute to this project
