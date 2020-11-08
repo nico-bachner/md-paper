@@ -5,15 +5,7 @@ REPO_NAME="nico-bachner/${PACKAGE_NAME}"
 
 cd /usr/local
 
-function installDependency {
-    if which brew > /dev/null
-    then
-        echo "${1} was already installed"
-    else
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/${1}/install/master/install.sh)"
-    fi
-}
-function installBrewDependency {
+function brewInstall {
     if brew ls --versions $1 > /dev/null
     then
         echo "${1} was already installed"
@@ -21,19 +13,23 @@ function installBrewDependency {
         brew install $1
     fi
 }
-function installBrewCaskDependency {
-    if brew ls --cask --versions $1 > /dev/null
-    then
-        echo "${1} was already installed"
-    else
-        brew cask install $1
-    fi
-}
 
-installDependency Homebrew
-installBrewDependency pandoc
-installBrewDependency shc
-installBrewCaskDependency basictex
+if which brew > /dev/null
+then
+    echo "Homebrew was already installed"
+else
+    curl https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash
+fi
+
+brewInstall pandoc
+brewInstall shc
+
+if latex -v > /dev/null
+then
+    echo "a TeX distribution was already installed"
+else
+    brew cask install basictex
+fi
 
 function download {
     sudo git clone https://github.com/${REPO_NAME}.git
