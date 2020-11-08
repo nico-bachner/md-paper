@@ -60,7 +60,7 @@ function main {
                 error "no markdown file found"
             fi
             ;;
-        *)
+        pdf)
             if [ -e *.md ]
             then
                 # convert md to pdf
@@ -72,11 +72,15 @@ function main {
                 error "no markdown file found"
             fi
             ;;
+        *)
+            error "no markdown file found"
+            ;;
     esac
 }
 
 function error {
-    echo $1
+    echo "error: "
+    echo -n "${1}"
     exit 1
 }
 
