@@ -76,10 +76,6 @@ md-paper uninstall
     ``` sh
     md-paper pdf
     ```
-4.  Open your generated pdf
-    ``` sh
-    open FILE_NAME.pdf
-    ```
 
 ## Build Options
 This is the base command for pdf generation:
@@ -90,20 +86,20 @@ md-paper pdf
 This base command can be extended by adding one or more of the following arguments:
 -   Add TeX file (can sometimes be required for exporting to publications): 
     ```
-    tex
+    --tex
     ```
 -   Basic logs:
     ```
-    log
+    --log
     ```
 -   Auxiliary files (basically logs for all little parts of your document, such as the table of contents and):
     ```
-    aux
+    --aux
     ```
 
 For example, the following would keep the latex code, as well as the logs generated; all that in addition to the pdf.
 ``` sh
-md-paper pdf tex log
+md-paper pdf --tex --log
 ```
 
 ## Formatting Options
