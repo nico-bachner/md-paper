@@ -2,10 +2,6 @@
 
 REPO_NAME="nico-bachner/md-paper"
 
-function brewInstall {
-    
-}
-
 if which brew > /dev/null
 then
     echo "Homebrew was already installed"
