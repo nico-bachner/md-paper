@@ -36,6 +36,9 @@ $if(margins)$
     bottom=$margins.bottom$, 
     left=$margins.left$, 
     right=$margins.right$
+    $if(header)$
+      head=$margins.head$
+    $endif$
   ]{geometry}
 $endif$
 
