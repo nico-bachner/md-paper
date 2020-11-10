@@ -39,14 +39,17 @@ $if(section-numbering)$
   \setcounter{secnumdepth}{$section-numbering.depth$}
 $endif$
 
-$if(header-and-footer)$
+$if(header)$
   \usepackage{scrlayer-scrpage}
-  \ihead{$header-and-footer.left$}
-  \chead{$header-and-footer.center$}
-  \ohead{$header-and-footer.right$}
-  \ifoot{$header-and-footer.left$}
-  \cfoot{$header-and-footer.center$}
-  \ofoot{$header-and-footer.right$}
+  \ihead{$header.left$}
+  \chead{$header.center$}
+  \ohead{$header.right$}
+$endif$
+$if(footer)$
+  \usepackage{scrlayer-scrpage}
+  \ifoot{$footer.left$}
+  \cfoot{$footer.center$}
+  \ofoot{$footer.right$}
 $endif$
 
 $if(images)$
@@ -63,9 +66,11 @@ $if(font)$
   \usepackage{$font.general$,$font.math$}
 $endif$
 
-$for(header-includes)$
-  $header-includes$
+$for(packages)$
+  \usepackage{$packages$}
 $endfor$
+
+$header-includes$
 
 \title{
   $title$
@@ -74,7 +79,7 @@ $endfor$
   $endif$
 }
 \author{
-  $for(authors)$
+  $for(author)$
     $author$
     $sep$ \and 
   $endfor$
