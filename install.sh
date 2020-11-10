@@ -36,8 +36,8 @@ then
     
     touch md-paper.sh
     touch template.tex
-    curl https://md-paper.now.sh/src/md-paper.sh >md-paper.sh
-    curl https://md-paper.now.sh/src/template.tex >template.tex
+    curl -s https://md-paper.now.sh/src/md-paper.sh >md-paper.sh
+    curl -s https://md-paper.now.sh/src/template.tex >template.tex
     
     if [ -e md-paper.sh ] && [ -e template.tex ]
     then
