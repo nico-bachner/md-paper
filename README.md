@@ -31,7 +31,7 @@ Currently, the only way to install md-paper is through Terminal.
 3.  Open **Terminal.app** (inside Utilities)
 4.  Copy the following and paste it into Terminal
     ``` sh
-    curl https://md-paper.now.sh/install | sh
+    curl https://md-paper.now.sh/install.sh | sh
     ```
 
 ### Updating
@@ -97,7 +97,7 @@ md-paper pdf --tex --log
 ```
 
 ## Formatting Options
-There are quite a few options for customisation, so not all will be listed here. (for those who know a little TeX: the options are derived from the `template.tex` file, located in `/usr/local/md-paper/src/` so feel free to check that out for the full customisation options)
+There are quite a few options for customisation, so not all will be listed here. (for those who know a little TeX: the options are derived from the `template.tex` file, located in `/usr/local/md-paper/` so feel free to check that out for the full customisation options)
 
 ### Basic structure
 Customisation can be done in a YAML (**Y**AML **A**in't **M**arkup **L**anguage) header which is an extra section above the content of your document:
@@ -140,10 +140,9 @@ date: \today  # or write out a specific date in parentheses
 ### Importing packages
 To import packages, add the following to your YAML header:
 ``` YAML
-header-includes: |
-    \usepackage{ 
-        # list packages you need here
-    }
+packages:
+    - package1
+    - package2
 ```
 
 There's a chance these packages aren't installed on your computer. If that's the case, import it like so:
@@ -154,7 +153,7 @@ md-paper install PACKAGE_NAME
 ## Further Customisation
 For all those with basic TeX knowledge, it is really easy to customise the build output even further than just through the YAML header.
 
-Simply open `template.tex` (in `/usr/local/md-paper/src/`) and start editing!
+Simply open `template.tex` (in `/usr/local/md-paper/`) and start editing!
 On second thoughts though, DON'T DO THAT!
 As soon as you update, all of your changes will be erased, so proceed at your own risk.
 It is handy for a quick fix though if you can't wait long enough for the problem to be fixed properly
