@@ -25,7 +25,7 @@ function main {
         update)
             # reinstall everything
             uninstall
-            curl https://md-paper.now.sh/install | sh
+            curl https://md-paper.now.sh/install.sh | sh
             exit $?
             ;;
         html)
