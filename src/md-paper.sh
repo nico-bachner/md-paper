@@ -69,8 +69,7 @@ function main {
 }
 
 function error {
-    echo "error: "
-    echo -n "${1}"
+    echo "error: ${1}"
     exit 1
 }
 
