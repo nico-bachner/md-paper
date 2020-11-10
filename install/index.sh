@@ -33,8 +33,8 @@ fi
 if [ ! -d /usr/local/bin/md-paper ]
 then
     cd ~/
-    curl https://md-paper.now.sh/dist/md-paper >md-paper.sh
-    curl https://md-paper.now.sh/dist/template.tex >template.tex
+    curl https://md-paper.now.sh/src/md-paper >md-paper.sh
+    curl https://md-paper.now.sh/src/template.tex >template.tex
 
     shc -f md-paper.sh -o md-paper
     mv md-paper /usr/local/bin/
