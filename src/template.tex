@@ -2,7 +2,7 @@
   $if(paper-size)$
     $paper-size$paper,
   $endif$
-  $if(font-size)$
+  $if(font.size)$
     $font-size$,
   $endif$
   $if(two-column)$
@@ -53,6 +53,7 @@ $if(footer)$
 $endif$
 
 $if(images)$
+  \graphicspath{{./$path$}}
   \let\oldincludegraphics\includegraphics
   \renewcommand{\includegraphics}[1]{\oldincludegraphics[width=$images.default-width$\textwidth]{#1}}
 $endif$
@@ -63,7 +64,8 @@ $if(spacing)$
 $endif$
 
 $if(font)$
-  \usepackage{$font.general$,$font.math$}
+  \usepackage{$font.general$}
+  \usepackage{$font.math$}
 $endif$
 
 $for(packages)$
