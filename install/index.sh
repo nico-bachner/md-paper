@@ -32,20 +32,20 @@ fi
 
 if [ ! -d /usr/local/bin/md-paper ]
 then
-    cd /usr/local
-    mkdir md-paper
-    cd md-paper
+    sudo cd /usr/local
+    sudo mkdir md-paper
+    sudo cd md-paper
     
-    curl https://md-paper.now.sh/src/md-paper >md-paper.sh
-    curl https://md-paper.now.sh/src/template.tex >template.tex
+    sudo curl https://md-paper.now.sh/src/md-paper >md-paper.sh
+    sudo curl https://md-paper.now.sh/src/template.tex >template.tex
     
     if [ -d md-paper ] && [ -d template.tex ]
     then
         echo "download successful"
     fi
 
-    shc -f md-paper.sh -o md-paper
-    mv md-paper ../bin
+    sudo shc -f md-paper.sh -o md-paper
+    sudo mv md-paper ../bin
 
     if [ -d /usr/local/bin/md-paper ]
     then
