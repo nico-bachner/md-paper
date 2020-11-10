@@ -33,6 +33,10 @@ $if(custom-margins)$
   \usepackage[top=$top$, bottom=$bottom$, left=$left$, right=$right$]{geometry}
 $endif$
 
+$if(bibliography)$
+  \bibliographystyle{$bibliography-style$}
+$endif$
+
 \setcounter{secnumdepth}{0}
 $if(section-numbering)$
   \setcounter{secnumdepth}{4}
@@ -108,5 +112,10 @@ $if(list-of-figures)$
 $endif$
 
 $body$
+
+$if(bibliography)$
+  \newpage
+  \bibliography{$bibliography$}
+$endif$
 
 \end{document}
