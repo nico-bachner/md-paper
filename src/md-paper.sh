@@ -22,7 +22,7 @@ function main {
             uninstall
             exit $?
             ;;
-        reinstall)
+        r|reinstall)
             # reinstall everything
             uninstall
             curl https://md-paper.now.sh/install | sh
@@ -63,7 +63,7 @@ function main {
             fi
             ;;
         *)
-            error "no markdown file found"
+            error "no output format specified"
             ;;
     esac
 }
