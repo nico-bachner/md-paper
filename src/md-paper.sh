@@ -44,7 +44,6 @@ function main {
             then
                 # convert md to tex
                 latex
-                open ${FILE}.tex
                 exit $?
             else
                 error "no markdown file found"
