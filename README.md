@@ -10,7 +10,6 @@ Uses [pandoc](https://pandoc.org) and [pdftex](https://www.latex-project.org) un
 - [Installation](#installation)
     - [Installing](#installing)
     - [Updating](#updating)
-    - [Reinstalling](#reinstalling)
     - [Uninstalling](#uninstalling)
 - [Writing](#writing)
 - [PDF Generation](#pdf-generation)
@@ -78,10 +77,6 @@ md-paper pdf
 ```
 
 This base command can be extended by adding one or more of the following arguments:
--   Add TeX file (can sometimes be required for exporting to publications): 
-    ```
-    --tex
-    ```
 -   Basic logs:
     ```
     --log
@@ -93,11 +88,11 @@ This base command can be extended by adding one or more of the following argumen
 
 For example, the following would keep the latex code, as well as the logs generated; all that in addition to the pdf.
 ``` sh
-md-paper pdf --tex --log
+md-paper pdf --aux --log
 ```
 
 ## Formatting Options
-There are quite a few options for customisation, so not all will be listed here. (for those who know a little TeX: the options are derived from the `template.tex` file, located in `/usr/local/md-paper/` so feel free to check that out for the full customisation options)
+There are quite a few options for customisation, so not all will be listed here. (for those who know a little TeX: the options are derived from the `template.tex` file, located in your home folder (`~/`) so feel free to check that out for the full customisation options)
 
 ### Basic structure
 Customisation can be done in a YAML (**Y**AML **A**in't **M**arkup **L**anguage) header which is an extra section above the content of your document:
@@ -149,11 +144,15 @@ There's a chance these packages aren't installed on your computer. If that's the
 ``` sh
 md-paper install PACKAGE_NAME
 ```
+or the shorthand:
+``` sh
+md-paper i PACKAGE_NAME
+```
 
 ## Further Customisation
 For all those with basic TeX knowledge, it is really easy to customise the build output even further than just through the YAML header.
 
-Simply open `template.tex` (in `/usr/local/md-paper/`) and start editing!
+Simply open `template.tex` (in `~/`) and start editing!
 On second thoughts though, DON'T DO THAT!
 As soon as you update, all of your changes will be erased, so proceed at your own risk.
 It is handy for a quick fix though if you can't wait long enough for the problem to be fixed properly
