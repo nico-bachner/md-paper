@@ -1,15 +1,12 @@
 \documentclass[
-  $if(papersize)$
-    $papersize$paper,
+  $if(paper-size)$
+    $paper-size$paper,
   $endif$
-  $if(fontsize)$
-    $fontsize$,
+  $if(font-size)$
+    $font-size$,
   $endif$
-  $if(twocolumn)$
+  $if(two-column)$
     twocolumn,
-  $endif$
-  $if(oneside)$
-    oneside,
   $endif$
   $if(titlepage)$
     titlepage,
@@ -30,26 +27,31 @@
 \usepackage{longtable}
 
 $if(custom-margins)$
-  \usepackage[top=$top$, bottom=$bottom$, left=$left$, right=$right$]{geometry}
+  \usepackage[top=$custom-margins.top$, bottom=$custom-margins.bottom$, left=$custom-margins.left$, right=$custom-margins.right$]{geometry}
 $endif$
 
 $if(bibliography)$
-  \bibliographystyle{$bibliography-style$}
+  \bibliographystyle{$bibliography.style$}
 $endif$
 
 \setcounter{secnumdepth}{0}
 $if(section-numbering)$
-  \setcounter{secnumdepth}{4}
+  \setcounter{secnumdepth}{$section-numbering.depth$}
 $endif$
 
 $if(header-and-footer)$
   \usepackage{scrlayer-scrpage}
-  \ihead{$left-header$}
-  \chead{$center-header$}
-  \ohead{$right-header$}
-  \ifoot{$left-footer$}
-  \cfoot{$center-footer$}
-  \ofoot{$right-footer$}
+  \ihead{$header-and-footer.left$}
+  \chead{$header-and-footer.center$}
+  \ohead{$header-and-footer.right$}
+  \ifoot{$header-and-footer.left$}
+  \cfoot{$header-and-footer.center$}
+  \ofoot{$header-and-footer.right$}
+$endif$
+
+$if(images)$
+  \let\oldincludegraphics\includegraphics
+  \renewcommand{\includegraphics}[1]{\oldincludegraphics[width=$images.default-width$\textwidth]{#1}}
 $endif$
 
 $if(spacing)$
@@ -58,32 +60,26 @@ $if(spacing)$
 $endif$
 
 $if(font)$
-  \usepackage{$font$}
-$endif$
-
-$if(math-font)$
-  \usepackage{$math-font$}
+  \usepackage{$font.general$,$font.math$}
 $endif$
 
 $for(header-includes)$
   $header-includes$
 $endfor$
 
-$if(title)$
-  \title{
-    $title$
-    $if(thanks)$
-      \thanks{$thanks$}
-    $endif$
-  }
-  \author{
-    $for(author)$
-      $author$
-      $sep$ \and 
-    $endfor$
-  }
-  \date{$date$}
-$endif$
+\title{
+  $title$
+  $if(thanks)$
+    \thanks{$thanks$}
+  $endif$
+}
+\author{
+  $for(authors)$
+    $author$
+    $sep$ \and 
+  $endfor$
+}
+\date{$date$}
 
 
 \begin{document}
@@ -97,9 +93,7 @@ $if(abstract)$
 $endif$
 
 $if(table-of-contents)$
-  $if(toc-depth)$
-    \setcounter{tocdepth}{$toc-depth$}
-  $endif$
+  \setcounter{tocdepth}{$table-of-contents.depth$}
   \tableofcontents
 $endif$
 
@@ -115,7 +109,7 @@ $body$
 
 $if(bibliography)$
   \newpage
-  \bibliography{$bibliography$}
+  \bibliography{$bibliography.file-name$}
 $endif$
 
 \end{document}
