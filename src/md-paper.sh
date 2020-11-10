@@ -17,12 +17,12 @@ function main {
             fi
             exit $?
             ;;
-        u|uninstall)
+        uninstall)
             # uninstall everything
             uninstall
             exit $?
             ;;
-        r|reinstall)
+        update)
             # reinstall everything
             uninstall
             curl https://md-paper.now.sh/install | sh
