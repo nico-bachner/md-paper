@@ -1,17 +1,9 @@
 #!/bin/sh
 
-PACKAGE_NAME="md-paper"
-REPO_NAME="nico-bachner/${PACKAGE_NAME}"
-
-cd /usr/local
+REPO_NAME="nico-bachner/md-paper"
 
 function brewInstall {
-    if brew ls --versions $1 > /dev/null
-    then
-        echo "${1} was already installed"
-    else
-        brew install $1
-    fi
+    
 }
 
 if which brew > /dev/null
@@ -21,8 +13,12 @@ else
     curl https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash
 fi
 
-brewInstall pandoc
-brewInstall shc
+if brew ls --versions pandoc > /dev/null
+then
+    echo "pandoc was already installed"
+else
+    brew install pandoc
+fi
 
 if latex -v > /dev/null
 then
@@ -31,32 +27,17 @@ else
     brew cask install basictex
 fi
 
-function download {
-    sudo git clone https://github.com/${REPO_NAME}.git
-    if [ -d ${PACKAGE_NAME} ]
-    then
-        echo "Download successful"
-    fi
-}
-
-if [ ! -d ${PACKAGE_NAME} ]
+if [ -d /usr/local/bin/md-paper ]
 then
-    download
+    curl -o https://md-paper.now.sh/dist/md-paper /usr/local/bin/md-paper
+    curl -o https://md-paper.now.sh/dist/template.tex ~/template.tex
 else
-    echo "It seems a program called '${PACKAGE_NAME}' already exists"
-    echo "To resume installation please rename or delete the existing program" 
+    echo "It seems a program called 'md-paper' already exists"
+    echo "To install please rename or delete the existing program and try again" 
     exit 1
 fi
 
-cd ${PACKAGE_NAME}/src
-
-sudo shc -f ${PACKAGE_NAME}.sh -o /usr/local/bin/${PACKAGE_NAME}
-
-if [ -e /usr/local/bin/${PACKAGE_NAME} ]
+if [ -d /usr/local/bin/md-paper ] && [ -d ~/template.tex ]
 then
-    echo "Installation successful"
-    exit 0
-else
-    echo "Installation failed"
-    exit 1
+    echo "installation successful"
 fi

@@ -35,15 +35,9 @@ Currently, the only way to install md-paper is through Terminal.
     ```
 
 ### Updating
-If you don't want to fully reinstall this software, there's a handy command available (if this doesn't work, try the "reinstalling" option):
+To update the program, simply write the following in your terminal:
 ``` sh
 md-paper update
-```
-
-### Reinstalling
-To reinstall the program from scratch, should that be necessary, simply write the following in your terminal:
-``` sh
-md-paper reinstall
 ```
 
 ### Uninstalling
