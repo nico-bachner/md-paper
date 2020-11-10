@@ -32,7 +32,10 @@ fi
 
 if [ ! -d /usr/local/bin/md-paper ]
 then
-    cd ~/
+    cd /usr/local
+    mkdir md-paper
+    cd md-paper
+    
     curl https://md-paper.now.sh/src/md-paper >md-paper.sh
     curl https://md-paper.now.sh/src/template.tex >template.tex
     
@@ -42,8 +45,7 @@ then
     fi
 
     shc -f md-paper.sh -o md-paper
-    sudo mv md-paper /usr/local/bin/
-    rm md-paper.sh
+    mv md-paper ../bin
 
     if [ -d /usr/local/bin/md-paper ]
     then
