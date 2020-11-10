@@ -32,16 +32,18 @@ fi
 
 if [ ! -d /usr/local/bin/md-paper ]
 then
-    curl -o https://md-paper.now.sh/dist/md-paper ~/md-paper.sh
-    curl -o https://md-paper.now.sh/dist/template.tex ~/template.tex
+    cd ~/
+    curl https://md-paper.now.sh/dist/md-paper >md-paper.sh
+    curl https://md-paper.now.sh/dist/template.tex >template.tex
 
-    shc -f ~/md-paper.sh -o ~/md-paper
-    mv ~/md-paper /usr/local/bin/
-    rm ~/md-paper.sh
+    shc -f md-paper.sh -o md-paper
+    mv md-paper /usr/local/bin/
+    rm md-paper.sh
 
-    if [ -d /usr/local/bin/md-paper ] && [ -d ~/template.tex ]
+    if [ -d /usr/local/bin/md-paper ] && [ -d template.tex ]
     then
         echo "installation successful"
+        exit 0
     fi
 else
     echo "It seems a program called 'md-paper' already exists"
