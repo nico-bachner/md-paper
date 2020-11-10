@@ -35,12 +35,17 @@ then
     cd ~/
     curl https://md-paper.now.sh/src/md-paper >md-paper.sh
     curl https://md-paper.now.sh/src/template.tex >template.tex
+    
+    if [ -d md-paper ] && [ -d template.tex ]
+    then
+        echo "download successful"
+    fi
 
     shc -f md-paper.sh -o md-paper
-    mv md-paper /usr/local/bin/
+    sudo mv md-paper /usr/local/bin/
     rm md-paper.sh
 
-    if [ -d /usr/local/bin/md-paper ] && [ -d template.tex ]
+    if [ -d /usr/local/bin/md-paper ]
     then
         echo "installation successful"
         exit 0
@@ -50,3 +55,5 @@ else
     echo "To install please rename or delete the existing program and try again" 
     exit 1
 fi
+
+exit 0
