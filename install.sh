@@ -32,26 +32,33 @@ fi
 
 if [ ! -d /usr/local/bin/md-paper ]
 then
-    sudo cd /usr/local
-    sudo mkdir md-paper
-    sudo cd md-paper
+    cd ~/
     
-    sudo curl https://md-paper.now.sh/src/md-paper >md-paper.sh
-    sudo curl https://md-paper.now.sh/src/template.tex >template.tex
+    touch md-paper.sh
+    touch template.tex
+    curl https://md-paper.now.sh/src/md-paper.sh >md-paper.sh
+    curl https://md-paper.now.sh/src/template.tex >template.tex
     
-    if [ -d md-paper ] && [ -d template.tex ]
+    if [ -e md-paper.sh ] && [ -e template.tex ]
     then
         echo "download successful"
+
+        shc -f md-paper.sh -o md-paper
+        rm md-paper.sh
+        rm md-paper.sh.x.c
+        sudo mv md-paper /usr/local/bin
+
+
+        if [ -e /usr/local/bin/md-paper ]
+        then
+            echo "installation successful"
+            exit 0
+        fi
+    else
+        echo "download failed"
     fi
 
-    sudo shc -f md-paper.sh -o md-paper
-    sudo mv md-paper ../bin
-
-    if [ -d /usr/local/bin/md-paper ]
-    then
-        echo "installation successful"
-        exit 0
-    fi
+    
 else
     echo "It seems a program called 'md-paper' already exists"
     echo "To install please rename or delete the existing program and try again" 
