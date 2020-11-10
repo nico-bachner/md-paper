@@ -53,7 +53,7 @@ $if(footer)$
 $endif$
 
 $if(images)$
-  \graphicspath{{./$images.path$}}
+  \graphicspath{./$images.path$}
   \let\oldincludegraphics\includegraphics
   \renewcommand{\includegraphics}[1]{\oldincludegraphics[width=$images.default-width$\textwidth]{#1}}
 $endif$
