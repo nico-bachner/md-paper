@@ -5,8 +5,8 @@
   $if(font.size)$
     $font.size$,
   $endif$
-  $if(document-type.two-column)$
-    twocolumn,
+  $if(columns)$
+    $columns$column,
   $endif$
   $if(document-type.title-page)$
     titlepage,
@@ -56,10 +56,13 @@ $if(header)$
   \ohead{$header.right$}
 $endif$
 $if(footer)$
-  \usepackage{scrlayer-scrpage}
   \ifoot{$footer.left$}
   \cfoot{$footer.center$}
   \ofoot{$footer.right$}
+  $if(header)$
+  $else$
+    \usepackage{scrlayer-scrpage}
+  $endif$
 $endif$
 
 $if(images)$
@@ -73,21 +76,19 @@ $if(images)$
   \renewcommand{\includegraphics}[1]{\oldincludegraphics[width=$images.width$\textwidth]{#1}}
 $endif$
 
-$if(spacing)$
-  \usepackage{setspace}
-  \$spacing$spacing
-$endif$
-
 $if(font)$
-  \usepackage{$font.general$}
-  \usepackage{$font.math$}
+  \usepackage{$font.general$,$font.math$}
+  $if(font.height)$
+    \usepackage{setspace}
+    \$font.height$spacing
+  $endif$
 $endif$
 
 $for(packages)$
   \usepackage{$packages$}
 $endfor$
 
-$header-includes$
+$other$
 
 \title{
   $title$
@@ -96,13 +97,12 @@ $header-includes$
   $endif$
 }
 \author{
-  $for(author)$
-    $author$
+  $for(authors)$
+    $authors$
     $sep$ \and 
   $endfor$
 }
 \date{$date$}
-
 
 \begin{document}
 
@@ -117,19 +117,20 @@ $endif$
 $if(table-of-contents)$
   \setcounter{tocdepth}{$table-of-contents.depth$}
   \tableofcontents
-$endif$
-
-$if(list-of-tables)$
-  \listoftables
-$endif$
-
-$if(list-of-figures)$
-  \listoffigures
+  $if(table-of-contents.list-of-tables)$
+    \listoftables
+  $endif$
+  $if(table-of-contents.list-of-figures)$
+    \listoffigures
+  $endif$
 $endif$
 
 $body$
 
 $if(bibliography)$
+  $if(bibliography.separate-page)$
+    \newpage
+  $endif$
   \newpage
   \bibliography{$bibliography.file-name$}
 $endif$
