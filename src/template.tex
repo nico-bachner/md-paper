@@ -1,24 +1,28 @@
 \documentclass[
-  $if(paper-size)$
+  $if(document-type.paper-size)$
     $paper-size$paper,
   $endif$
   $if(font.size)$
     $font.size$,
   $endif$
-  $if(two-column)$
+  $if(document-type.two-column)$
     twocolumn,
   $endif$
-  $if(titlepage)$
+  $if(document-type.title-page)$
     titlepage,
   $endif$
-  $if(draft)$
+  $if(document-type.draft)$
     draft,
   $endif$
 ]{$document-type$}
 
 \nonstopmode
 
-\usepackage[utf8]{inputenc}
+$if(encoding)$
+  \usepackage[$encoding$]{inputenc}
+$else$
+  \usepackage[utf8]{inputenc}
+$endif$
 
 \providecommand{\tightlist}{
   \setlength{\itemsep}{0pt}
@@ -26,17 +30,23 @@
 }
 \usepackage{longtable}
 
-$if(custom-margins)$
-  \usepackage[top=$custom-margins.top$, bottom=$custom-margins.bottom$, left=$custom-margins.left$, right=$custom-margins.right$]{geometry}
+$if(margins)$
+  \usepackage[
+    top=$margins.top$, 
+    bottom=$margins.bottom$, 
+    left=$margins.left$, 
+    right=$margins.right$
+  ]{geometry}
 $endif$
 
 $if(bibliography)$
   \bibliographystyle{$bibliography.style$}
 $endif$
 
-\setcounter{secnumdepth}{0}
 $if(section-numbering)$
   \setcounter{secnumdepth}{$section-numbering.depth$}
+$else$
+  \setcounter{secnumdepth}{0}
 $endif$
 
 $if(header)$
@@ -53,13 +63,14 @@ $if(footer)$
 $endif$
 
 $if(images)$
+  \usepackage{graphicx}
   \graphicspath{
   $for(images.path)$
     {$images.path$}
   $endfor$
   }
   \let\oldincludegraphics\includegraphics
-  \renewcommand{\includegraphics}[1]{\oldincludegraphics[width=$images.default-width$\textwidth]{#1}}
+  \renewcommand{\includegraphics}[1]{\oldincludegraphics[width=$images.width$\textwidth]{#1}}
 $endif$
 
 $if(spacing)$
