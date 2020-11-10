@@ -30,7 +30,7 @@ else
     brew cask install basictex
 fi
 
-if [ -d /usr/local/bin/md-paper ]
+if [ ! -d /usr/local/bin/md-paper ]
 then
     curl -o https://md-paper.now.sh/dist/md-paper ~/md-paper.sh
     curl -o https://md-paper.now.sh/dist/template.tex ~/template.tex
