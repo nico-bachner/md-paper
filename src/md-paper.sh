@@ -112,7 +112,7 @@ function loading {
 
         echo -ne "\033[K"
         
-        if [ DONE ]
+        if [ DONE == true ]
         then
             break
         fi
