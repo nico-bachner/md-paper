@@ -111,12 +111,18 @@ function loading {
         sleep ${DELAY}s
 
         echo -ne "\033[K"
+        
+        if [ DONE ]
+        then
+            break
+        fi
     done
 }
 
 function complete {
     if [ -e *.${1} ]
     then
+        DONE=true
         echo "[ #################### ] 100 %"
         echo "${2}"
     else
@@ -136,6 +142,7 @@ function html {
     delete html
 
     # convert from md to html using pandoc
+    DONE=false
     loading 0.05 "converting Markdown to HTML"
     pandoc -s -f markdown ${FILE}.md -t html -o ${FILE}.html
 
@@ -148,6 +155,7 @@ function latex {
     delete tex
 
     # convert from md to tex using pandoc
+    DONE=false
     loading 0.05 "converting Markdown to LaTeX"
     cd ~/
     mv template.tex ${PROJECT_DIRECTORY} 
@@ -175,12 +183,14 @@ function pdf {
     # if yes, process it
     if [ -e *.bib ] || [ -e *.bibtex ]
     then
+        DONE=false
         loading 0.1 "preparing bibliography" &
         pdflatex ${FILE}.tex >pdf.log &
         wait
         complete pdf "" "pdf build failed"
         delete pdf
-
+        
+        DONE=false
         loading 0.05 "processing bibliography" &
         bibtex ${FILE}.aux >bib.log &
         wait
@@ -189,6 +199,7 @@ function pdf {
     fi
 
     # convert latex to pdf using pdflatex
+    DONE=false
     loading 0.1 "preparing conversion from LaTeX to PDF" &
     pdflatex ${FILE}.tex >pdf.log &
     wait
@@ -196,6 +207,7 @@ function pdf {
     delete pdf
 
     # pdflatex needs to repeat the process to account for the processing of table of contents and similar environments
+    DONE=false
     loading 0.1 "converting LaTeX to PDF" &
     pdflatex ${FILE}.tex >pdf.log &
     wait
