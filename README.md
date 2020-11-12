@@ -1,7 +1,6 @@
 # Markdown Paper
 
-A tool to write scientific papers in Markdown and then convert them to PDF via LaTeX.
-Primarily designed for writing scientific papers.
+A CLI tool to write scientific papers in Markdown. Initially, it was designed to be an easily customisable all-in-one compiler from Markdown to PDF via LaTeX, but has become more opinionated over time.
 
 Uses [pandoc](https://pandoc.org) and [pdftex](https://www.latex-project.org) under the hood.
 
