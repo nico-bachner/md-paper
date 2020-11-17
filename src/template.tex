@@ -72,8 +72,8 @@ $if(images)$
     {$images.path$}
   $endfor$
   }
-  \let\oldincludegraphics\includegraphics
-  \renewcommand{\includegraphics}[1]{\oldincludegraphics[width=$images.width$\textwidth]{#1}}
+  \let\oldfigure\figure
+  \renewcommand{\figure}[1]{\oldfigure{#1}[$images.positioning$]}
 $endif$
 
 $if(font)$
