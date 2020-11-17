@@ -47,8 +47,7 @@ md-paper uninstall
 ## Writing 
 1.  Create a folder that will contain your project.
 2.  Create your Markdown (`.md`) document inside that folder. \
-    Check out the [YAML Options](#YAML-Options) section of this README for formatting options. \
-    You can also use one of the [example projects](https://md-paper.now.sh/docs/example-papers) as a template.
+    Check out the [YAML Options](#YAML-Options) section of this README for formatting options.
 3.  Start writing
 
 ## PDF Generation
