@@ -65,15 +65,13 @@ $if(footer)$
   $endif$
 $endif$
 
-$if(images)$
+$if(image-sources)$
   \usepackage{graphicx}
   \graphicspath{
-  $for(images.path)$
-    {$images.path$}
+  $for(image-sources)$
+    {$image-sources$}
   $endfor$
   }
-  \let\oldfigure\figure
-  \renewcommand{\figure}[1]{\oldfigure{#1}[$images.positioning$]}
 $endif$
 
 $if(font)$
