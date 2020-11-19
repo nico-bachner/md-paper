@@ -38,9 +38,8 @@
     <body>
         <main id="markdown-content"></main>
         <script async>
-
             // fetch docs from GitHub README.md
-            fetch('https://raw.githubusercontent.com/nico-bachner/md-paper/master/README.md')
+            fetch('https://raw.githubusercontent.com/nico-bachner/md-paper/master/docs/README.md')
                 .then(response => response.text())
                 // render Markdown as HTML
                 .then(result => document.getElementById('markdown-content').innerHTML = marked(result));

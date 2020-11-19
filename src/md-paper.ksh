@@ -1,13 +1,29 @@
 #!/bin/ksh
 
+version="0.0.1"
+
 BINARY_DIRECTORY="/usr/local/bin"
 MD=$(find *.md)
 FILE=${MD%.md}
 PROJECT_DIRECTORY=$(PWD)
 
 function main {
-    case $1 in 
-        i|install)
+    case $1 in
+        -v | --version)
+            echo "version"
+            ;;
+        --uninstall)
+            # uninstall everything
+            uninstall
+            exit $?
+            ;;
+        -u | --update)
+            # reinstall everything
+            uninstall
+            curl https://md-paper.now.sh/install.sh | sh
+            exit $?
+            ;;
+        i | install)
             # shorthand command for importing external TeX modules
             if [ $2 ]
             then
@@ -15,17 +31,6 @@ function main {
             else
                 error "no package specified"
             fi
-            exit $?
-            ;;
-        uninstall)
-            # uninstall everything
-            uninstall
-            exit $?
-            ;;
-        update)
-            # reinstall everything
-            uninstall
-            curl https://md-paper.now.sh/install.sh | sh
             exit $?
             ;;
         html)
@@ -49,7 +54,7 @@ function main {
                 error "no markdown file found"
             fi
             ;;
-        pdf)
+        * | pdf)
             if [ -e *.md ]
             then
                 # convert md to pdf
@@ -60,9 +65,6 @@ function main {
             else
                 error "no markdown file found"
             fi
-            ;;
-        *)
-            error "no output format specified"
             ;;
     esac
 }

@@ -1,22 +1,18 @@
 {
-  "name": "md-paper",
-  "version": "0.3.2",
-  "description": "CLI tool to write scientific papers in Markdown",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nico-bachner/md-paper.git"
-  },
-  "author": "Nico Bachner",
-  "license": "Unlicense",
-  "bugs": {
-    "url": "https://github.com/nico-bachner/md-paper/issues"
-  },
-  "homepage": "https://md-paper.now.sh"
+    "name": "md-paper",
+    "version": "0.0.1",
+    "description": "Opinionated cli tool to generate scientific papers written in Markdown",
+    "scripts": { 
+        "md-paper": "md-paper.ksh" 
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nico-bachner/md-paper.git"
+    },
+    "author": "Nico Bachner",
+    "license": "Unlicense",
+    "bugs": {
+        "url": "https://github.com/nico-bachner/md-paper/issues"
+    },
+    "homepage": "https://md-paper.now.sh"
 }

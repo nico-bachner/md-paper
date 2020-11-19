@@ -1,136 +1,141 @@
 \documentclass[
-  $if(paper-size)$
-    $paper-size$paper,
-  $endif$
-  $if(font.size)$
-    $font.size$,
-  $endif$
-  $if(columns)$
-    $columns$column,
-  $endif$
-  $if(title-page)$
-    titlepage,
-  $endif$
-  $if(draft)$
-    draft,
-  $endif$
-]{$document-type$}
+    $if(paper-size)$
+        $paper-size$paper,
+    $endif$
+    $if(font.size)$
+        $font.size$,
+    $endif$
+    $if(columns)$
+        $columns$column,
+    $endif$
+    $if(title-page)$
+        titlepage,
+    $endif$
+    $if(draft)$
+        draft,
+    $endif$
+]
+{$document-type$}
 
 \nonstopmode
 
 $if(encoding)$
-  \usepackage[$encoding$]{inputenc}
+    \usepackage[$encoding$]{inputenc}
 $else$
-  \usepackage[utf8]{inputenc}
+    \usepackage[utf8]{inputenc}
 $endif$
 
 \providecommand{\tightlist}{
-  \setlength{\itemsep}{0pt}
-  \setlength{\parskip}{0pt}
+    \setlength{\itemsep}{0pt}
+    \setlength{\parskip}{0pt}
 }
-\usepackage{longtable}
+
+$if(tables.padding-horizontal)$
+    \setlength{\tabcolsep}{$tables.width$}
+$else$
+    \setlength{\tabcolsep}{10pt}
+$endif$
+$if(tables.spacing-vertical)$
+    \renewcommand{\arraystretch}{$tables.spacing-vertical$}
+$else$
+    \renewcommand{\arraystretch}{1.5} 
+$endif$ 
 
 $if(margins)$
-  \usepackage[
-    top=$margins.top$, 
-    bottom=$margins.bottom$, 
-    left=$margins.left$, 
-    right=$margins.right$
-  ]{geometry}
+    \usepackage[
+        top=$margins.top$, 
+        bottom=$margins.bottom$, 
+        left=$margins.left$, 
+        right=$margins.right$
+    ]{geometry}
 $endif$
 
 $if(bibliography)$
-  \bibliographystyle{$bibliography.style$}
+    \bibliographystyle{$bibliography.style$}
 $endif$
 
 $if(section-numbering)$
-  \setcounter{secnumdepth}{$section-numbering.depth$}
+    \setcounter{secnumdepth}{$section-numbering.depth$}
 $else$
-  \setcounter{secnumdepth}{0}
+    \setcounter{secnumdepth}{0}
 $endif$
 
 $if(header)$
-  \usepackage{scrlayer-scrpage}
-  \ihead{$header.left$}
-  \chead{$header.center$}
-  \ohead{$header.right$}
+    \usepackage{scrlayer-scrpage}
+    \ihead{$header.left$}
+    \chead{$header.center$}
+    \ohead{$header.right$}
 $endif$
 $if(footer)$
-  \ifoot{$footer.left$}
-  \cfoot{$footer.center$}
-  \ofoot{$footer.right$}
-  $if(header)$
-  $else$
-    \usepackage{scrlayer-scrpage}
-  $endif$
+    \ifoot{$footer.left$}
+    \cfoot{$footer.center$}
+    \ofoot{$footer.right$}
+    $if(header)$
+    $else$
+        \usepackage{scrlayer-scrpage}
+    $endif$
 $endif$
 
 $if(image-sources)$
-  \usepackage{graphicx}
-  \graphicspath{
-  $for(image-sources)$
-    {$image-sources$}
-  $endfor$
-  }
+    \usepackage{graphicx}
+    \graphicspath{
+    $for(image-sources)$
+        {$image-sources$}
+    $endfor$
+    }
 $endif$
 
 $if(font)$
-  \usepackage[T1]{fontenc}
-  \usepackage{$font.general$,$font.math$}
-  $if(font.height)$
-    \usepackage{setspace}
-    \$font.height$spacing
-  $endif$
+    \usepackage[T1]{fontenc}
+    $if(font.general)$
+        \usepackage{$font.general$}
+    $endif$
+    $if(font.math)$
+        \usepackage{$font.math$}
+    $endif$
+    $if(font.height)$
+        \usepackage{setspace}
+        \$font.height$spacing
+    $endif$
 $endif$
 
-$for(packages)$
-  \usepackage{$packages$}
-$endfor$
+$if(packages)$
+    $for(packages)$
+        \usepackage{$packages$}
+    $endfor$
+$endif$
+
+\title{$title$}
+\author{$author$}
+\date{$date$}
 
 $other$
-
-\title{
-  $title$
-  $if(thanks)$
-    \thanks{$thanks$}
-  $endif$
-}
-\author{
-  $for(authors)$
-    $authors$
-    $sep$ \and 
-  $endfor$
-}
-\date{$date$}
 
 \begin{document}
 
 \maketitle
 
 $if(abstract)$
-  \begin{abstract}
-    $abstract$
-  \end{abstract}
+    \begin{abstract}
+        $abstract$
+    \end{abstract}
 $endif$
 
 $if(table-of-contents)$
-  \setcounter{tocdepth}{$table-of-contents.depth$}
-  \tableofcontents
-  $if(table-of-contents.list-of-tables)$
-    \listoftables
-  $endif$
-  $if(table-of-contents.list-of-figures)$
-    \listoffigures
-  $endif$
+    \setcounter{tocdepth}{$table-of-contents.depth$}
+    \tableofcontents
+    $if(table-of-contents.list-of-tables)$
+        \listoftables
+    $endif$
+    $if(table-of-contents.list-of-figures)$
+        \listoffigures
+    $endif$
 $endif$
 
 $body$
 
 $if(bibliography)$
-  $if(bibliography.separate-page)$
-    \newpage
-  $endif$
-  \bibliography{$bibliography.file$}
+    \bibliography{$bibliography.file$}
 $endif$
 
 \end{document}
