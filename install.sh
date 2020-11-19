@@ -1,40 +1,40 @@
 #!/bin/sh
 
-if [ brew ls --versions md-paper ]
+if brew ls --versions md-paper
 then
     echo "md-paper already installed via homebrew"
     exit 1
 else
-    function warning {
-        echo -e "\033[38;5;1mWARNING: ${1}"
+    function WARNING {
+        echo -e "\e[1;31mWARNING: \e[0;31m${1}"
     }
     
-    if [ ! brew ls --versions pandoc ]
+    if ! brew ls --versions pandoc >/dev/null
     then
-        warning "Pandoc was not found on your machine. You will need to install pandoc for this program to work."
+        WARNING "Pandoc was not found on your machine. You will need to install pandoc for this program to work."
     fi
 
-    if [ ! latex -v ]
+    if ! latex -v >/dev/null
     then
-        warning "This program requires a TeX distribution to work, but none were found."
+        WARNING "This program requires a TeX distribution to work, but none were found."
     fi
 
     if [ -e /usr/local/bin/md-paper ]
     then
-        warning "It seems a program called 'md-paper' already exists. To install please rename or delete the existing program and try again" 
+        WARNING "It seems a program called 'md-paper' already exists. To install please rename or delete the existing program and try again" 
         exit 1
     else
         # install main script in binary folder
         curl https://raw.githubusercontent.com/nico-bachner/md-paper/master/src/md-paper.sh -o /usr/local/bin/md-paper 
-        chmod +x ~/usr/local/bin/md-paper
+        chmod +x /usr/local/bin/md-paper
 
         # install the rest to /usr/local/md-paper
-        mkdir /usr/local/md-paper
-        curl https://md-paper.now.sh/src/template.tex -o /usr/local/md-paper/template.tex
-        curl https://md-paper.now.sh/src/tex.sh -o /usr/local/md-paper/tex.sh
-        curl https://md-paper.now.sh/src/pdf.sh -o /usr/local/md-paper/pdf.sh
+        sudo mkdir /usr/local/md-paper
+        sudo curl -s https://md-paper.now.sh/src/template.tex -o /usr/local/md-paper/template.tex
+        sudo curl -s https://md-paper.now.sh/src/tex.sh -o /usr/local/md-paper/tex.sh
+        sudo curl -s https://md-paper.now.sh/src/pdf.sh -o /usr/local/md-paper/pdf.sh
         
-        if [ -e /usr/local/bin/md-paper ]
+        if [ -e /usr/local/bin/md-paper ] && [ -e /usr/local/md-paper/tex.sh ] && [ -e /usr/local/md-paper/pdf.sh ] && [ -e /usr/local/md-paper/template.tex ]
         then
             echo "md-paper: installation successful"
             exit 0

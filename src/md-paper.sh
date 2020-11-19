@@ -22,12 +22,14 @@ case $1 in
             brew uninstall md-paper
             exit $?
         else
-            sudo rm -rf /usr/local/md-paper
-            if [ -e /usr/local/md-paper ]
+            sudo rm /usr/local/bin/md-paper
+            sudo rm -rf $lib
+            if [ -e $lib ]
             then
                 error "uninstall failed"
                 exit 1
             else
+                echo "uninstall successful"
                 exit 0
             fi
         fi
@@ -36,20 +38,20 @@ case $1 in
         # reinstall everything
         if [ INSTALLATION_METHOD = "homebrew" ]
         then
-            brew uninstall md-paper
+            brew reinstall md-paper
             exit $?
         else
+            sudo rm /usr/local/bin/md-paper
             sudo rm -rf $lib
             if [ -e $lib ]
             then
                 error "uninstall failed"
                 exit 1
             else
-                exit 0
+                curl https://md-paper.now.sh/install.sh | sh
+                exit $?
             fi
         fi
-        curl https://md-paper.now.sh/install.sh | sh
-        exit $?
         ;;
     i | install )
         # shorthand command for importing external TeX modules
