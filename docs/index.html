@@ -33,10 +33,12 @@
             html {
                 font-family: "-apple-system", "BlinkMacSystemFont", "Helvetica Neue", "Roboto", sans-serif;
                 line-height: 1.5;
+            }
+            body {
                 max-width: 50rem;
                 margin: auto;
             }
-            body {
+            main {
                 margin: 2rem;
             }
             h1 {
@@ -46,10 +48,10 @@
                 color: #6666dd;
             }
             pre {
-                width: fit-content;
-                max-width: 100%;
-                overflow-x: scroll;
                 padding: .5rem 1.5rem;
+                width: fit-content;
+                max-width: calc(100% - 3rem);
+                overflow-x: scroll;
                 border-radius: .5rem;
             }
         </style>
