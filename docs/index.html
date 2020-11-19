@@ -12,6 +12,24 @@
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
         <style>
+            @media (prefers-color-scheme: light) {
+                html {
+                    color: #222222;
+                    background-color: white;
+                }
+                a {
+                    color: #6666dd;
+                }
+            }
+            @media (prefers-color-scheme: dark) {
+                html {
+                    color: #dddddd;
+                    background-color: black;
+                }
+                a {
+                    color: #dd66dd;
+                }
+            }
             html {
                 font-family: "-apple-system", "BlinkMacSystemFont", "Helvetica Neue", "Roboto", sans-serif;
                 line-height: 1.5;
@@ -28,9 +46,8 @@
                 width: fit-content;
                 max-width: 100%;
                 overflow-x: scroll;
-                background-color: black;
-                color: white;
-                padding: .5rem 1rem;
+                background-color: gray;
+                padding: .5rem 1.5rem;
                 border-radius: .5rem;
             }
         </style>
