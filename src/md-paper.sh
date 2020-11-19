@@ -1,9 +1,8 @@
 #!/bin/sh
 
-version="0.0.4"
-
 if brew ls --versions md-paper >/dev/null
 then
+    version=$(brew ls --versions md-paper | cut -c 10-)
     INSTALLATION_METHOD="homebrew"
     export lib="/usr/local/Cellar/md-paper/${version}/lib"
 else
@@ -12,7 +11,7 @@ else
 fi
 
 case $1 in
-    v | version )
+    v | version | -v | --version )
         echo $version
         ;;
     u | uninstall )

@@ -1,6 +1,6 @@
 {
     "name": "md-paper",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Opinionated cli tool to generate scientific papers written in Markdown",
     "scripts": { 
         "md-paper": "md-paper.sh" 
