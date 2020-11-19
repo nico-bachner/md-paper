@@ -35,7 +35,10 @@ For those unfamiliar with the command line:
 #### Installation methods
 -   With [Homebrew](https://brew.sh):
     For the moment, the Homebrew release is inofficial. 
-    It only works if you copy [brew/md-paper.rb](brew/md-paper.rb) into `/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/md-paper.rb`.
+    It only works if you copy [brew/md-paper.rb](brew/md-paper.rb) into 
+    ``` sh
+    /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/md-paper.rb
+    ```
     However, you need only do this step once. It will remember even when reinstalling from scratch.
     
     When done, installing is simply a matter of typing the following:
