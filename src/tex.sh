@@ -7,10 +7,12 @@ MD=$(find *.md)
 FILE=${MD%.md}
 
 # convert from md to tex using pandoc
-pandoc -f markdown ${FILE}.md --template=/usr/local/md-paper/template.tex -t latex -o ${FILE}.tex
+pandoc -f markdown ${FILE}.md --template=${lib}/template.tex -t latex -o ${FILE}.tex
 
 # check if successful
-if [ ! -e *.md ]
+if [ -e *.md ]
 then
-    exit 1
+    exit 0
+else 
+    ERROR "TeX build failed"
 fi

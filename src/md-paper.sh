@@ -1,6 +1,15 @@
 #!/bin/sh
 
-version="0.0.1"
+version="0.0.2"
+
+if brew ls --versions md-paper
+then
+    INSTALLATION_METHOD="homebrew"
+    export lib="/usr/local/Cellar/md-paper/${version}/lib"
+else
+    INSTALLATION_METHOD="curl"
+    export lib="/usr/local/md-paper"
+fi
 
 case $1 in
     v | version )
@@ -8,24 +17,36 @@ case $1 in
         ;;
     u | uninstall )
         # uninstall everything
-        sudo rm -rf /usr/local/md-paper
-        if [ -e /usr/local/md-paper ]
+        if [ INSTALLATION_METHOD = "homebrew" ]
         then
-            error "uninstall failed"
-            exit 1
+            brew uninstall md-paper
+            exit $?
         else
-            exit 0
+            sudo rm -rf /usr/local/md-paper
+            if [ -e /usr/local/md-paper ]
+            then
+                error "uninstall failed"
+                exit 1
+            else
+                exit 0
+            fi
         fi
         ;;
     r | reinstall )
         # reinstall everything
-        sudo rm -rf /usr/local/md-paper
-        if [ -e /usr/local/md-paper ]
+        if [ INSTALLATION_METHOD = "homebrew" ]
         then
-            error "uninstall failed"
-            exit 1
+            brew uninstall md-paper
+            exit $?
         else
-            exit 0
+            sudo rm -rf $lib
+            if [ -e $lib ]
+            then
+                error "uninstall failed"
+                exit 1
+            else
+                exit 0
+            fi
         fi
         curl https://md-paper.now.sh/install.sh | sh
         exit $?
@@ -45,21 +66,19 @@ case $1 in
         if [ -e *.md ]
         then
             # convert md to latex
-            sh /usr/local/md-paper/tex.sh
+            ${lib}/tex.sh
             open ${FILE}.tex
-            exit $?
         else
             echo "No markdown file found"
             exit 1
         fi
         ;;
     pdf )
+        # convert latex to pdf
         if [ -e *.tex ]
         then
-            # convert latex to pdf
-            sh /usr/local/md-paper/pdf.sh
+            ${lib}/pdf.ksh
             open ${FILE}.pdf
-            exit $?
         else
             echo "No (La)TeX file found"
             exit 1
@@ -69,10 +88,9 @@ case $1 in
         if [ -e *.md ]
         then
             # convert md to pdf
-            sh /usr/local/md-paper/tex.sh
-            sh /usr/local/md-paper/pdf.sh
+            sh ${lib}/tex.sh
+            sh ${lib}/pdf.ksh
             open ${FILE}.pdf
-            exit $?
         else
             echo "No Markdown file found"
             exit 1
