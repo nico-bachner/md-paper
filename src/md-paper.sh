@@ -6,10 +6,10 @@ if brew ls --versions md-paper >/dev/null
 then
     version=$(brew ls --versions md-paper | cut -c 10-)
     INSTALLATION_METHOD="homebrew"
-    export lib="/usr/local/Cellar/md-paper/${version}/lib"
+    export resources="/usr/local/Cellar/md-paper/${version}/include"
 else
     INSTALLATION_METHOD="curl"
-    export lib="/usr/local/md-paper"
+    export resources="/usr/local/md-paper"
 fi
 
 case $1 in
@@ -24,8 +24,8 @@ case $1 in
             exit $?
         else
             sudo rm /usr/local/bin/md-paper
-            sudo rm -rf $lib
-            if [ -e $lib ]
+            sudo rm -rf $resources
+            if [ -e $resources ] || [ -e /usr/local/bin/md-paper ]
             then
                 error "uninstall failed"
                 exit 1
@@ -43,8 +43,8 @@ case $1 in
             exit $?
         else
             sudo rm /usr/local/bin/md-paper
-            sudo rm -rf $lib
-            if [ -e $lib ]
+            sudo rm -rf $resources
+            if [ -e $resources ] || [ -e /usr/local/bin/md-paper ]
             then
                 error "uninstall failed"
                 exit 1
@@ -69,7 +69,7 @@ case $1 in
         if [ -e *.md ]
         then
             # convert md to latex
-            sh ${lib}/tex.sh
+            sh ${resources}/tex.sh
         else
             echo "No markdown file found"
             exit 1
@@ -79,7 +79,7 @@ case $1 in
         # convert latex to pdf
         if [ -e *.tex ]
         then
-            ksh ${lib}/pdf.ksh
+            ksh ${resources}/pdf.ksh
         else
             echo "No (La)TeX file found"
             exit 1
@@ -89,8 +89,8 @@ case $1 in
         if [ -e *.md ]
         then
             # convert md to pdf
-            sh ${lib}/tex.sh
-            ksh ${lib}/pdf.ksh
+            sh ${resources}/tex.sh
+            ksh ${resources}/pdf.ksh
         else
             echo "No Markdown file found"
             exit 1
