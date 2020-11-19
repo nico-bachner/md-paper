@@ -2,7 +2,7 @@
 
 version="0.0.4"
 
-if brew ls --versions md-paper
+if brew ls --versions md-paper >/dev/null
 then
     INSTALLATION_METHOD="homebrew"
     export lib="/usr/local/Cellar/md-paper/${version}/lib"
@@ -68,8 +68,7 @@ case $1 in
         if [ -e *.md ]
         then
             # convert md to latex
-            ${lib}/tex.sh
-            open ${FILE}.tex
+            sh ${lib}/tex.sh
         else
             echo "No markdown file found"
             exit 1
@@ -79,8 +78,7 @@ case $1 in
         # convert latex to pdf
         if [ -e *.tex ]
         then
-            ${lib}/pdf.ksh
-            open ${FILE}.pdf
+            ksh ${lib}/pdf.ksh
         else
             echo "No (La)TeX file found"
             exit 1
@@ -91,8 +89,7 @@ case $1 in
         then
             # convert md to pdf
             sh ${lib}/tex.sh
-            sh ${lib}/pdf.ksh
-            open ${FILE}.pdf
+            ksh ${lib}/pdf.ksh
         else
             echo "No Markdown file found"
             exit 1

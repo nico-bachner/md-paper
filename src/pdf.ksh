@@ -1,3 +1,5 @@
+#!/bin/ksh
+
 function ERROR {
     echo -e "\033[38;5;1mERROR: ${1}"
     exit 1
@@ -47,6 +49,7 @@ function CHECK_COMPLETE {
     then
         DONE=true
         echo "[ #################### ] 100 %"
+        open ${FILE}.${1}
         echo
     else
         ERROR "${2}"

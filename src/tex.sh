@@ -1,5 +1,10 @@
+#!/bin/sh
+
 # remove old file
-delete tex
+if [ -e *.tex ]
+then
+    rm *.tex
+fi
 
 # pick first markdown the file finds
 MD=$(find *.md)
