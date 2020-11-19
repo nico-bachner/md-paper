@@ -12,7 +12,7 @@ MD=$(find *.md)
 FILE=${MD%.md}
 
 # convert from md to tex using pandoc
-pandoc -f markdown ${FILE}.md --template=${lib}/template.tex -t latex -o ${FILE}.tex
+pandoc -f markdown ${FILE}.md --template=${resources}/template.tex -t latex -o ${FILE}.tex
 
 # check if successful
 if [ -e *.md ]
