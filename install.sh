@@ -1,7 +1,5 @@
 #!/bin/sh
 
-REPO_NAME="nico-bachner/md-paper"
-
 function warning {
     echo -e "\033[38;5;1mWARNING: ${1}"
 }
@@ -21,9 +19,15 @@ then
     warning "It seems a program called 'md-paper' already exists. To install please rename or delete the existing program and try again" 
     exit 1
 else
-    curl https://raw.githubusercontent.com/nico-bachner/md-paper/master/src/md-paper.ksh -o /usr/local/bin/md-paper 
+    # install main script in binary folder
+    curl https://raw.githubusercontent.com/nico-bachner/md-paper/master/src/md-paper.sh -o /usr/local/bin/md-paper 
     chmod +x ~/usr/local/bin/md-paper
+
+    # install the rest to /usr/local/md-paper
+    mkdir /usr/local/md-paper
     curl https://md-paper.now.sh/src/template.tex -o /usr/local/md-paper/template.tex
+    curl https://md-paper.now.sh/src/tex.sh -o /usr/local/md-paper/tex.sh
+    curl https://md-paper.now.sh/src/pdf.sh -o /usr/local/md-paper/pdf.sh
     
     if [ -e /usr/local/bin/md-paper ]
     then

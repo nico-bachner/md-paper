@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "description": "Opinionated cli tool to generate scientific papers written in Markdown",
     "scripts": { 
-        "md-paper": "md-paper.ksh" 
+        "md-paper": "md-paper.sh" 
     },
     "repository": {
         "type": "git",

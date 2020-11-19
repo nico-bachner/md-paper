@@ -1,5 +1,7 @@
 # Markdown Paper
 
+[Github repository](https://github.com/nico-bachner/md-paper)
+
 A CLI tool to write scientific papers in Markdown. Initially, it was designed to be an easily customisable all-in-one compiler from Markdown to PDF via LaTeX, but has become more opinionated over time.
 
 Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org) under the hood.
@@ -8,7 +10,7 @@ Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org) 
 
 - [Installation](#installation)
     - [Installing](#installing)
-    - [Updating](#updating)
+    - [Reinstalling](#reinstalling)
     - [Uninstalling](#uninstalling)
 - [Writing](#writing)
 - [PDF Generation](#pdf-generation)
@@ -23,32 +25,41 @@ Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org) 
 
 ## Installation
 ### Installing
-Currently, the only way to install md-paper is through Terminal.
+For those unfamiliar with the command line:
 1.  Go to **Applications**
 2.  Go to **Utilities** (inside Applications)
 3.  Open **Terminal.app** (inside Utilities)
-4.  Copy the following and paste it into Terminal
+4.  Copy one of the below options and paste it into Terminal.
+
+#### Installation methods
+-   with [Homebrew](https://brew.sh):
+    ``` sh
+    brew install md-paper
+    ```
+-   with `curl`:
     ``` sh
     curl https://md-paper.now.sh/install.sh | sh
     ```
 
-### Updating
-To update the program, simply write the following in your terminal:
+### Reinstalling
+To reinstall the program, simply write the following in your terminal:
 ``` sh
-md-paper update
+md-paper reinstall
 ```
+Shorthand: `r`
 
 ### Uninstalling
 To uninstall the entire program, write the following:
 ``` sh
 md-paper uninstall
 ```
+Shorthand: `u`
 
 ## Writing 
 1. Create a folder that will contain your project.
 2. Create your Markdown (`.md`) document inside that folder.
 3. Check out the [YAML Options](#YAML-Options) section of this README for formatting options.
-3. Start writing
+4. Start writing
 
 ## PDF Generation
 1.  Open a new terminal window.
