@@ -25,7 +25,7 @@ else
         exit 1
     else
         # install main script in binary folder
-        curl https://raw.githubusercontent.com/nico-bachner/md-paper/master/src/md-paper.sh -o /usr/local/bin/md-paper 
+        curl -s https://raw.githubusercontent.com/nico-bachner/md-paper/master/src/md-paper.sh -o /usr/local/bin/md-paper 
         chmod +x /usr/local/bin/md-paper
 
         # install the rest to /usr/local/md-paper
