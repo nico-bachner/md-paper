@@ -1,5 +1,7 @@
 #!/bin/sh
 
+version="0.1.0"
+
 if brew ls --versions md-paper >/dev/null
 then
     version=$(brew ls --versions md-paper | cut -c 10-)
