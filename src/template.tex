@@ -1,5 +1,5 @@
 \documentclass[
-  $if(document-type.paper-size)$
+  $if(paper-size)$
     $paper-size$paper,
   $endif$
   $if(font.size)$
@@ -8,10 +8,10 @@
   $if(columns)$
     $columns$column,
   $endif$
-  $if(document-type.title-page)$
+  $if(title-page)$
     titlepage,
   $endif$
-  $if(document-type.draft)$
+  $if(draft)$
     draft,
   $endif$
 ]{$document-type$}
