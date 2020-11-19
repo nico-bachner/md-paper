@@ -10,7 +10,7 @@
         "url": "git+https://github.com/nico-bachner/md-paper.git"
     },
     "author": "Nico Bachner",
-    "license": "Unlicense",
+    "license": "MIT",
     "bugs": {
         "url": "https://github.com/nico-bachner/md-paper/issues"
     },
