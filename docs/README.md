@@ -20,6 +20,7 @@ Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org) 
     - [Document types](#document-types)
     - [Title, Author, Date](#title-author-date)
     - [Importing packages](#importing-packages)
+    - [Custom Margins](#custom-margins)
 - [Further Customisation](#further-customisation)
 - [Contributing](#contributing)
 
@@ -32,14 +33,25 @@ For those unfamiliar with the command line:
 4.  Copy one of the below options and paste it into Terminal.
 
 #### Installation methods
--   with [Homebrew](https://brew.sh):
+-   With [Homebrew](https://brew.sh):
+    For the moment, the Homebrew release is inofficial. 
+    It only works if you copy [brew/md-paper.rb](brew/md-paper.rb) into `/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/md-paper.rb`.
+    However, you need only do this step once. It will remember even when reinstalling from scratch.
+    
+    When done, installing is simply a matter of typing the following:
     ``` sh
     brew install md-paper
     ```
--   with `curl`:
+    
+-   With `curl`:
     ``` sh
     curl https://md-paper.now.sh/install.sh | sh
     ```
+    
+When installed, you can check which version you are on by typing:
+``` sh
+md-paper -v
+```
 
 ### Reinstalling
 To reinstall the program, simply write the following in your terminal:
@@ -76,13 +88,13 @@ Shorthand: `u`
     Don't forget to replace `FOLDER_NAME` with the actual name of your project folder!
 3.  Now you can generate your pdf by typing the following:
     ``` sh
-    md-paper pdf
+    md-paper
     ```
 
 ## Build Options
 This is the base command for pdf generation:
 ``` sh
-md-paper pdf
+md-paper
 ```
 
 This base command can be extended by adding one or more of the following arguments:
@@ -97,7 +109,17 @@ This base command can be extended by adding one or more of the following argumen
 
 For example, the following would keep the latex code, as well as the logs generated; all that in addition to the pdf.
 ``` sh
-md-paper pdf --aux --log
+md-paper --log
+```
+
+If you just want to generate a LaTeX file, for example when sending your paper off to a publication, you can use
+``` sh
+md-paper tex
+```
+
+If you have a custom LaTeX file, you can process that and get back a PDF by using
+``` sh
+md-paper pdf
 ```
 
 ## Formatting Options
@@ -140,6 +162,17 @@ title: "YOUR DOCUMENT TITLE"
 author: "YOUR NAME"
 date: \today  # or write out a specific date in parentheses
 ```
+
+### Custom Margins
+You can override the default margins by putting the following in the YAML header:
+``` YAML
+margins: 
+    top: 3cm
+    bottom: 1in
+    left: 20pt
+    right: 3em
+```
+Most units will work.
 
 ### Importing packages
 To import packages, add the following to your YAML header:
