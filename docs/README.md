@@ -22,6 +22,8 @@ Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org) 
     - [Importing packages](#importing-packages)
     - [Custom Margins](#custom-margins)
 - [Further Customisation](#further-customisation)
+- [Demo](#demo)
+- [Issues](#issues)
 - [Contributing](#contributing)
 
 ## Installation
@@ -91,16 +93,16 @@ Shorthand: `u`
 ## Build Options
 This is the base command for pdf generation:
 ``` sh
-md-paper
+$ md-paper
 ```
 
 This base command can be extended by adding one or more of the following arguments:
--   Basic logs: `--log`
--   Auxiliary files (basically logs for all little parts of your document, such as the table of contents and): `--aux
+-   `--log`: basic logs
+-   `--aux`: auxiliary files (essentially logs for each small part of your document, e.g. table of contents)
 
-For example, the following would keep the latex code, as well as the logs generated; all that in addition to the pdf.
+For example, the following would keep all the logs generated while building the pdf, as well as the .
 ``` sh
-$ md-paper --log
+$ md-paper --log --aux
 ```
 
 If you just want to generate a LaTeX file, for example when sending your paper off to a publication, you can use
@@ -125,16 +127,6 @@ YAML HEADER # formatting
 
 MARKDOWN # content
 ```
-Here's the minimum needed for a pdf to be generated
-``` YAML
----
-document-type: TYPE
-    
-title: "TITLE"
-author: "AUTHOR"
----
-# Hello, World!
-```
 
 ### Document types
 -   For articles and short reports:
@@ -150,7 +142,9 @@ author: "AUTHOR"
 These are essential parts of any standalone document:
 ``` YAML
 title: "YOUR DOCUMENT TITLE"
-author: "YOUR NAME"
+authors: 
+    - "YOUR NAME"
+    - "CO-PUBLISHER'S NAME"
 date: \today  # or write out a specific date in parentheses
 ```
 
@@ -187,7 +181,54 @@ For all those with basic TeX knowledge, it is really easy to customise the build
 
 This is handy for a quick fix though if you can't wait long enough for the problem to be fixed properly
 
-## Errors
+## Demo
+``` YAML
+---
+document-type: article
+title-page: true
+paper-size: a4
+margins:
+    top: 3cm
+    bottom: 2cm
+    left: 2cm
+    right: 2cm
+font: 
+    general: lmodern # lmodern / kpfonts / fourier / tgtermes / dejavu / libertine
+    math: euler
+    size: 12pt # 10pt / 11pt / 12pt
+    height: double # "onehalf" / "double"
+header:
+    center: My Awesome Paper
+footer:
+    center: Page \thepage
+table-of-contents:
+    list-of-figures: yes
+bibliography: 
+    file: 'bibliography' # file 'bibliography.bib'
+    style: unsrturl
+image-sources:
+    - ./images/
+    - ./graphs/
+packages:
+    - hyperref
+    - xcolor
+title: |
+    **Paper Title** \
+    *Funky Subtitle*
+authors:
+    - Me
+    - Myself
+    - I
+date: |
+    \today # why over-complicate life?
+other: | # create custom TeX commands in this field if necessary
+    
+---
+# Introduction
+*Hello, World!*
+```
+
+## Issues
 If you have something that needs fixing, feel free to open a [Github](https://github.com/nico-bachner/md-paper) issue. Check out the [Contributing](#contributing) section for more info.
 
 ## Contributing
