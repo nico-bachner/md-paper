@@ -1,8 +1,8 @@
 class MdPaper < Formula
   desc "Generates scientific papers written in Markdown"
   homepage "https://md-paper.now.sh"
-  url "https://github.com/nico-bachner/md-paper/archive/v0.1.0.tar.gz"
-  sha256 "82e87b66d852c178c569d0dd0a6d086c31ea8f4c5d6ed5b082e424feccef238f"
+  url "https://github.com/nico-bachner/md-paper/archive/v0.1.1.tar.gz"
+  sha256 "0149dd080045d685533890a0617019ca8fca240bd77e046b1d2d65c11793856e"
   license "MIT"
   
   depends_on "pandoc"
