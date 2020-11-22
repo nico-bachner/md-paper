@@ -1,6 +1,6 @@
 # Markdown Paper
 
-[Github repository](https://github.com/nico-bachner/md-paper)
+[![Github repository](https://nicob.dev/images/github.svg)](https://github.com/nico-bachner/md-paper)
 
 A CLI tool to write scientific papers in Markdown. Initially, it was designed to be an easily customisable all-in-one compiler from Markdown to PDF via LaTeX, but has become more opinionated over time.
 
@@ -36,38 +36,35 @@ For those unfamiliar with the command line:
 
 #### Installation methods
 -   With [Homebrew](https://brew.sh):
-    For the moment, the Homebrew release is inofficial. 
-    It only works if you copy [brew/md-paper.rb](brew/md-paper.rb) into \
-    `/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/md-paper.rb` \
-    However, you need only do this step once. It will remember even when reinstalling from scratch.
-    
-    When done, installing is simply a matter of typing the following:
+    For the moment, the Homebrew release is tap only:
     ``` sh
-    $ brew install md-paper
+    brew tap nico-bachner/md-paper
+    brew install md-paper
     ```
     
 -   With `curl`:
     ``` sh
     curl https://md-paper.now.sh/install.sh | sh
     ```
+    <button id="copy" onclick="copy()">📋</button>
     
 When installed, you can check which version you are on by typing:
 ``` sh
-$ md-paper --version
+md-paper --version
 ```
 Shorthand: `-v`
 
 ### Reinstalling
 To reinstall the program, simply write the following in your terminal:
 ``` sh
-$ md-paper reinstall
+md-paper reinstall
 ```
 Shorthand: `r`
 
 ### Uninstalling
 To uninstall the entire program, write the following:
 ``` sh
-$ md-paper uninstall
+md-paper uninstall
 ```
 Shorthand: `u`
 
@@ -81,19 +78,19 @@ Shorthand: `u`
 1.  Open a new terminal window.
 2.  Create a folder for your project if you haven't already and navigate into your project folder
     ``` sh
-    $ mkdir FOLDER_NAME
-    $ cd FOLDER_NAME
+    mkdir FOLDER_NAME
+    cd FOLDER_NAME
     ```
     Don't forget to replace `FOLDER_NAME` with the actual name of your project folder 😄
 3.  Now you can generate your pdf:
     ``` sh
-    $ md-paper
+    md-paper
     ```
 
 ## Build Options
 This is the base command for pdf generation:
 ``` sh
-$ md-paper
+md-paper
 ```
 
 This base command can be extended by adding one or more of the following arguments:
@@ -102,17 +99,17 @@ This base command can be extended by adding one or more of the following argumen
 
 For example, the following would keep all the logs generated while building the pdf, as well as the .
 ``` sh
-$ md-paper --log --aux
+md-paper --log --aux
 ```
 
 If you just want to generate a LaTeX file, for example when sending your paper off to a publication, you can use
 ``` sh
-$ md-paper tex
+md-paper tex
 ```
 
 If you have a custom LaTeX file, you can process that and get back a PDF by using
 ``` sh
-$ md-paper pdf
+md-paper pdf
 ```
 
 ## Formatting Options
@@ -169,7 +166,7 @@ packages:
 
 If your TeX distribution doesn't include the full CTAN archive, non-standard packages will have to be downloaded individually before building:
 ``` sh
-$ md-paper install PACKAGE_NAME
+md-paper install PACKAGE_NAME
 ```
 Instead of `install`, you can also use the shorthand `i`.
 

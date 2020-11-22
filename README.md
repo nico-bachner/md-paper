@@ -5,5 +5,8 @@ Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org) 
 
 *Only designed to work on macOS x86_64, but should also work on Linux with some minor tweaks.*
 
+## Usage
+Read the [documentation](docs/README.md) or the [web docs](https://md-paper.now.sh/docs)
+
 ## Contributing
 Check out [CONTRIBUTING.md](CONTRIBUTING.md) for ways to contribute to this project
