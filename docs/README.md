@@ -18,8 +18,6 @@ A CLI tool to write scientific papers in Markdown. Initially, it was designed to
     - [Custom Margins](#custom-margins)
 - [Further Customisation](#further-customisation)
 - [Demo](#demo)
-- [Issues](#issues)
-- [Contributing](#contributing)
 
 ## Installation
 ### Installing
