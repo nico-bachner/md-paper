@@ -38,13 +38,14 @@
                 line-height: 1.5;
             }
             body {
-                max-width: 40rem;
-                margin: auto;
-            }
-            main {
-                margin: 1rem;
+                margin: 6rem 2rem;
             }
             h1 {
+                position: absolute;
+                width: 100vw;
+                margin-left: auto;
+                margin-right: auto;
+                top: 0;
                 text-align: center;
             }
             a {
@@ -67,6 +68,22 @@
                 right: 1rem;
                 width: 2rem;
                 height: 2rem;
+            }
+            @media screen and (min-width: 750px){
+                ul:first-of-type {
+                    position: fixed;
+                    top: 6rem;
+                    left: 1rem;
+                }
+                ul ul:first-of-type {
+                    position: unset;
+                }
+                main {
+                    margin-left: 15em;
+                }
+                h1 {
+                    width: calc(100vw - 15em);
+                }
             }
         </style>
     </head>
