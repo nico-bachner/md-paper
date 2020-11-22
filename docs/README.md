@@ -66,12 +66,15 @@ Shorthand: `u`
 
 ## PDF Generation
 1.  Open a new terminal window.
-2.  Create a folder for your project if you haven't already and navigate into your project folder
+2.  Create a folder for your project if you haven't already
     ``` sh
     mkdir FOLDER_NAME
+    ```
+    and navigate into your project folder
+    ``` sh
     cd FOLDER_NAME
     ```
-    Don't forget to replace `FOLDER_NAME` with the actual name of your project folder 😄
+    Don't forget to replace `FOLDER_NAME` with the actual name of your project folder
 3.  Now you can generate your pdf:
     ``` sh
     md-paper
