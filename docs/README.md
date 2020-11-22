@@ -1,9 +1,4 @@
 # Markdown Paper
-
-<a id="github" href="https://github.com/nico-bachner/md-paper">
-    <img src="https://nicob.dev/images/github.svg" alt="Github repository">
-</a>
-
 A CLI tool to write scientific papers in Markdown. Initially, it was designed to be an easily customisable all-in-one compiler from Markdown to PDF via LaTeX, but has become more opinionated over time.
 
 *Only designed to work on macOS, but should theoretically also work on Linux.*
@@ -37,7 +32,7 @@ For those unfamiliar with the command line:
 #### Installation methods
 -   With [Homebrew](https://brew.sh):
     ``` sh
-    brew install md-paper
+    brew tap nico-bachner/md-paper && brew install md-paper
     ```
     
 -   With `curl`:
@@ -221,3 +216,7 @@ other: | # create custom TeX commands in this field if necessary
 # Introduction
 *Hello, World!*
 ```
+
+<a id="github" href="https://github.com/nico-bachner/md-paper">
+    <img src="https://nicob.dev/images/github.svg" alt="Github repository">
+</a>
