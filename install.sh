@@ -30,9 +30,9 @@ else
 
         # install the rest to /usr/local/md-paper
         sudo mkdir /usr/local/md-paper
-        sudo curl -s https://md-paper.now.sh/src/template.tex -o /usr/local/md-paper/template.tex
-        sudo curl -s https://md-paper.now.sh/src/tex.sh -o /usr/local/md-paper/tex.sh
-        sudo curl -s https://md-paper.now.sh/src/pdf.sh -o /usr/local/md-paper/pdf.sh
+        sudo curl -s https://raw.githubusercontent.com/nico-bachner/md-paper/master/src/template.tex -o /usr/local/md-paper/template.tex
+        sudo curl -s https://raw.githubusercontent.com/nico-bachner/md-paper/master/src/tex.sh -o /usr/local/md-paper/tex.sh
+        sudo curl -s https://raw.githubusercontent.com/nico-bachner/md-paper/master/src/pdf.sh -o /usr/local/md-paper/pdf.sh
         
         if [ -e /usr/local/bin/md-paper ] && [ -e /usr/local/md-paper/tex.sh ] && [ -e /usr/local/md-paper/pdf.sh ] && [ -e /usr/local/md-paper/template.tex ]
         then

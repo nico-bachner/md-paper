@@ -3,10 +3,10 @@ A CLI tool to write scientific papers in Markdown. Initially, it was designed to
 
 Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org) under the hood.
 
-*Only designed to work on macOS x86_64, but should also work on Linux with some minor tweaks.*
+*Only designed to work on macOS, but should theoretically also work on Linux.*
 
 ## Usage
-Read the [documentation](docs/README.md) or the [web docs](https://md-paper.now.sh/docs)
+Read the [documentation](docs/README.md) or the [web docs](https://md-paper.nicob.dev/docs)
 
 ## Contributing
 Check out [CONTRIBUTING.md](CONTRIBUTING.md) for ways to contribute to this project

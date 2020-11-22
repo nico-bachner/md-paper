@@ -1,12 +1,12 @@
 # Markdown Paper
 
-[![Github repository](https://nicob.dev/images/github.svg)](https://github.com/nico-bachner/md-paper)
+<a id="github" href="https://github.com/nico-bachner/md-paper">
+    <img src="https://nicob.dev/images/github.svg" alt="Github repository">
+</a>
 
 A CLI tool to write scientific papers in Markdown. Initially, it was designed to be an easily customisable all-in-one compiler from Markdown to PDF via LaTeX, but has become more opinionated over time.
 
-Uses [pandoc](https://pandoc.org) and [pdflatex](https://www.latex-project.org) under the hood.
-
-*Only designed to work on macOS x86_64, but should also work on Linux with some minor tweaks.*
+*Only designed to work on macOS, but should theoretically also work on Linux.*
 
 - [Installation](#installation)
     - [Installing](#installing)
@@ -36,17 +36,14 @@ For those unfamiliar with the command line:
 
 #### Installation methods
 -   With [Homebrew](https://brew.sh):
-    For the moment, the Homebrew release is tap only:
     ``` sh
-    brew tap nico-bachner/md-paper
     brew install md-paper
     ```
     
 -   With `curl`:
     ``` sh
-    curl https://md-paper.now.sh/install.sh | sh
+    curl https://md-paper.nicob.dev/install.sh | sh
     ```
-    <button id="copy" onclick="copy()">📋</button>
     
 When installed, you can check which version you are on by typing:
 ``` sh
@@ -176,7 +173,7 @@ For all those with basic TeX knowledge, it is really easy to customise the build
 ***WARNING:***
 *All of your changes to `template.tex` will be erased once you update **md-paper**, so edit the file at your own risk.* (unless of course you save your file and replace the one installed on update)
 
-This is handy for a quick fix though if you can't wait long enough for the problem to be fixed properly
+However, this is good enough for a quick fix if you can't wait long enough the [Github](https://github.com/nico-bachner/md-paper) issue to be addressed.
 
 ## Demo
 ``` YAML
@@ -190,7 +187,7 @@ margins:
     left: 2cm
     right: 2cm
 font: 
-    general: lmodern # lmodern / kpfonts / fourier / tgtermes / dejavu / libertine
+    general: lmodern # kpfonts / fourier / tgtermes / dejavu / libertine
     math: euler
     size: 12pt # 10pt / 11pt / 12pt
     height: double # "onehalf" / "double"
@@ -224,9 +221,3 @@ other: | # create custom TeX commands in this field if necessary
 # Introduction
 *Hello, World!*
 ```
-
-## Issues
-If you have something that needs fixing, feel free to open a [Github](https://github.com/nico-bachner/md-paper) issue. Check out the [Contributing](#contributing) section for more info.
-
-## Contributing
-Please consult [CONTRIBUTING.md](CONTRIBUTING.md) for ways to contribute to this project

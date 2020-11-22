@@ -1,6 +1,6 @@
 #!/bin/sh
 
-version="0.1.1"
+version="0.1.2"
 
 if brew ls --versions md-paper >/dev/null
 then

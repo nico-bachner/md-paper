@@ -5,7 +5,7 @@
         <meta name="description" content="A tool to write scientific papers in Markdown">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="canonical" href="https://md-paper.now.sh/docs">
+        <link rel="canonical" href="https://md-paper.nicob.dev/docs">
 
         <title>Markdown Paper</title>
 
@@ -31,11 +31,11 @@
                 }
             }
             html {
-                font-family: "-apple-system", "BlinkMacSystemFont", "Helvetica Neue", "Roboto", sans-serif;
+                font-family: "Roboto", sans-serif;
                 line-height: 1.5;
             }
             body {
-                max-width: 50rem;
+                max-width: 40rem;
                 margin: auto;
             }
             main {
@@ -49,59 +49,26 @@
                 text-decoration: none;
             }
             pre {
-                padding: .5rem 1rem;
+                padding: .7rem 1rem;
                 max-width: calc(100% - 2rem);
                 overflow-x: scroll;
                 border-radius: .5rem;
             }
             .language-sh::before {
-                content: "user@device ~ %";
+                content: "usr@io ~ % ";
                 color: gray;
+            }
+            #github {
+                position: fixed;
+                top: 1rem;
+                right: 1rem;
+                width: 2rem;
+                height: 2rem;
             }
         </style>
     </head>
     <body>
         <main id="markdown-content"></main>
-        <script>
-            function copy() {
-                var code = document.getElementById("copy").firstChild;
-                console.log(code);
-                if (code.startsWith("user@device ~ %")) {
-                    code = code.substr(15).trimLeft();
-                    console.log(code);
-                }
-                code.select();
-                document.execCommand("copy");
-                this.innerHTML = "✅";
-                setTimeout(() => this.innerHTML="📋", 2000);
-            }
-                /*
-                    let code = codeBlock.childNodes.innerText.trim();
-                    console.log(code);
-
-                    if(code.startsWith("$")) {
-                        code = code.substr(1).trimLeft();
-                        console.log(code);
-                    }
-
-                    const button = document.createElement("button");
-                    console.log(button);
-
-                    button.innerHTML = "📋";
-                    console.log(button);
-
-                    button.setAttribute("aria-label", "Copy to Clipboard");
-                    console.log(button);
-
-                    button.onclick = () => {
-                        navigator.clipboard.writeText(code);
-                        button.innerHTML = "✅";
-                        setTimeout(() => button.innerHTML="📋", 2000);
-                    }
-                    
-                    element.appendChild(button);
-                */
-        </script>
         <script async>
             // fetch Markdown documentation from GitHub README
             fetch('https://raw.githubusercontent.com/nico-bachner/md-paper/master/docs/README.md')
