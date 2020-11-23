@@ -1,12 +1,11 @@
 # Markdown Paper
 A CLI tool to write scientific papers in Markdown. Initially, it was designed to be an easily customisable all-in-one compiler from Markdown to PDF via LaTeX, but has become more opinionated over time.
 
-*Only designed to work on macOS, but should theoretically also work on Linux.*
+*Currently only designed to work on macOS, but should theoretically also work on Linux.*
 
-- [Installation](#installation)
+- [Setup](#setup)
     - [Installing](#installing)
-    - [Reinstalling](#reinstalling)
-    - [Uninstalling](#uninstalling)
+    - [Version Check](#version-check)
 - [Writing](#writing)
 - [PDF Generation](#pdf-generation)
 - [Build Options](#build-options)
@@ -18,45 +17,31 @@ A CLI tool to write scientific papers in Markdown. Initially, it was designed to
     - [Custom Margins](#custom-margins)
 - [Further Customisation](#further-customisation)
 - [Demo](#demo)
+- [Reinstalling & Uninstalling](#reinstalling-and-uninstalling)
 
-## Installation
-### Installing
+## Setup
 For those unfamiliar with the command line:
 1.  Go to **Applications**
 2.  Go to **Utilities** (inside Applications)
 3.  Open **Terminal.app** (inside Utilities)
 4.  Copy one of the below options and paste it into Terminal.
 
-#### Installation methods
+### Installing
 -   With [Homebrew](https://brew.sh):
     ``` sh
     brew tap nico-bachner/md-paper && brew install md-paper
     ```
-    
 -   With `curl`:
     ``` sh
     curl https://md-paper.nicob.dev/install.sh | sh
     ```
-    
-When installed, you can check which version you are on by typing:
+
+### Version Check
+When installed, you can check which version you are on:
 ``` sh
 md-paper --version
 ```
 Shorthand: `-v`
-
-### Reinstalling
-To reinstall the program, simply write the following in your terminal:
-``` sh
-md-paper reinstall
-```
-Shorthand: `r`
-
-### Uninstalling
-To uninstall the entire program, write the following:
-``` sh
-md-paper uninstall
-```
-Shorthand: `u`
 
 ## Writing 
 1. Create a folder that will contain your project.
@@ -159,9 +144,8 @@ packages:
 
 If your TeX distribution doesn't include the full CTAN archive, non-standard packages will have to be downloaded individually before building:
 ``` sh
-md-paper install PACKAGE_NAME
+md-paper install PACKAGE_NAME # shorthand: `i`
 ```
-Instead of `install`, you can also use the shorthand `i`.
 
 ## Further Customisation
 For all those with basic TeX knowledge, it is really easy to customise the build output even further than just through the YAML header. All the YAML options are derived from the `template.tex` file, located wherever you installed **md-paper** to, so feel free to check that out for the full customisation options)
@@ -217,6 +201,17 @@ other: | # create custom TeX commands in this field if necessary
 # Introduction
 *Hello, World!*
 ```
+
+## Reinstalling & Uninstalling
+- Reinstalling
+``` sh
+md-paper reinstall # shorthand: `r`
+```
+- Uninstalling
+``` sh
+md-paper uninstall # shorthand: `u`
+```
+
 
 <a id="github" href="https://github.com/nico-bachner/md-paper">
     <img src="https://nicob.dev/images/github.svg" alt="Github repository">

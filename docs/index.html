@@ -14,81 +14,83 @@
 
         <style>
             @media (prefers-color-scheme: light) {
-                html {
-                    color: #222222;
-                    background-color: #eeeeee;
-                }
-                pre {
-                    box-shadow: inset 3px 3px 10px #dddddd, 
-                                inset -3px -3px 10px #ffffff;
-                }
-                code {
-                    background-color: #dddddd;
+                :root {
+                    --bg: #ffffff;
+                    --bg-highlight: #dddddd;
+                    --text: #222222;
+                    --text-faded: #666666;
+                    --text-link: #6666ff;
                 }
             }
             @media (prefers-color-scheme: dark) {
-                html {
-                    color: #dddddd;
-                    background-color: #111111;
+                :root {
+                    --bg: #111111;
+                    --bg-highlight: #222222;
+                    --text: #dddddd;
+                    --text-faded: #999999;
+                    --text-link: #4444dd;
                 }
-                pre {
-                    box-shadow: inset -3px -3px 10px #000000, 
-                                inset -3px -3px 10px #222222;
-                }
-                code {
-                    background-color: #222222;
-                }
-                img {
+                #github {
                     filter: invert(100%);
                 }
             }
             html {
                 font-family: "Roboto", sans-serif;
-                line-height: 1.5;
+                color: var(--text);
+                background-color: var(--bg);
             }
             main {
-                margin: 6rem 2rem;
+                line-height: 1.6;
+                margin: 8rem 2rem;
             }
             h1 {
+                line-height: 1.1;
                 position: absolute;
-                width: 100vw;
-                margin-left: auto;
-                margin-right: auto;
+                width: 50vw;
+                margin: 2rem 25vw auto;
                 top: 0;
                 left: 0;
                 text-align: center;
             }
             a {
-                color: #6666dd;
+                color: var(--text-link);
                 text-decoration: none;
             }
             pre {
                 padding: .7rem 1rem;
                 overflow-x: scroll;
-                border-radius: .8rem;
-            }
-            pre code {
-                background-color: transparent;
+                border-radius: 1rem;
+                background-color: var(--bg-highlight);
+                box-shadow: inset 3px 3px 10px #aaaaaa,
             }
             code {
                 padding: .1em .2em;
                 border-radius: .2em;
+                background-color: var(--bg-highlight);
+            }
+            pre code {
+                background-color: transparent;
             }
             .language-sh::before {
                 content: "usr@io ~ % ";
-                color: gray;
+                color: var(--text-faded);
             }
             #github {
-                position: fixed;
-                top: 1rem;
-                right: 1rem;
-                width: 2rem;
-                height: 2rem;
+                position: absolute;
+                top: 2.5rem;
+                left: 3rem;
+                width: 3rem;
+                height: 3rem;
+            }
+            @media screen and (min-width: 514px){
+                h1 {
+                    margin-top: 3rem;
+                }
             }
             @media screen and (min-width: 800px){
                 ul:first-of-type {
                     position: fixed;
-                    top: 6rem;
+                    top: 8rem;
                     left: 1rem;
                 }
                 ul ul:first-of-type {
@@ -96,6 +98,13 @@
                 }
                 main {
                     margin-left: 18em;
+                }
+                #github {
+                    position: fixed;
+                    top: 2.5rem;
+                    left: 2.5rem;
+                    width: 4rem;
+                    height: 4rem;
                 }
             }
         </style>
