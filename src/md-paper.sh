@@ -1,6 +1,6 @@
 #!/bin/sh
 
-version="0.1.2"
+version="0.1.3"
 
 if brew ls --versions md-paper >/dev/null
 then
@@ -79,7 +79,8 @@ case $1 in
         # convert latex to pdf
         if [ -e *.tex ]
         then
-            ksh ${resources}/pdf.ksh
+            ksh ${resources}/pdf.sh
+            open *.pdf
         else
             echo "No (La)TeX file found"
             exit 1
@@ -90,7 +91,8 @@ case $1 in
         then
             # convert md to pdf
             sh ${resources}/tex.sh
-            ksh ${resources}/pdf.ksh
+            ksh ${resources}/pdf.sh
+            open *.pdf
         else
             echo "No Markdown file found"
             exit 1

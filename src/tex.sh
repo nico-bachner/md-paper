@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # remove old file
 if [ -e *.tex ]
 then
