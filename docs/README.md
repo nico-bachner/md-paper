@@ -1,5 +1,5 @@
 # Markdown Paper
-A CLI tool to write scientific papers in Markdown. Initially, it was designed to be an easily customisable all-in-one compiler from Markdown to PDF via LaTeX, but has become more opinionated over time.
+A CLI tool to write scientific papers in Markdown.
 
 *Currently only designed to work on macOS, but should theoretically also work on Linux.*
 
@@ -29,7 +29,7 @@ For those unfamiliar with the command line:
 ### Installing
 -   With [Homebrew](https://brew.sh):
     ``` sh
-    brew tap nico-bachner/md-paper && brew install md-paper
+    brew install nico-bachner/md-paper/md-paper
     ```
 -   With `curl`:
     ``` sh
