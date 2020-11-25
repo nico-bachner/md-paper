@@ -63,9 +63,9 @@ delete out
 if [ -e *.bib ] || [ -e *.bibtex ]
 then
     LOADING "(1/3) Processing bibliography" &
-    pdflatex ${FILE}.tex >pdf.log && \
-    bibtex ${FILE}.aux >bib.log &
+    pdflatex ${FILE}.tex >pdf.log &
     wait
+    bibtex ${FILE}.aux >bib.log
     if [ -e *.pdf ]
     then
         echo "[ #################### ] 100 %"
@@ -76,7 +76,7 @@ then
     fi
 
     # convert latex to pdf using pdflatex
-    LOADING "(2/3) Preparing conversion from LaTeX to PDF" &
+    LOADING "(2/3) Preparing LaTeX for conversion to PDF" &
     pdflatex ${FILE}.tex >pdf.log &
     wait
     if [ -e *.pdf ]
@@ -101,7 +101,7 @@ then
     fi
 else
     # convert latex to pdf using pdflatex
-    LOADING "(1/2) Preparing conversion from LaTeX to PDF" &
+    LOADING "(1/2) Preparing LaTeX for conversion to PDF" &
     pdflatex ${FILE}.tex >pdf.log &
     wait
     if [ -e *.pdf ]
