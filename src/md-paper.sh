@@ -79,7 +79,7 @@ case $1 in
         # convert latex to pdf
         if [ -e *.tex ]
         then
-            ksh ${resources}/pdf.sh
+            fish ${resources}/pdf.sh
             open *.pdf
         else
             echo "No (La)TeX file found"
