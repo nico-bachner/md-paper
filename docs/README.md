@@ -214,5 +214,5 @@ md-paper uninstall # shorthand: `u`
 
 
 <a id="github" href="https://github.com/nico-bachner/md-paper">
-    <img src="https://nicob.dev/images/github.svg" alt="Github repository">
+    <img src="https://v1.nicob.dev/images/github.svg" alt="Github repository">
 </a>
